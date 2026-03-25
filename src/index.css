@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Fredoka:wght@300..700&family=Comfortaa:wght@300..700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-brand bg-white text-gray-900 overflow-x-hidden;
+    /* Custom cursor logic handled in JS, hiding default here */
+    cursor: none;
+  }
+
+  a,
+  button {
+    cursor: none;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+
+  body,
+  a,
+  button {
+    cursor: auto !important;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer components {
+  .btn-bubbly {
+    @apply relative px-8 py-4 rounded-full font-black uppercase tracking-widest text-sm transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-xl hover:shadow-2xl border-none overflow-hidden;
+  }
+
+  .btn-bubbly::after {
+    content: '';
+    @apply absolute inset-0 bg-white/20 opacity-0 transition-opacity;
+  }
+
+  .btn-bubbly:hover::after {
+    @apply opacity-100;
+  }
+
+  /* Whimsical Input Styles */
+  .input-bubbly {
+    @apply w-full px-8 py-5 rounded-[2rem] bg-pastel-pink/5 border-4 border-transparent focus:border-brand-primary/20 focus:bg-white outline-none transition-all font-bold text-gray-700;
+  }
+
+  /* Organic Shapes */
+  .blob-mask {
+    border-radius: 40% 60% 70% 30% / 40% 40% 60% 60%;
+  }
+
+  .blob-mask-alt {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+
+  .wavy-scallop {
+    background-color: white;
+    --mask: radial-gradient(50px at 50% 68px, #000 99%, #0000 101%) calc(50% - 70px) 0/140px 100%,
+      radial-gradient(50px at 50% -32px, #0000 99%, #000 101%) 50% 36px/140px 100% repeat-x;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+  }
+  .blob-morph {
+    animation: morph 8s ease-in-out infinite;
+  }
+}
+
+@keyframes morph {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+}
+
+/* Whimsical Animations */
+@keyframes float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  33% {
+    transform: translate(20px, -20px) rotate(2deg);
+  }
+
+  66% {
+    transform: translate(-10px, 10px) rotate(-1deg);
+  }
+
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+@keyframes float-delayed {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  33% {
+    transform: translate(-20px, 20px) rotate(-2deg);
+  }
+
+  66% {
+    transform: translate(10px, -10px) rotate(1deg);
+  }
+
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+.animate-float {
+  animation: float 15s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 18s ease-in-out infinite;
+}
+
+/* Custom scrollbar for a cleaner look */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fce4ec;
+  /* soft pink tint */
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #DD2A7B, #8134AF);
+  border-radius: 9999px;
+  border: 2px solid white;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #8134AF, #515BD4);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 95%;
+  /* Reduces all rem-based sizes globally by 5% */
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 90%;
+    /* Reduces all rem-based sizes on larger screens by 10% */
+  }
+}
