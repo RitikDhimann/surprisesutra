@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import { Phone, Mail, Sparkles, Send, Calendar, User, MessageSquare, Heart } from "lucide-react";
-import { useLocation } from "react-router-dom";
+import { Phone, Mail, Sparkles, Send, User, MessageSquare } from "lucide-react";
+
 import { motion } from "framer-motion";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { API_BASE } from "../config";
 
 const QuickQuoteSection = () => {
-  const location = useLocation();
+
 
   const [formData, setFormData] = useState({
     name: "",
@@ -46,11 +46,7 @@ const QuickQuoteSection = () => {
   };
 
   return (
-    <section id="contact" className="py-24 sm:py-32 relative overflow-hidden font-brand" style={{ background: "linear-gradient(135deg, #FFFB7D 0%, #FEDA77 40%, #FCAF45 80%, #F58529 100%)" }}>
-      {/* Organic Background Blobs */}
-      <div className="absolute top-10 right-10 w-[40%] h-[40%] blob-mask blur-3xl opacity-20 -z-0" style={{ background: "rgba(255,255,255,0.4)" }} />
-      <div className="absolute bottom-10 left-10 w-[30%] h-[30%] blob-mask-alt blur-3xl opacity-20 -z-0" style={{ background: "rgba(255,255,255,0.3)" }} />
-
+    <section id="contact" className="py-24 sm:py-32 relative overflow-hidden font-brand">
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <motion.div
            initial={{ opacity: 0, y: 40 }}
@@ -59,7 +55,6 @@ const QuickQuoteSection = () => {
            transition={{ duration: 0.8 }}
            className="bg-white rounded-[2rem] md:rounded-[3rem] shadow-2xl shadow-brand-brown/10 overflow-hidden flex flex-col border border-white/20 max-w-4xl mx-auto"
         >
-
           {/* Right Form */}
           <div className="p-8 sm:p-12 md:p-16 bg-white flex flex-col justify-center">
             <div className="mb-10 text-center">
