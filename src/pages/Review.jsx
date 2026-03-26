@@ -1,7 +1,6 @@
-import React, { useState, memo, useMemo } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Quote, Star, Heart, ChevronLeft, ChevronRight, Gift, PartyPopper, Cake, Trophy, MessageCircle, Sparkles } from "lucide-react";
-import useWindowSize from "../hooks/useWindowSize";
 
 const reviews = [
   {
@@ -70,16 +69,14 @@ const getArcStyle = (offset, total) => {
 };
 
 const ReviewsSection = () => {
-  const { width } = useWindowSize();
   const [center, setCenter] = useState(2); 
-  const total = reviews.length;
 
-  const prev = () => setCenter((c) => (c - 1 + total) % total);
-  const next = () => setCenter((c) => (c + 1) % total);
+  const prev = () => setCenter((c) => (c - 1 + reviews.length) % reviews.length);
+  const next = () => setCenter((c) => (c + 1) % reviews.length);
 
   // Build display order: always show 5 cards centered on `center`
   const displayIndices = [-2, -1, 0, 1, 2].map(
-    (offset) => ((center + offset) + total) % total
+    (offset) => ((center + offset) + reviews.length) % reviews.length
   );
 
   return (
@@ -248,7 +245,7 @@ const ReviewsSection = () => {
           {displayIndices.map((reviewIdx, slotIdx) => {
             const offset = slotIdx - 2; // -2..+2
             const review = reviews[reviewIdx];
-            const { scale, translateY, translateX, rotate, zIndex, opacity } = getArcStyle(offset, total);
+            const { scale, translateY, translateX, rotate, zIndex, opacity } = getArcStyle(offset, reviews.length);
             const isCenter = offset === 0;
   
             return (

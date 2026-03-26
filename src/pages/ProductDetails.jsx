@@ -1,23 +1,21 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState} from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
   ShoppingBag,
   Truck,
   Shield,
-  ArrowLeft,
+
   Plus,
   Minus,
-  FileText,
+
   Gift,
   Sparkles,
   Zap,
-  Heart,
-  Share2,
-  ChevronRight,
+
   Star
 } from "lucide-react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { API_BASE } from "../config";
 import { toast } from "react-toastify";
 

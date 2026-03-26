@@ -1,7 +1,7 @@
 import { Facebook, Instagram, Youtube, Phone, Mail } from "lucide-react";
 
 import { Link } from "react-router-dom";
-import Logo from "../assest/surprisesutralogopng.webp";
+import Logo from "../assets/surprisesutralogopng.webp";
 
 const Footer = () => {
   const year = new Date().getFullYear();

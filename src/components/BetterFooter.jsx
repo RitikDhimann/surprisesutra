@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Instagram, Facebook, Twitter, Heart, Mail, Phone, Sparkles, Send } from "lucide-react";
 import { Link } from "react-router-dom";
-import Logo from "../assest/new_logo.png";
+import Logo from "../assets/new_logo.png";
 
 const BetterFooter = () => {
   return (

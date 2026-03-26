@@ -1,5 +1,5 @@
 // src/pages/ProfilePage.jsx
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, User, MapPin, Plus, Edit, Trash2, Check, X, ArrowLeft, Package, Heart, LogOut } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -49,9 +49,9 @@ const ProfilePage = () => {
 
   useEffect(() => {
     if (userId) fetchUser();
-  }, [userId]);
+  }, [userId, fetchUser]);
 
-  const fetchUser = async () => {
+  const fetchUser = useCallback(async () => {
     try {
       setLoading(true);
       const res = await axios.get(`${USER_API_BASE}/${userId}`);
@@ -62,7 +62,7 @@ const ProfilePage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [userId]);
 
   const showMessage = (msg, type = 'success') => {
     if (type === 'success') setSuccess(msg);

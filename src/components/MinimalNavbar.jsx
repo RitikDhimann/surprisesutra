@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingCart, User, Gift, X, Heart } from "lucide-react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import Logo from "../assest/new_logo.png";
+import { Link, useNavigate } from "react-router-dom";
+import Logo from "../assets/new_logo.png";
 
 const MinimalNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
+  // const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {

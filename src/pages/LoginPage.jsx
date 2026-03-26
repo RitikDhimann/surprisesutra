@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, Sparkles, ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 
 import { USER_API_BASE } from "../config";
-import YellowLogo from '../assest/YellowLogo.webp';
-import { ToastContainer, toast } from 'react-toastify';
+import YellowLogo from '../assets/YellowLogo.webp';
+import { toast } from 'react-toastify';
 
 const LoginPage = () => {
     const navigate = useNavigate();

@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Mail, ArrowLeft, Sparkles, Lock, ShieldCheck, Eye, EyeOff } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
-import YellowLogo from '../assest/YellowLogo.webp';
+import YellowLogo from '../assets/YellowLogo.webp';
 import axios from 'axios';
 import { USER_API_BASE } from "../config";
 

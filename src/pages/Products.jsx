@@ -5,7 +5,6 @@ import {
   Search,
   Filter,
   LayoutGrid,
-  List as ListIcon,
   Loader2,
   Sparkles,
   ShoppingBag,

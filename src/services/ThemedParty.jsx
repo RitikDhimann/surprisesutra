@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Gift, Calendar, Baby, Heart, Cake, Users, Sparkles, Star, ArrowRight, Package, CheckCircle, PartyPopper, Zap } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export default function ThemedPartySupplies() {
-  const [hoveredCard, setHoveredCard] = useState(null);
   const navigate = useNavigate();
 
   const partyTypes = [
@@ -167,8 +166,6 @@ export default function ThemedPartySupplies() {
                 <div
                   key={party.id}
                   className="relative bg-white rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-transparent hover:border-rose-200"
-                  onMouseEnter={() => setHoveredCard(party.id)}
-                  onMouseLeave={() => setHoveredCard(null)}
                 >
                   {/* Image Section */}
                   <div className="relative h-48 sm:h-64 lg:h-80 overflow-hidden rounded-t-2xl">

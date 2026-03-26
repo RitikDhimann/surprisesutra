@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Palette, Scissors, Wand2, MessageSquare, Image, Gift, Crown, Shirt, Banknote, Camera, Clock, Award } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export default function CustomizedPartySupplies() {
-  const [selectedCategory, setSelectedCategory] = useState(null);
   const navigate=useNavigate();
 
   const customizableItems = [
@@ -209,8 +208,6 @@ export default function CustomizedPartySupplies() {
               <div
                 key={item.id}
                 className="relative bg-white rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-transparent hover:border-rose-200"
-                onMouseEnter={() => setSelectedCategory(item.id)}
-                onMouseLeave={() => setSelectedCategory(null)}
               >
                 {/* Image Section */}
                 <div className="relative h-48 sm:h-64 lg:h-80 overflow-hidden rounded-t-2xl">

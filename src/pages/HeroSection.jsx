@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { Sparkles, PartyPopper } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-// import BirthdayCake from "../assest/birthday-cake.webp";
+// import BirthdayCake from "../assets/birthday-cake.webp";
 
 const HeroSection = () => {
   const navigate = useNavigate();

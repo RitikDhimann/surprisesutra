@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Plus, Minus, X, ShoppingBag, ArrowLeft, Sparkles, Smile } from 'lucide-react';
+import { Plus, Minus, ShoppingBag, ArrowLeft, Sparkles, Smile } from 'lucide-react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { motion, AnimatePresence } from 'framer-motion';
