@@ -23,6 +23,19 @@ const ProfilePage = () => {
     street: '', city: '', state: '', zip: '', country: 'India', isDefault: false
   });
 
+  const fetchUser = useCallback(async () => {
+    try {
+      setLoading(true);
+      const res = await axios.get(`${USER_API_BASE}/${userId}`);
+      setUser(res.data.user);
+      setProfileForm({ name: res.data.user.name, email: res.data.user.email, password: '' });
+    } catch (err) {
+      setError(err.response?.data?.message || 'Failed to load profile');
+    } finally {
+      setLoading(false);
+    }
+  }, [userId]);
+
   // Get user ID from localStorage
   useEffect(() => {
     const userData = localStorage.getItem('user');
@@ -50,19 +63,6 @@ const ProfilePage = () => {
   useEffect(() => {
     if (userId) fetchUser();
   }, [userId, fetchUser]);
-
-  const fetchUser = useCallback(async () => {
-    try {
-      setLoading(true);
-      const res = await axios.get(`${USER_API_BASE}/${userId}`);
-      setUser(res.data.user);
-      setProfileForm({ name: res.data.user.name, email: res.data.user.email, password: '' });
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to load profile');
-    } finally {
-      setLoading(false);
-    }
-  }, [userId]);
 
   const showMessage = (msg, type = 'success') => {
     if (type === 'success') setSuccess(msg);

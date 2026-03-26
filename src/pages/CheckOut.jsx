@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Check, CreditCard, Package, Truck, Wallet, Plus, MapPin, LogIn, Calendar, Sparkles } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft, Check, CreditCard, Package, Truck, Wallet, MapPin, LogIn, Calendar, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { API_BASE, USER_API_BASE } from "../config";
@@ -12,7 +12,7 @@ const getCart = () => JSON.parse(localStorage.getItem("surprise_sutra_cart") || 
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
-  const [cartItems, setCartItems] = useState(getCart());
+  const [cartItems] = useState(getCart());
   const [user, setUser] = useState(null);
   const [userId, setUserId] = useState(null);
   const [addresses, setAddresses] = useState([]);
@@ -51,23 +51,17 @@ const CheckoutPage = () => {
     }
   }, [navigate]);
 
-  useEffect(() => {
-    if (userId) {
-      fetchUserAddresses();
-      fetchCoupons();
-    }
-  }, [userId]);
-
-  const fetchCoupons = async () => {
+  const fetchCoupons = useCallback(async () => {
     try {
       const res = await axios.get(`${API_BASE}/api/coupon`);
       setAvailableCoupons(res.data.filter(c => c.isActive));
     } catch (err) {
       console.error('Failed to fetch coupons:', err);
     }
-  };
+  }, []);
 
-  const fetchUserAddresses = async () => {
+  const fetchUserAddresses = useCallback(async () => {
+    if (!userId) return;
     try {
       const res = await axios.get(`${USER_API_BASE}/${userId}`);
       const fetchedUser = res.data.user;
@@ -81,7 +75,14 @@ const CheckoutPage = () => {
     } catch (err) {
       console.error('Failed to fetch addresses:', err);
     }
-  };
+  }, [userId]);
+
+  useEffect(() => {
+    if (userId) {
+      fetchUserAddresses();
+      fetchCoupons();
+    }
+  }, [userId, fetchUserAddresses, fetchCoupons]);
 
   const handleAddressSelect = (index) => {
     setSelectedAddressIndex(index);

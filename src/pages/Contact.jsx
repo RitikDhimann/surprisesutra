@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { Phone, Mail, Sparkles, Send, Calendar, User, MessageSquare, Heart } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { API_BASE } from "../config";
 
 const QuickQuoteSection = () => {
   const location = useLocation();
@@ -10,24 +13,29 @@ const QuickQuoteSection = () => {
     name: "",
     phone: "",
     email: "",
-    occasion: "",
-    date: "",
     message: "",
   });
 
   useEffect(() => {
-    if (location.state?.occasion) {
-      setFormData((prev) => ({
-        ...prev,
-        occasion: location.state.occasion,
-      }));
-    }
-  }, [location.state]);
+    // Occasion filter removed as requested to simplify queries
+  }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("Magic is on its way! We'll contact you soon.");
+    try {
+      const response = await axios.post(`${API_BASE}/api/queries`, formData);
+      if (response.data.success) {
+        toast.success(response.data.message);
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          message: "",
+        });
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Magic fumbled. Try again!");
+    }
   };
 
   const handleChange = (e) => {
@@ -38,10 +46,10 @@ const QuickQuoteSection = () => {
   };
 
   return (
-    <section id="contact" className="py-24 sm:py-32 bg-gray-50 relative overflow-hidden font-brand">
-      {/* Decorative Background Elements */}
-      <div className="absolute top-[-10%] right-[-5%] w-[50%] h-[50%] bg-brand-primary/10 rounded-full blur-[120px] animate-float" />
-      <div className="absolute bottom-[-10%] left-[-5%] w-[50%] h-[50%] bg-[#DD2A7B]/10 rounded-full blur-[120px] animate-float-delayed" />
+    <section id="contact" className="py-24 sm:py-32 relative overflow-hidden font-brand" style={{ background: "linear-gradient(135deg, #FFFB7D 0%, #FEDA77 40%, #FCAF45 80%, #F58529 100%)" }}>
+      {/* Organic Background Blobs */}
+      <div className="absolute top-10 right-10 w-[40%] h-[40%] blob-mask blur-3xl opacity-20 -z-0" style={{ background: "rgba(255,255,255,0.4)" }} />
+      <div className="absolute bottom-10 left-10 w-[30%] h-[30%] blob-mask-alt blur-3xl opacity-20 -z-0" style={{ background: "rgba(255,255,255,0.3)" }} />
 
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <motion.div
@@ -49,92 +57,25 @@ const QuickQuoteSection = () => {
            whileInView={{ opacity: 1, y: 0 }}
            viewport={{ once: true }}
            transition={{ duration: 0.8 }}
-           className="bg-white rounded-[2rem] md:rounded-[3rem] shadow-2xl shadow-brand-brown/5 overflow-hidden flex flex-col lg:flex-row border border-gray-100"
+           className="bg-white rounded-[2rem] md:rounded-[3rem] shadow-2xl shadow-brand-brown/10 overflow-hidden flex flex-col border border-white/20 max-w-4xl mx-auto"
         >
-          {/* Left Content - Premium Image & Overlay */}
-          <div className="lg:w-5/12 relative flex flex-col justify-center min-h-[400px] lg:min-h-[auto]">
-            {/* Background Image */}
-            <div 
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: "url('https://images.unsplash.com/photo-1511556532299-8f662fc26c06?q=80&w=1000&auto=format&fit=crop')" }}
-            />
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-brand-brown/80 to-[#DD2A7B]/80 mix-blend-multiply" />
-            
-            {/* Floating Glass Badges */}
-            <motion.div 
-               animate={{ y: [-10, 10, -10] }}
-               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-               className="absolute top-8 right-8 bg-white/10 backdrop-blur-md border border-white/20 p-3 rounded-2xl flex items-center gap-3 shadow-2xl hidden sm:flex"
-            >
-               <div className="bg-brand-primary rounded-full w-8 h-8 flex items-center justify-center">
-                 <Sparkles size={16} className="text-white" />
-               </div>
-               <div className="text-white text-xs font-bold leading-tight">
-                 100%<br/>Magical
-               </div>
-            </motion.div>
-
-            {/* Content Container */}
-            <div className="relative z-10 p-8 md:p-12 lg:p-16 flex flex-col h-full justify-between">
-              <div>
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md text-white border border-white/20 font-bold text-xs uppercase tracking-widest mb-8"
-                >
-                  <Sparkles size={14} className="text-brand-primary" />
-                  <span>Let's Create Magic</span>
-                </motion.div>
-
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-[1.1]">
-                  Book Your <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-yellow-400">
-                    Dream Event
-                  </span>
-                </h2>
-                <p className="text-base text-gray-200 font-medium mb-12 max-w-sm leading-relaxed">
-                  Tell us about your upcoming celebration. From whimsical birthdays to grand romantic anniversaries, we make it unforgettable.
-                </p>
-              </div>
-
-              {/* Glassmorphic Contact Cards */}
-              <div className="space-y-4">
-                <a href="tel:+919999416896" className="flex items-center gap-4 group bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/10 p-4 rounded-2xl transition-all cursor-pointer">
-                  <div className="bg-white/10 p-3 rounded-xl group-hover:bg-brand-primary transition-colors">
-                    <Phone className="text-white w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-gray-400 font-bold text-[10px] uppercase tracking-widest mb-0.5">Call for Joy</p>
-                    <p className="font-bold text-white text-sm md:text-base">+91 99994 16896</p>
-                  </div>
-                </a>
-                
-                <a href="mailto:hello@propz.com" className="flex items-center gap-4 group bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/10 p-4 rounded-2xl transition-all cursor-pointer">
-                  <div className="bg-white/10 p-3 rounded-xl group-hover:bg-[#DD2A7B] transition-colors">
-                    <Mail className="text-white w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-gray-400 font-bold text-[10px] uppercase tracking-widest mb-0.5">Email Us</p>
-                    <p className="font-bold text-white text-sm md:text-base">hello@propz.com</p>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
 
           {/* Right Form */}
-          <div className="lg:w-7/12 p-6 sm:p-10 md:p-12 lg:p-16 bg-white flex flex-col justify-center">
-            <div className="mb-8">
-              <h3 className="text-2xl font-black text-brand-brown mb-2">Event Details</h3>
-              <p className="text-gray-500 text-sm">Fill out the form below and our magic builders will get back to you shortly.</p>
+          <div className="p-8 sm:p-12 md:p-16 bg-white flex flex-col justify-center">
+            <div className="mb-10 text-center">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-primary/10 text-brand-primary font-black text-[10px] uppercase tracking-widest mb-4">
+                <Sparkles size={14} />
+                Send Your Query
+              </span>
+              <h3 className="text-3xl md:text-4xl font-black text-brand-brown mb-3 tracking-tighter italic">Let's Create Magic</h3>
+              <p className="text-gray-500 text-sm font-medium">Have something specific in mind? Tell us and we'll bring it to life.</p>
             </div>
 
             <form className="space-y-6 md:space-y-8" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Name */}
                 <div className="space-y-2">
-                  <label className="text-[11px] font-black uppercase tracking-[0.15em] text-gray-400 ml-1">Your Name</label>
+                  <label className="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">Your Name</label>
                   <div className="relative group">
                     <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 group-focus-within:text-brand-primary transition-colors" />
                     <input
@@ -150,7 +91,7 @@ const QuickQuoteSection = () => {
                 
                 {/* Phone */}
                 <div className="space-y-2">
-                  <label className="text-[11px] font-black uppercase tracking-[0.15em] text-gray-400 ml-1">Phone Number</label>
+                  <label className="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">Phone Number</label>
                   <div className="relative group">
                     <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 group-focus-within:text-brand-primary transition-colors" />
                     <input
@@ -167,7 +108,7 @@ const QuickQuoteSection = () => {
 
               {/* Email */}
               <div className="space-y-2">
-                <label className="text-[11px] font-black uppercase tracking-[0.15em] text-gray-400 ml-1">Email Address</label>
+                <label className="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">Email Address</label>
                 <div className="relative group">
                   <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 group-focus-within:text-brand-primary transition-colors" />
                   <input
@@ -182,58 +123,17 @@ const QuickQuoteSection = () => {
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* Occasion */}
-                <div className="space-y-2">
-                  <label className="text-[11px] font-black uppercase tracking-[0.15em] text-gray-400 ml-1">The Occasion</label>
-                  <div className="relative group">
-                    <Heart className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 group-focus-within:text-brand-primary transition-colors" />
-                    <select
-                      name="occasion"
-                      value={formData.occasion}
-                      onChange={handleChange}
-                      className="w-full pl-12 pr-4 py-4 rounded-2xl bg-gray-50 border border-gray-100 focus:border-brand-primary/30 focus:ring-4 focus:ring-brand-primary/10 outline-none transition-all text-sm font-bold text-brand-brown appearance-none cursor-pointer"
-                      required
-                    >
-                      <option value="" className="text-gray-400">Select Event Type...</option>
-                      <option value="Birthday Party">Birthday Bash</option>
-                      <option value="Baby Shower">Welcome Little One</option>
-                      <option value="Anniversary">Love Celebration</option>
-                      <option value="Engagement">The Big Yes</option>
-                      <option value="Corporate Event">Work Magic</option>
-                      <option value="Custom Events">Something Unique</option>
-                    </select>
-                  </div>
-                </div>
-                
-                {/* Date */}
-                <div className="space-y-2">
-                  <label className="text-[11px] font-black uppercase tracking-[0.15em] text-gray-400 ml-1">Event Date</label>
-                  <div className="relative group">
-                    <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 group-focus-within:text-brand-primary transition-colors" />
-                    <input
-                      type="date"
-                      name="date"
-                      value={formData.date}
-                      onChange={handleChange}
-                      className="w-full pl-12 pr-4 py-4 rounded-2xl bg-gray-50 border border-gray-100 focus:border-brand-primary/30 focus:ring-4 focus:ring-brand-primary/10 outline-none transition-all text-sm font-bold text-brand-brown"
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-
               {/* Message */}
               <div className="space-y-2">
-                <label className="text-[11px] font-black uppercase tracking-[0.15em] text-gray-400 ml-1">Your Vision</label>
+                <label className="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">Your Requirements / Query</label>
                 <div className="relative group">
                   <MessageSquare className="absolute left-4 top-5 text-gray-400 w-5 h-5 group-focus-within:text-brand-primary transition-colors" />
                   <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Tell us about the theme, colors, or any special requests..."
-                    rows="3"
+                    placeholder="Describe your vision, specific theme, or any questions you have..."
+                    rows="5"
                     className="w-full pl-12 pr-4 py-4 rounded-2xl bg-gray-50 border border-gray-100 focus:border-brand-primary/30 focus:ring-4 focus:ring-brand-primary/10 outline-none transition-all text-sm font-bold text-brand-brown placeholder:text-gray-400 resize-none"
                     required
                   ></textarea>

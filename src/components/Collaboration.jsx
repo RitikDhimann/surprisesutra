@@ -52,9 +52,6 @@ const Collaboration = () => {
   const navigate = useNavigate();
   const { isMobile } = useWindowSize();
 
-  const handleNext = () => setCurrentIndex((prev) => (prev + 1) % CARDS.length);
-  const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + CARDS.length) % CARDS.length);
-
   return (
     <section
       style={{

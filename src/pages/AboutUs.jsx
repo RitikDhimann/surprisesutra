@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import {
-  Sparkles, Heart, Star, PartyPopper, Users, MapPin,
+  Sparkles, Heart, Star, PartyPopper, MapPin,
   Instagram, ArrowRight, Zap, ShieldCheck, Smile, Gift
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";

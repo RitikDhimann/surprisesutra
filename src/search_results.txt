@@ -1,0 +1,17 @@
+﻿C:\Users\HP\Downloads\Project\client\src\components\BetterFooter.jsx:3:import { Instagram, Facebook, Twitter, Heart, Mail, Phone, Sparkles, Send } from "lucide-react";
+C:\Users\HP\Downloads\Project\client\src\components\BetterFooter.jsx:46:                     <Send size={14} /> <span>Join</span>
+C:\Users\HP\Downloads\Project\client\src\components\BetterFooter.jsx:97:                   Send a <br/> <span className="text-brand-primary">Magical Message?</span>
+C:\Users\HP\Downloads\Project\client\src\components\Collaboration.jsx:3:import { Star, Sparkles, ArrowRight, Zap, Gift, Camera } from "lucide-react";
+C:\Users\HP\Downloads\Project\client\src\components\Collaboration.jsx:273:                          Partner with us <ArrowRight size={15} />
+C:\Users\HP\Downloads\Project\client\src\pages\AboutUs.jsx:5:  Instagram, ArrowRight, Zap, ShieldCheck, Smile, Gift
+C:\Users\HP\Downloads\Project\client\src\pages\AboutUs.jsx:372:              Book Now <ArrowRight size={18} />
+C:\Users\HP\Downloads\Project\client\src\pages\AboutUs.jsx:406:              Start Planning <ArrowRight size={16} className="sm:w-[18px] sm:h-[18px]" />
+C:\Users\HP\Downloads\Project\client\src\pages\Contact.jsx:2:import { Phone, Mail, Sparkles, Send, Calendar, User, MessageSquare, Heart } from "lucide-react";
+C:\Users\HP\Downloads\Project\client\src\pages\Contact.jsx:251:                <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+C:\Users\HP\Downloads\Project\client\src\pages\ContactUs.jsx:11:  Send,
+C:\Users\HP\Downloads\Project\client\src\pages\Gifts.jsx:114:                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
+C:\Users\HP\Downloads\Project\client\src\pages\MyOrders.jsx:323:                     <Mail size={12} /> Send a Message
+C:\Users\HP\Downloads\Project\client\src\services\Customized.jsx:74:    { step: "3", title: "Review", desc: "We'll send you a preview to approve.", icon: Image },
+C:\Users\HP\Downloads\Project\client\src\services\ThemedParty.jsx:2:import { Gift, Calendar, Baby, Heart, Cake, Users, Sparkles, Star, ArrowRight, Package, CheckCircle, PartyPopper, Zap } from 'lucide-react';
+C:\Users\HP\Downloads\Project\client\src\services\ThemedParty.jsx:106:                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
+C:\Users\HP\Downloads\Project\client\src\services\ThemedParty.jsx:202:                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />

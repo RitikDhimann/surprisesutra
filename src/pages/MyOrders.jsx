@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Package, Truck, CheckCircle, Clock, AlertCircle, ArrowLeft, Sparkles, Gift, MapPin, Mail, Trash2, Box, ExternalLink, ShieldCheck, Zap, Phone, Heart, X } from 'lucide-react';
+import { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
+import { Package, Truck, CheckCircle, ArrowLeft, Sparkles, Gift, MapPin, Mail, Trash2, Box, ExternalLink, ShieldCheck, Zap, Phone, Heart, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -9,10 +9,8 @@ import { API_BASE } from "../config";
 const ORDER_API = `${API_BASE}/api/order`;
 
 const MyOrdersPage = () => {
-  const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
@@ -27,24 +25,23 @@ const MyOrdersPage = () => {
     }
   }, []);
 
+  const fetchOrders = useCallback(async () => {
+    try {
+      setLoading(true);
+      const res = await axios.get(`${ORDER_API}/user/${userId}`);
+      setOrders(res.data);
+    } catch (err) {
+      console.error(err.response?.data?.message || 'Failed to load orders');
+    } finally {
+      setLoading(false);
+    }
+  }, [userId]);
+
   useEffect(() => {
     if (userId) {
       fetchOrders();
     }
-  }, [userId]);
-
-  const fetchOrders = async () => {
-    try {
-      setLoading(true);
-      setError('');
-      const res = await axios.get(`${ORDER_API}/user/${userId}`);
-      setOrders(res.data);
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to load orders');
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [userId, fetchOrders]);
 
   const handleDeleteOrder = async (orderId) => {
     if (!window.confirm("Are you sure you want to remove this record? 🗑️")) return;
@@ -68,16 +65,6 @@ const MyOrdersPage = () => {
     }
   };
 
-  const getStatusConfig = (status) => {
-    switch (status) {
-      case 'delivered': return { color: 'bg-green-500/10 text-green-600 border-green-500/10', icon: CheckCircle, label: 'Handed Over' };
-      case 'out_for_delivery': return { color: 'bg-yellow-500/10 text-yellow-700 border-yellow-500/10', icon: Truck, label: 'En Route' };
-      case 'shipped': return { color: 'bg-blue-500/10 text-blue-600 border-blue-500/10', icon: Box, label: 'In Transit' };
-      case 'processing': return { color: 'bg-purple-500/10 text-purple-600 border-purple-500/10', icon: Sparkles, label: 'Brewing' };
-      case 'cancelled': return { color: 'bg-red-500/10 text-red-600 border-red-500/10', icon: AlertCircle, label: 'Maybe Later' };
-      default: return { color: 'bg-gray-500/10 text-gray-400 border-gray-500/10', icon: Package, label: 'In the Works' };
-    }
-  };
 
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
@@ -140,7 +127,6 @@ const MyOrdersPage = () => {
             ) : (
               <AnimatePresence>
                 {orders.map((order, idx) => {
-                  const config = getStatusConfig(order.orderStatus || 'processing');
                   return (
                     <motion.div
                       key={order._id}

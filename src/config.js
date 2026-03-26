@@ -3,6 +3,8 @@ const isLocalhost = window.location.hostname === 'localhost' || window.location.
 export const API_BASE = isLocalhost
   ? 'http://localhost:3043'
   : process.env.REACT_APP_API_BASE;
+
+console.log(process.env.REACT_APP_API_BASE)
 // : 'https://apisurprise.dodunsoftsolutions.com';
 
 export const USER_API_BASE = `${API_BASE}/api/user`;

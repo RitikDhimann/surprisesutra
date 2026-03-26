@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { Gift, Star, Package, Heart, Sparkles, ArrowRight, CheckCircle, Palette, Wand2 } from 'lucide-react';
+import React from 'react';
+import { Gift, Star, Package, Heart, Sparkles, CheckCircle, Palette, Wand2 } from 'lucide-react';
 import {useNavigate} from 'react-router-dom'
 
 export default function Gifts() {
-  const [hoveredGift, setHoveredGift] = useState(null);
   const navigate=useNavigate();
 
   const giftItems = [
@@ -180,8 +179,6 @@ export default function Gifts() {
                 key={gift.id}
                 className="relative rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-white/80"
                 style={{ background: "linear-gradient(160deg, #fffdf5, #fff8f0)" }}
-                onMouseEnter={() => setHoveredGift(gift.id)}
-                onMouseLeave={() => setHoveredGift(null)}
               >
                 {/* Image Section */}
                 <div className="relative h-48 sm:h-64 lg:h-80 overflow-hidden rounded-t-2xl">

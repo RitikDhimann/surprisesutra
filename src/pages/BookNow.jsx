@@ -3,11 +3,7 @@ import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   Calendar, 
-  Clock, 
-  MapPin, 
   User, 
-  Phone, 
-  Mail, 
   Sparkles, 
   ArrowLeft, 
   CreditCard, 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Shield, Lock } from "lucide-react";
+import { Lock } from "lucide-react";
 
 const PrivacyPolicy = () => {
   const [isVisible, setIsVisible] = useState(false);

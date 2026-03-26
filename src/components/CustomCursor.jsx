@@ -8,7 +8,6 @@ const CustomCursor = () => {
   const [isClicking, setIsClicking] = useState(false);
   const [sparkles, setSparkles] = useState([]);
   const [trail, setTrail] = useState([]);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   const springConfig = { damping: 25, stiffness: 200, mass: 0.5 };
   const cursorX = useSpring(0, springConfig);

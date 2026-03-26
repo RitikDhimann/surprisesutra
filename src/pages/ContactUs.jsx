@@ -6,9 +6,7 @@ import {
   Heart,
   Instagram,
   Facebook,
-  Twitter,
   Clock,
-  Send,
 } from "lucide-react";
 import ContactForm from "./Contact";
 
@@ -20,15 +18,26 @@ export default function ContactUs() {
       title: "Email Us",
       value: "surprisesutra@gmail.com",
       action: "mailto:surprisesutra@gmail.com",
-      description: "We'll respond within 24 hours",
     },
     {
       id: 2,
       icon: Phone,
       title: "Call Us",
-      value: "+91 99994-16896",
-      action: "tel:919999416896",
-      description: "Mon–Sat, 9 AM – 6 PM",
+      value: "+91-8886361515",
+      action: "tel:+918886361515",
+    },
+    {
+      id: 3,
+      icon: MessageSquare,
+      title: "WhatsApp",
+      value: "+91-8886361515",
+      action: "https://wa.me/918886361515",
+    },
+    {
+      id: 4,
+      icon: Clock,
+      title: "Business Hours",
+      value: "Mon-Sat: 10 AM - 7 PM",
     },
   ];
 
@@ -36,139 +45,105 @@ export default function ContactUs() {
     {
       id: 1,
       icon: Instagram,
-      url: "https://instagram.com/surprisesutra",
-      label: "Instagram",
+      name: "Instagram",
+      link: "https://instagram.com/surprisesutra",
     },
     {
       id: 2,
       icon: Facebook,
-      url: "https://facebook.com/surprisesutra",
-      label: "Facebook",
+      name: "Facebook",
+      link: "https://facebook.com/surprisesutra",
     },
-  
   ];
 
   return (
-    <div className="bg-white text-gray-900 font-sans">
-      {/* ===== Hero Section ===== */}
-      <section className="relative overflow-hidden pt-32 pb-16 sm:pt-40 sm:pb-20 md:pt-48 md:pb-24">
-        {/* Background */}
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1600&q=80"
-            alt="Contact Hero"
-            className="w-full h-full object-cover opacity-20"
-          />
-        </div>
+    <div className="min-h-screen relative overflow-hidden font-brand pt-32 pb-20" style={{ background: "linear-gradient(135deg, #FFFB7D 0%, #FEDA77 40%, #FCAF45 80%, #F58529 100%)" }}>
+      {/* Background blobs */}
+      <div className="absolute top-10 right-10 w-[400px] h-[400px] bg-white opacity-20 blur-[100px] rounded-full -z-0" />
+      <div className="absolute bottom-10 left-10 w-[300px] h-[300px] bg-white opacity-20 blur-[100px] rounded-full -z-0" />
 
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-yellow-100 via-white to-red-100 opacity-90" />
+      <div className="container mx-auto px-4 max-w-7xl relative">
+        <div className="flex flex-col lg:flex-row gap-16">
+          {/* Left Column: Contact Info & Socials */}
+          <div className="lg:w-2/5 space-y-12">
+            <div className="space-y-6">
+              <div className="flex items-center gap-3">
+                <span className="w-12 h-[2px] bg-brand-primary"></span>
+                <span className="text-brand-brown font-black tracking-[0.2em] uppercase text-xs">
+                  Get In Touch
+                </span>
+              </div>
+              <h1 className="text-5xl lg:text-7xl font-black leading-[0.9] text-brand-brown tracking-tighter">
+                Let's <span className="text-brand-primary">Collaborate</span> On Your
+                Next Event.
+              </h1>
+              <p className="text-brand-brown/70 text-lg font-bold max-w-sm leading-relaxed">
+                Whether it's a grand celebration or an intimate surprise, we're
+                here to bring your vision to life.
+              </p>
+            </div>
 
-        {/* Hero Content */}
-        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-red-500 text-white px-5 py-2 rounded-full font-semibold mb-5 text-sm sm:text-base shadow-md">
-            <MessageSquare size={18} /> Let’s Connect
-          </span>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-yellow-500 leading-tight">
-            Contact Surprise Sutra
-          </h1>
-          <p className="text-sm sm:text-base md:text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
-            We’d love to hear from you! Whether it’s a birthday, wedding, or
-            corporate event — let’s make it magical together ✨
-          </p>
-        </div>
-      </section>
-
-      {/* ===== Contact Section ===== */}
-      <section className="py-12 sm:py-16 md:py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-8 sm:space-y-8">
-          {/* Contact Info Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-            {contactDetails.map((item) => {
-              const Icon = item.icon;
-              return (
-                <div
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
+              {contactDetails.map((item) => (
+                <a
                   key={item.id}
-                  className="bg-white border border-gray-200 rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-2xl hover:border-red-200 transition-all duration-300"
+                  href={item.action}
+                  className="group p-6 rounded-3xl bg-white/40 backdrop-blur-md border border-white/40 hover:bg-white hover:scale-[1.02] transition-all duration-500 flex items-start gap-4 shadow-sm hover:shadow-xl"
                 >
-                  <div className="flex flex-col items-center text-center space-y-3">
-                    <div className="bg-gradient-to-br from-yellow-400 to-red-500 p-4 rounded-2xl shadow-lg">
-                      <Icon className="w-8 h-8 text-white" />
-                    </div>
-                    <h3 className="text-xl sm:text-2xl font-bold">
+                  <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center text-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-all duration-500 shadow-sm">
+                    <item.icon size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-[10px] font-black text-brand-brown/40 uppercase tracking-widest mb-1">
                       {item.title}
                     </h3>
-                    <p className="text-gray-500 text-sm">{item.description}</p>
-                    <a
-                      href={item.action}
-                      className="text-base sm:text-lg font-semibold text-red-600 hover:text-yellow-500 transition-colors"
-                    >
+                    <p className="text-brand-brown font-black group-hover:text-brand-primary transition-all duration-500 tracking-tight">
                       {item.value}
-                    </a>
+                    </p>
                   </div>
-                </div>
-              );
-            })}
+                </a>
+              ))}
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 text-xs font-black text-brand-brown/40 uppercase tracking-widest">
+                <Heart size={16} className="text-brand-primary" />
+                <span>Follow our journey</span>
+              </div>
+              <div className="flex gap-4">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.id}
+                    href={social.link}
+                    className="w-14 h-14 rounded-2xl bg-white/40 backdrop-blur-md border border-white/40 flex items-center justify-center text-brand-brown/60 hover:text-white hover:bg-brand-primary hover:border-brand-primary transition-all duration-300 shadow-sm"
+                  >
+                    <social.icon size={22} />
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <ContactForm />
-
-          {/* Extra Info */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 text-center">
-            {/* Business Hours */}
-            <div className="bg-gradient-to-br from-yellow-50 to-white border border-yellow-200 p-6 rounded-3xl shadow-sm hover:shadow-md transition-all">
-              <div className="flex items-center justify-center gap-3 mb-3">
-                <Clock className="text-yellow-500" size={22} />
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900">
-                  Business Hours
-                </h3>
-              </div>
-              <p className="text-gray-700 text-sm sm:text-base">
-                Available All Days <br />
-                <span className="text-red-600 font-semibold">
-                  11:00 AM – 7:00 PM
-                </span>
-              </p>
-              <p className="text-gray-500 mt-2 text-sm"></p>
-            </div>
-
-            {/* Socials */}
-            <div className="bg-gradient-to-br from-red-50 to-white border border-red-200 p-6 rounded-3xl shadow-sm hover:shadow-md transition-all">
-              <h3 className="text-lg sm:text-xl font-bold mb-3 text-gray-900 flex items-center justify-center gap-2">
-                <Heart className="text-red-500" /> Follow Us
-              </h3>
-              <div className="flex justify-center gap-3 sm:gap-4">
-                {socialLinks.map((link) => {
-                  const Icon = link.icon;
-                  return (
-                    <a
-                      key={link.id}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group bg-white border border-gray-200 hover:bg-gradient-to-br from-red-500 to-yellow-400 w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shadow-md transition-all duration-300"
-                    >
-                      <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-red-500 group-hover:text-white transition" />
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Quick Response */}
-            <div className="bg-gradient-to-br from-yellow-50 to-white border border-yellow-200 p-6 rounded-3xl shadow-sm hover:shadow-md transition-all">
-              <div className="text-3xl sm:text-4xl mb-2">⚡</div>
-              <h3 className="text-lg sm:text-xl font-bold mb-1">
-                Quick Response
-              </h3>
-              <p className="text-gray-600 text-sm sm:text-base">
-                Avg reply time:{" "}
-                <span className="text-red-600 font-semibold">2 hours</span>
-              </p>
-            </div>
+          {/* Right Column: Contact Form */}
+          <div className="lg:w-3/5">
+            <ContactForm />
           </div>
         </div>
-      </section>
+      </div>
+
+      <style jsx>{`
+        .text-gradient {
+          background: linear-gradient(135deg, #f97316 0%, #eab308 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        @media (max-width: 1024px) {
+          h1 {
+            font-size: 3.5rem;
+          }
+        }
+      `}</style>
     </div>
   );
 }
