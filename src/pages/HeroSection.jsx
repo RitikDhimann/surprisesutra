@@ -207,7 +207,8 @@ const HeroSection = () => {
                 alt="Premium Celebration Decor"
                 className="w-full h-full object-cover rounded-2xl"
                 loading="eager"
-                decoding="async"
+                fetchpriority="high"
+                decoding="sync"
               />
             </motion.div>
 
@@ -224,7 +225,8 @@ const HeroSection = () => {
                 alt="Event Entrance Welcome Decor"
                 className="w-full h-full object-cover rounded-2xl"
                 loading="eager"
-                decoding="async"
+                fetchpriority="high"
+                decoding="sync"
               />
             </motion.div>
 

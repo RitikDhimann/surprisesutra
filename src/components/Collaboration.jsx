@@ -159,15 +159,19 @@ const AboutUsSection = () => {
             <div className="w-24 h-1.5 bg-[#fdd825] mx-auto rounded-full" />
           </div>
 
-          <div className="relative h-[400px] md:h-[600px] rounded-[3rem] overflow-hidden shadow-2xl">
-            <AnimatePresence mode="wait">
-                <motion.div
-                  key={GALLERY[activeSlide].src}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.4 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 1 }}
-                  className="absolute inset-0 scale-110 blur-2xl grayscale-[30%]"
+          <div className="relative h-[400px] md:h-[600px] rounded-[3rem] overflow-hidden shadow-2xl bg-black">
+            <AnimatePresence>
+              <motion.div
+                key={activeSlide}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1 }}
+                className="absolute inset-0"
+              >
+                {/* Background Blur Layer */}
+                <div
+                  className="absolute inset-0 scale-110 blur-2xl grayscale-[30%] opacity-40"
                   style={{ 
                     backgroundImage: `url(${GALLERY[activeSlide].src})`,
                     backgroundSize: 'cover',
@@ -175,23 +179,18 @@ const AboutUsSection = () => {
                   }}
                 />
 
-                <motion.div
-                  key={activeSlide}
-                  initial={{ opacity: 0, scale: 1.05 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 1 }}
-                  className="relative w-full h-full"
-                >
+                {/* Main Image Overlay Layer */}
+                <div className="relative w-full h-full p-4 md:p-8">
                   <img
                     src={GALLERY[activeSlide].src}
                     alt={GALLERY[activeSlide].alt}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-cover rounded-[3rem]"
+                    className="w-full h-full object-cover rounded-[2.5rem] shadow-2xl"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent rounded-[3rem]" />
-                </motion.div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-[3rem] pointer-events-none" />
+                </div>
+              </motion.div>
             </AnimatePresence>
 
             {/* Slide Navigation Dots */}

@@ -108,7 +108,10 @@ const Services = () => {
         <img 
           src={a0} 
           alt="Elegant event setup" 
-          className="absolute inset-0 w-full h-full object-cover z-0"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+          decoding="sync"
         />
         <div className="relative z-20 text-center text-white px-6 w-full max-w-4xl mx-auto pt-20">
           <motion.p 
