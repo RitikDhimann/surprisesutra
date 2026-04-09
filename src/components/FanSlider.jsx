@@ -1,6 +1,6 @@
 import React, { useState, memo, useEffect } from "react";
 import { motion, useAnimationFrame, useMotionValue, useTransform } from "framer-motion";
-import { Gift, Baby, Heart, PartyPopper, Camera } from "lucide-react";
+import { Gift, Baby, Heart, PartyPopper } from "lucide-react";
 import useWindowSize from "../hooks/useWindowSize";
 import RedBow from "../assets/red-bow.png";
 
@@ -119,7 +119,7 @@ const Card = memo(({ img, i, count, angle, radius, cardW, cardH }) => {
 
 const FanSlider = () => {
   const { width } = useWindowSize();
-  const [activeTab, setActiveTab] = useState(CATEGORIES[0].id);
+  const [activeTab] = useState(CATEGORIES[0].id);
   const [cfg, setCfg] = useState({ radius: 350, cardW: 150, cardH: 240, height: 500 });
 
   useEffect(() => {

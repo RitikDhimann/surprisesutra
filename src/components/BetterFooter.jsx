@@ -1,5 +1,5 @@
 import React from "react";
-import { Instagram, Facebook, Twitter, Heart, Mail, Phone } from "lucide-react";
+import { Instagram, Facebook, Twitter, Mail, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/new_logo.png";
 
@@ -57,7 +57,7 @@ const BetterFooter = () => {
              </div>
              <div className="flex gap-4">
                 {[Instagram, Facebook, Twitter].map((Icon, i) => (
-                  <a key={i} href="#" className="p-2 bg-gray-50 rounded-lg text-gray-400 hover:bg-[#c73020] hover:text-white transition-all">
+                  <a key={i} href="#!" className="p-2 bg-gray-50 rounded-lg text-gray-400 hover:bg-[#c73020] hover:text-white transition-all">
                     <Icon size={18} />
                   </a>
                 ))}

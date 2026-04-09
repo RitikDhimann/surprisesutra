@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useSpring, AnimatePresence } from 'framer-motion';
-import { Sparkles, Star } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 const BalloonIcon = ({ color, isHovering }) => (
   <motion.div

@@ -19,7 +19,7 @@ const GALLERY = [
 ];
 
 const AboutUsSection = () => {
-  const { isMobile } = useWindowSize();
+  useWindowSize();
   const [activeSlide, setActiveSlide] = useState(0);
 
   // Auto-slide for the gallery

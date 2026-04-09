@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useWindowSize from '../hooks/useWindowSize';
 import BirthdayImage from '../assets/birthday.jpg';
 import AnniversaryImage from '../assets/aniversary.jpg';
