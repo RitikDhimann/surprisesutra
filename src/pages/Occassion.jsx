@@ -1,51 +1,52 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Gift, Baby, Heart, PartyPopper, Calendar, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import useWindowSize from '../hooks/useWindowSize';
+import BirthdayImage from '../assets/birthday.jpg';
+import AnniversaryImage from '../assets/aniversary.jpg';
+import BabyShowerImage from '../assets/babyshower.jpeg';
+import BabyWelcomeImage from '../assets/babywelcome.jpeg';
+import bacheloretteImage from '../assets/bachlorate.jpg';
+import brandImage from '../assets/brandevent.jpeg';
+import RedBow from '../assets/red-bow.png';
 
 const occasions = [
   {
-    icon: <Gift size={36} />,
-    title: "Birthday Party",
+    title: "Birthday",
     description: "Transform birthdays into extraordinary experiences with our whimsical setups.",
-    image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80",
-    gradient: "from-[#F58529] to-[#DD2A7B]",
+    image: BirthdayImage,
+    gradient: "from-[#c73020] to-[#fdd825]",
   },
   {
-    icon: <Baby size={36} />,
     title: "Baby Shower",
     description: "Celebrate new beginnings with our soft and sweet pastel setups crafted with love.",
-    image: "https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?w=800&q=80",
-    gradient: "from-[#DD2A7B] to-[#8134AF]",
+    image: BabyShowerImage,
+    gradient: "from-[#c73020] via-[#fdd825] to-[#c73020]",
   },
   {
-    icon: <Heart size={36} />,
-    title: "Anniversaries",
+    title: "Baby Welcome",
+    description: "Celebrate new beginnings with our soft and sweet pastel setups crafted with love.",
+    image: BabyWelcomeImage,
+    gradient: "from-[#fdd825] to-[#c73020]",
+  },
+  {
+    title: "Anniversary",
     description: "Romantic and sophisticated decorations that honor your beautiful journey together.",
-    image: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=800&q=80",
-    gradient: "from-[#8134AF] to-[#515BD4]",
+    image: AnniversaryImage,
+    gradient: "from-[#c73020] to-[#fdd825]",
   },
   {
-    icon: <PartyPopper size={36} />,
-    title: "Bachelor Party",
+    title: "Bachelors & Bachelorettes",
     description: "Wild and fun themes for the perfect pre-wedding celebration you'll never forget.",
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80",
-    gradient: "from-[#515BD4] to-[#DD2A7B]",
+    image: bacheloretteImage,
+    gradient: "from-[#fdd825] to-[#c73020]",
   },
   {
-    icon: <Calendar size={36} />,
-    title: "Corporate",
-    description: "Professional yet creative setups for your business milestones and team celebrations.",
-    image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&q=80",
-    gradient: "from-[#F58529] to-[#8134AF]",
-  },
-  {
-    icon: <Sparkles size={36} />,
-    title: "Custom Events",
+    title: "Brand Events",
     description: "Don't see your occasion? We'll craft a completely unique theme just for you!",
-    image: "https://images.unsplash.com/photo-1472653431158-6364773b2a56?w=800&q=80",
-    gradient: "from-[#DD2A7B] to-[#F58529]",
+    image: brandImage,
+    gradient: "from-[#c73020] via-[#fdd825] to-[#c73020]",
   },
 ];
 
@@ -54,10 +55,10 @@ const occasions = [
 const OccasionsSection = () => {
   const navigate = useNavigate();
   const { width } = useWindowSize();
-  
+
   const visibleCards = useMemo(() => {
-    if (width >= 1280) return 4;
-    if (width >= 1024) return 3;
+    if (width >= 1280) return 3;
+    if (width >= 1024) return 2;
     return 2;
   }, [width]);
 
@@ -113,48 +114,64 @@ const OccasionsSection = () => {
   };
 
   return (
-    <section id="services" className="py-14 relative overflow-hidden" style={{ background: "linear-gradient(to bottom, #ffffff 0%, #fffbeb 20%, #fef3c7 100%)" }}>
+    <section id="services" className="py-14 relative overflow-hidden" style={{ background: "#ffffff" }}>
+      {/* Visual Accents - Floating Balloon */}
+      <div className="absolute left-10 top-20 opacity-20 hidden md:block animate-float">
+        <svg width="40" height="120" viewBox="0 0 40 120" fill="none">
+          <circle cx="20" cy="20" r="15" fill="#c73020" />
+          <path d="M20 35 C20 35 15 50 20 70 S25 90 20 110" stroke="#c73020" strokeWidth="1" strokeLinecap="round" />
+        </svg>
+      </div>
+
       {/* Background Blobs */}
       <div className="absolute top-[10%] right-0 w-[30%] h-[40%] blur-3xl pointer-events-none opacity-20"
-        style={{ background: "linear-gradient(135deg, #F58529, #DD2A7B)" }} />
+        style={{ background: "linear-gradient(135deg, #c73020, #fdd825)" }} />
       <div className="absolute bottom-0 left-0 w-[35%] h-[40%] blur-3xl pointer-events-none opacity-20"
-        style={{ background: "linear-gradient(135deg, #8134AF, #515BD4)" }} />
+        style={{ background: "linear-gradient(135deg, #fdd825, #c73020)" }} />
 
       <div className="max-w-screen-xl mx-auto px-4 sm:px-12 relative z-10">
         {/* Header Section */}
         <div className="text-center mb-16 px-4">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-6 py-2 rounded-full text-white font-black text-xs uppercase tracking-widest mb-6 shadow-xl"
-            style={{ background: "linear-gradient(135deg, #F58529, #DD2A7B)" }}
-          >
-            <Sparkles size={16} /> OUR MAGIC WAND
-          </motion.div>
+          {/* Custom Bow Divider replacing the badge */}
+          <div className="relative w-full flex items-center justify-center -mt-8 -mb-4 sm:-mt-12 sm:-mb-6 md:-mt-16 md:-mb-10 lg:-mt-24 lg:-mb-16 xl:-mt-32 xl:-mb-20 pointer-events-none z-0">
+            <div className="relative bg-transparent px-6">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="flex items-center justify-center"
+              >
+                <img 
+                  src={RedBow} 
+                  alt="Decorative Red Bow" 
+                  className="w-40 sm:w-56 md:w-72 lg:w-80 xl:w-96 h-auto mix-blend-multiply"
+                />
+              </motion.div>
+            </div>
+          </div>
 
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl sm:text-5xl md:text-6xl font-heading font-black mb-6"
+            className="text-4xl sm:text-5xl md:text-7xl font-heading font-medium mb-6 pb-4 tracking-tight"
             style={{
-              background: "linear-gradient(90deg,#F58529,#DD2A7B,#8134AF)",
+              background: "linear-gradient(90deg,#c73020,#fdd825,#c73020)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
             }}
           >
-            Magic for every occasion.
+            What are we celebrating today?
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-base sm:text-lg md:text-xl text-brand-brown/60 font-bold max-w-3xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-brand-brown/60 font-libre max-w-3xl mx-auto leading-relaxed"
           >
-            From intimate gatherings to grand celebrations, we bring the fun to you.
+            From DIY party supplies to full decor setups — choose your celebration and get started your way
           </motion.p>
         </div>
 
@@ -186,35 +203,45 @@ const OccasionsSection = () => {
                       transition={{ delay: (i % cardTotal) * 0.05 }}
                       whileHover={{ y: -15 }}
                       onClick={() => navigate("/book-now", { state: { occasion: occasion.title } })}
-                      className="relative aspect-[3/4.5] rounded-[0.5rem] shadow-2xl cursor-pointer overflow-hidden bg-white flex flex-col group"
+                      className="relative h-[420px] sm:h-[500px] md:h-[550px]rounded-[0.5rem] shadow-2xl cursor-pointer overflow-hidden bg-white flex flex-col group"
                     >
                       {/* Image background */}
-                      <div className="absolute inset-0 z-0">
+                      <div className="absolute inset-0 z-0 bg-gray-100">
                         <img
                           src={occasion.image}
                           alt={occasion.title}
                           loading="lazy"
-                          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                          decoding="async"
+                          className="w-full  h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/10 to-black/90" />
                       </div>
 
                       {/* Content Overlay */}
                       <div className="relative z-10 p-4 sm:p-10 mt-auto flex flex-col items-center text-center">
-                        <div className={`w-10 h-10 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center text-white mb-3 sm:mb-6 shadow-2xl bg-gradient-to-br ${occasion.gradient} group-hover:rotate-12 transition-transform duration-500`}>
-                          {occasion.icon}
-                        </div>
-                        <h3 className="text-sm sm:text-2xl font-heading font-black text-white mb-2 sm:mb-4 tracking-wide group-hover:text-brand-primary transition-colors">
+                        <h3 className="text-sm sm:text-2xl font-libre font-bold text-white mb-2 sm:mb-6 tracking-wide group-hover:text-brand-primary transition-colors">
                           {occasion.title}
                         </h3>
-                        <div className="bg-white text-brand-brown font-black text-[9px] sm:text-xs uppercase tracking-[0.1em] sm:tracking-[0.2em] px-4 py-2 sm:px-10 sm:py-5 rounded-lg sm:rounded-xl shadow-2xl transition-all duration-300 hover:bg-brand-primary hover:text-white transform group-hover:scale-105">
-                          BOOK NOW
+                        <div className="flex flex-row gap-3 sm:gap-4 w-full justify-center px-1 sm:px-2">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate("/diy-kits");
+                            }}
+                            className="flex-1 relative overflow-hidden bg-white/95 backdrop-blur-md text-brand-brown border border-white/50 font-semibold text-[8px] xs:text-[10px] sm:text-[11px] uppercase tracking-[0.15em] py-3 sm:py-3.5 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-500 hover:bg-brand-primary hover:border-brand-primary hover:text-white hover:shadow-[0_8px_30px_rgba(180,37,51,0.4)] transform hover:-translate-y-1 cursor-pointer"
+                          >
+                            SHOP NOW
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate("/book-now", { state: { occasion: occasion.title } });
+                            }}
+                            className="flex-1 relative overflow-hidden bg-white/10 backdrop-blur-md text-white border border-white/70 font-semibold text-[8px] xs:text-[10px] sm:text-[11px] uppercase tracking-[0.15em] py-3 sm:py-3.5 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-500 hover:bg-white hover:text-brand-brown hover:shadow-xl transform hover:-translate-y-1 cursor-pointer"
+                          >
+                            BOOK NOW
+                          </button>
                         </div>
-                      </div>
-
-                      {/* Ghost icon */}
-                      <div className="absolute top-6 right-6 opacity-10 text-white pointer-events-none group-hover:scale-125 transition-transform duration-700">
-                        {occasion.icon}
                       </div>
                     </motion.div>
                   </div>
@@ -244,7 +271,7 @@ const OccasionsSection = () => {
                   style={{
                     width: (current % cardTotal) === i ? "3rem" : "0.75rem",
                     background: (current % cardTotal) === i
-                      ? "linear-gradient(90deg,#F58529,#DD2A7B)"
+                      ? "linear-gradient(90deg,#c73020,#fdd825)"
                       : "rgba(0,0,0,0.1)",
                   }}
                 />

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Fredoka:wght@300..700&family=Comfortaa:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Fredoka:wght@300..700&family=Comfortaa:wght@300..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400..700&family=DM+Serif+Display:ital@0;1&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -35,11 +35,27 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  .font-handwritten {
+    font-family: 'Caveat', cursive;
+  }
 }
 
 @layer components {
   .btn-bubbly {
     @apply relative px-8 py-4 rounded-full font-black uppercase tracking-widest text-sm transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-xl hover:shadow-2xl border-none overflow-hidden;
+  }
+
+  .btn-action {
+    @apply relative px-6 py-3 md:px-10 md:py-3 rounded-full md:rounded-tl-[2rem] md:rounded-br-[2rem] md:rounded-tr-none md:rounded-bl-none font-sans font-black uppercase tracking-[0.2em] text-[11px] md:text-[13px] transition-all duration-300 transform active:scale-95 shadow-[0_12px_24px_-8px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_32px_-12px_rgba(0,0,0,0.5)] border-none flex items-center justify-center gap-2;
+  }
+
+  .btn-action-primary {
+    @apply bg-[#c73020] text-white hover:bg-[#9b2518];
+  }
+
+  .btn-action-secondary {
+    @apply bg-[#fdd825] text-brand-brown hover:bg-[#eec61d];
   }
 
   .btn-bubbly::after {
@@ -72,15 +88,19 @@
     -webkit-mask: var(--mask);
     mask: var(--mask);
   }
+
   .blob-morph {
     animation: morph 8s ease-in-out infinite;
   }
 }
 
 @keyframes morph {
-  0%, 100% {
+
+  0%,
+  100% {
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   }
+
   50% {
     border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
   }
@@ -137,18 +157,17 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #fce4ec;
-  /* soft pink tint */
+  background: #fff1f2;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #DD2A7B, #8134AF);
+  background: linear-gradient(to bottom, #c73020, #fdd825);
   border-radius: 9999px;
   border: 2px solid white;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #8134AF, #515BD4);
+  background: linear-gradient(to bottom, #fdd825, #c73020);
 }
 
 html {

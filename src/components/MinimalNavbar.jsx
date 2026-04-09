@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingCart, User, Gift, X, Heart } from "lucide-react";
+import { ShoppingCart, User, Gift, X, Heart, ChevronDown } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/new_logo.png";
 
@@ -8,6 +8,8 @@ const MinimalNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isSuppliesOpen, setIsSuppliesOpen] = useState(false);
+  const [hoverTimeout, setHoverTimeout] = useState(null);
   // const location = useLocation();
   const navigate = useNavigate();
 
@@ -44,10 +46,19 @@ const MinimalNavbar = () => {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { name: "Home", path: "home" },
-    { name: "Supplies", path: "/diy-kits" },
-    { name: "Services", path: "services" },
-    { name: "Collab", path: "/collab" },
+    { 
+      name: "Supplies", 
+      path: "/diy-kits",
+      subMenu: [
+        { name: "Birthday Party", path: "/diy-kits?category=birthday" },
+        { name: "Anniversary", path: "/diy-kits?category=anniversary" },
+        { name: "Baby Shower", path: "/diy-kits?category=babyshower" },
+        { name: "Baby Welcome", path: "/diy-kits?category=babywelcome" },
+        { name: "Bachelorette", path: "/diy-kits?category=bachelorette" },
+        { name: "Brand Events", path: "/diy-kits?category=brandevent" },
+      ]
+    },
+    { name: "Services", path: "/services" },
     { name: "About", path: "/about" },
   ];
 
@@ -88,17 +99,64 @@ const MinimalNavbar = () => {
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-8 xl:gap-12">
             {navLinks.map((link) => (
-              <button
+              <div 
                 key={link.name}
-                onClick={() => handleNavClick(link.path)}
-                className="text-sm font-heading font-black text-brand-brown/40 hover:text-brand-brown transition-colors relative group uppercase tracking-widest"
+                className="relative"
+                onMouseEnter={() => {
+                  if (link.subMenu) {
+                    if (hoverTimeout) clearTimeout(hoverTimeout);
+                    setIsSuppliesOpen(true);
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (link.subMenu) {
+                    const timeout = setTimeout(() => setIsSuppliesOpen(false), 300);
+                    setHoverTimeout(timeout);
+                  }
+                }}
               >
-                {link.name}
-                <motion.span
-                  className="absolute -bottom-1 left-0 w-0 h-1 bg-brand-primary blob-mask transition-all group-hover:w-full"
-                  layoutId="navUnderlineMinimal"
-                />
-              </button>
+                <button
+                  onClick={() => handleNavClick(link.path)}
+                  className="text-sm font-heading font-bold text-brand-brown/40 hover:text-brand-brown transition-colors relative flex items-center gap-1 uppercase tracking-widest group bg-transparent border-none py-2"
+                >
+                  {link.name}
+                  {link.subMenu && (
+                    <ChevronDown size={14} className={`transition-transform duration-300 ${isSuppliesOpen ? "rotate-180" : ""}`} />
+                  )}
+                  <motion.span
+                    className="absolute -bottom-0 left-0 w-0 h-1 bg-brand-primary blob-mask transition-all group-hover:w-full"
+                    layoutId="navUnderlineMinimal"
+                  />
+                </button>
+
+                {link.subMenu && (
+                  <AnimatePresence>
+                    {isSuppliesOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-60 z-[110]"
+                      >
+                        <div className="bg-white/95 backdrop-blur-2xl rounded-3xl shadow-[0_25px_70px_rgba(180,37,51,0.15)] border-2 border-brand-primary/10 p-3">
+                          <div className="flex flex-col gap-1">
+                            {link.subMenu.map((sub) => (
+                              <button
+                                key={sub.name}
+                                onClick={() => handleNavClick(sub.path)}
+                                className="px-5 py-3 rounded-2xl text-[10px] font-heading font-black text-brand-brown/60 hover:text-brand-primary hover:bg-brand-primary/5 transition-all text-left uppercase tracking-[0.15em] whitespace-nowrap bg-transparent border-none"
+                              >
+                                {sub.name}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                )}
+              </div>
             ))}
           </div>
 
@@ -121,7 +179,7 @@ const MinimalNavbar = () => {
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0, opacity: 0 }}
-                    className="absolute -top-1 -right-1 w-5 h-5 bg-brand-primary text-white text-[10px] font-black rounded-full flex items-center justify-center shadow-lg border-2 border-white"
+                    className="absolute -top-1 -right-1 w-5 h-5 bg-brand-primary text-white text-[10px] font-bold rounded-full flex items-center justify-center shadow-lg border-2 border-white"
                   >
                     {cartCount}
                   </motion.span>
@@ -160,13 +218,28 @@ const MinimalNavbar = () => {
               <X size={32} />
             </button>
             {navLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => handleNavClick(link.path)}
-                className="text-3xl md:text-4xl font-heading font-black text-brand-brown tracking-tighter hover:text-brand-primary transition-all border-none bg-transparent"
-              >
-                {link.name}
-              </button>
+              <div key={link.name} className="flex flex-col items-center gap-4">
+                <button
+                  key={link.name}
+                  onClick={() => handleNavClick(link.path)}
+                  className="text-3xl md:text-4xl font-heading font-bold text-brand-brown tracking-tighter hover:text-brand-primary transition-all border-none bg-transparent"
+                >
+                  {link.name}
+                </button>
+                {link.subMenu && (
+                  <div className="flex flex-wrap justify-center gap-2 px-6">
+                    {link.subMenu.map((sub) => (
+                      <button
+                        key={sub.name}
+                        onClick={() => handleNavClick(sub.path)}
+                        className="text-[10px] font-heading font-bold text-brand-brown/40 hover:text-brand-primary transition-all uppercase tracking-widest border border-brand-brown/10 px-4 py-2 rounded-full bg-transparent active:scale-95 transition-transform"
+                      >
+                        {sub.name}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
             <div className="h-[2px] w-12 bg-brand-pink/20 my-2" />
             <button
@@ -174,7 +247,7 @@ const MinimalNavbar = () => {
                 navigate("/wishlist");
                 setMobileMenuOpen(false);
               }}
-              className="flex items-center gap-4 text-2xl font-heading font-black text-brand-brown hover:text-brand-primary transition-all border-none bg-transparent"
+              className="flex items-center gap-4 text-2xl font-heading font-bold text-brand-brown hover:text-brand-primary transition-all border-none bg-transparent"
             >
               <Heart size={32} /> WISHLIST
             </button>
@@ -183,7 +256,7 @@ const MinimalNavbar = () => {
                 navigate("/profile");
                 setMobileMenuOpen(false);
               }}
-              className="flex items-center gap-4 text-2xl font-heading font-black text-brand-brown hover:text-brand-primary transition-all border-none bg-transparent"
+              className="flex items-center gap-4 text-2xl font-heading font-bold text-brand-brown hover:text-brand-primary transition-all border-none bg-transparent"
             >
               <User size={32} /> PROFILE
             </button>

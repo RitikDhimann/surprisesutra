@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Instagram } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -9,12 +9,32 @@ const embedUrls = [
 ];
 
 const getInstagramEmbedHtml = (url) => `
-<blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="${url}" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+<blockquote class="instagram-media" data-instgrm-permalink="${url}" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
 `;
 
 const InstagramSection = () => {
 
-  useEffect(() => { 
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" } // Load slightly before it comes into view
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
     if (window.instgrm && window.instgrm.Embeds) {
       window.instgrm.Embeds.process();
     } else {
@@ -30,27 +50,27 @@ const InstagramSection = () => {
         }
       };
     }
-  }, []);
+  }, [isVisible]);
 
   return (
-    <section id="instagram-feed" className="py-20 relative overflow-hidden" style={{background: "linear-gradient(135deg, #fff0f8 0%, #f5eeff 50%, #fff3e0 100%)"}}>
+    <section ref={sectionRef} id="instagram-feed" className="pt-4 pb-20 relative overflow-hidden" style={{background: "#ffffff"}}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         {/* Header Section */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="inline-flex items-center justify-center space-x-2 text-white px-4 py-2 rounded-full mb-4" style={{background: "linear-gradient(135deg, #F58529, #DD2A7B, #8134AF)"}}>
+            <div className="inline-flex items-center justify-center space-x-2 text-white px-6 py-2 rounded-full mb-6 shadow-md" style={{background: "linear-gradient(135deg, #c73020, #fdd825)"}}>
               <Instagram size={20} />
-              <span className="font-semibold text-sm">@surprisesutra</span>
+              <span className="font-black text-xs uppercase tracking-widest">@surprisesutra</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 px-2" style={{background: "background: linear-gradient(90deg, #F58529, #DD2A7B, #8134AF)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text"}}>
+            <h2 className="text-4xl md:text-7xl font-heading font-medium mb-6 px-2 tracking-tight" style={{background: "linear-gradient(90deg, #c73020, #fdd825, #c73020)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text"}}>
               Follow the Magic ✨
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-base md:text-lg px-2">
+            <p className="text-gray-500 max-w-2xl mx-auto text-base md:text-xl px-2 font-brand opacity-80">
               Get daily decoration inspiration and latest updates from our studio.
             </p>
           </motion.div>
@@ -84,9 +104,9 @@ const InstagramSection = () => {
             href="https://www.instagram.com/surprisesutra"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-gradient-to-tr from-[#fd5949] to-[#d6249f] hover:from-[#d6249f] hover:to-[#285AEB] text-white font-semibold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+            className="inline-flex items-center justify-center gap-3 bg-gradient-to-tr from-[#c73020] to-[#fdd825] hover:scale-105 text-white font-black uppercase tracking-widest text-xs py-5 px-10 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform"
           >
-            <Instagram size={24} />
+            <Instagram size={20} />
             <span>Follow Us on Instagram</span>
           </a>
         </motion.div>

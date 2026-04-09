@@ -35,7 +35,6 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Home", path: "/" },
     { name: "DIY Kits", path: "/diy-kits" },
     { name: "Supplies", path: "/products" },
     { name: "Party Talk", path: "/contact" },
@@ -46,7 +45,7 @@ const Navbar = () => {
       scrolled ? "py-2 px-4 md:py-4 md:px-6" : "py-4 px-6 md:py-8 md:px-10"
     }`}>
       <div className={`max-w-7xl mx-auto transition-all duration-500 ${
-        scrolled ? "bg-white/90 backdrop-blur-xl shadow-[0_20px_50px_rgba(221,42,123,0.1)] rounded-[3rem] px-4 py-2 md:px-8 md:py-4 border-4 border-brand-primary/20" : "px-0"
+        scrolled ? "bg-white/90 backdrop-blur-xl shadow-[0_20px_50px_rgba(221,42,123,0.15)] rounded-[3rem] px-4 py-2 md:px-8 md:py-4 border-4 border-brand-primary/20" : "px-0"
       }`}>
         <div className="flex justify-between items-center">
           {/* Logo */}

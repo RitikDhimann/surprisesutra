@@ -37,7 +37,7 @@ export default function ContactUs() {
       id: 4,
       icon: Clock,
       title: "Business Hours",
-      value: "Mon-Sat: 10 AM - 7 PM",
+      value: "Mon-Sat: 12 PM - 7 PM",
     },
   ];
 

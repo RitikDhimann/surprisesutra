@@ -14,17 +14,19 @@ module.exports = {
           orange: "#F58529",  // Instagram warm orange
         },
         brand: {
-          primary: "#DD2A7B",   // Instagram magenta/pink – core CTA color
-          secondary: "#8134AF", // Instagram deep purple
-          accent: "#F58529",    // Instagram warm orange
-          brown: "#3D1A47",     // deep plum (replaces brown, feels IG-dark)
-          pink: "#F7A8C4",      // soft Instagram pink tint
+          primary: "#c73020",   // New Brand Red
+          secondary: "#fdd825", // New Brand Yellow
+          accent: "#fdd825",    // Vibrant Yellow Accent
+          brown: "#3D1A47",     // deep plum for contrast
+          pink: "#fff1f2",      // ultra-light red tint for backgrounds
         }
       },
       fontFamily: {
-        brand: ["'Plus Jakarta Sans'", "sans-serif"],
-        playful: ["'Fredoka'", "sans-serif"],
-        heading: ["'Comfortaa'", "sans-serif"],
+        brand: ["'Playfair Display'", "serif"],
+        playful: ["'Playfair Display'", "serif"],
+        heading: ["'Playfair Display'", "serif"],
+        libre: ["'Playfair Display'", "serif"],
+        sans: ["'Playfair Display'", "serif"],
       },
       borderRadius: {
         "4xl": "2rem",

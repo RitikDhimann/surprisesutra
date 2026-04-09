@@ -65,8 +65,8 @@ const SearchHeader = memo(({ search, setSearch, loading }) => (
         <Sparkles size={14} />
         <span>Discover the Magic</span>
       </motion.div>
-      <h1 className="text-3xl xs:text-4xl md:text-6xl font-black text-brand-brown mb-2 md:mb-2 leading-none">
-        The <span className="text-brand-primary mx-1 md:mx-2 inline-block">Propz</span> Shop
+      <h1 className="text-3xl xs:text-4xl md:text-6xl font-medium tracking-[0.05em] text-brand-brown mb-6 md:mb-8 leading-[1.2]">
+        The <span className="text-brand-primary mx-3 md:mx-4 italic">Propz</span> Shop
       </h1>
 
       <div className="relative w-full max-w-sm group mb-6">

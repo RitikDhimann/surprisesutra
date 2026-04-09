@@ -2,6 +2,55 @@ import React, { useEffect, useState } from 'react';
 import { motion, useSpring, AnimatePresence } from 'framer-motion';
 import { Sparkles, Star } from 'lucide-react';
 
+const BalloonIcon = ({ color, isHovering }) => (
+  <motion.div
+    animate={{ 
+      rotate: [0, -5, 5, 0],
+      y: [0, -4, 4, 0]
+    }}
+    transition={{ 
+      duration: 4, 
+      repeat: Infinity, 
+      ease: "easeInOut" 
+    }}
+    className="relative"
+  >
+    <svg width="50" height="100" viewBox="0 0 40 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="overflow-visible">
+      <defs>
+        <radialGradient id="balloonGradient" cx="25%" cy="25%" r="75%" fx="25%" fy="25%">
+          <stop offset="0%" stopColor="#a34b55" />
+          <stop offset="60%" stopColor={color} />
+          <stop offset="100%" stopColor="#4a1a20" />
+        </radialGradient>
+      </defs>
+      {/* Balloon String (Wavy) */}
+      <motion.path 
+        d="M20 48 Q 20 60 15 70 T 20 90" 
+        stroke="rgba(0,0,0,0.4)" 
+        strokeWidth="1"
+        animate={{ d: ["M20 48 Q 20 60 15 70 T 20 90", "M20 48 Q 25 60 20 70 T 25 90", "M20 48 Q 20 60 15 70 T 20 90"] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      />
+      {/* Balloon Body - Moved down to cx=20, cy=25 to avoid clipping */}
+      <ellipse 
+        cx="20" cy="25" rx="18" ry="22" 
+        fill="url(#balloonGradient)" 
+      />
+      {/* Balloon Knot */}
+      <path d="M17 46 L20 50 L23 46 Z" fill="#4a1a20" />
+      {/* Glossy Reflection */}
+      <path 
+        d="M10 15 A 10 12 0 0 1 12 23" 
+        stroke="white" 
+        strokeWidth="3" 
+        strokeLinecap="round" 
+        opacity="0.3" 
+      />
+    </svg>
+  </motion.div>
+);
+
+
 const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
@@ -9,7 +58,7 @@ const CustomCursor = () => {
   const [sparkles, setSparkles] = useState([]);
   const [trail, setTrail] = useState([]);
 
-  const springConfig = { damping: 25, stiffness: 200, mass: 0.5 };
+  const springConfig = { damping: 30, stiffness: 250, mass: 0.5 };
   const cursorX = useSpring(0, springConfig);
   const cursorY = useSpring(0, springConfig);
 
@@ -20,27 +69,20 @@ const CustomCursor = () => {
       
       if (targetX === undefined || targetY === undefined) return;
 
-      const interactive = e.target.closest('button, a');
+      const interactive = e.target.closest('button, a, [role="button"]');
       if (interactive) {
-        const rect = interactive.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        
-        targetX += (centerX - targetX) * 0.15;
-        targetY += (centerY - targetY) * 0.15;
         setIsHovering(true);
       } else {
         setIsHovering(false);
       }
 
-      cursorX.set(targetX - 16);
-      cursorY.set(targetY - 16);
+      cursorX.set(targetX - 20); // Center the balloon body
+      cursorY.set(targetY - 20);
       setMousePosition({ x: targetX, y: targetY });
 
-      // Add to trail
-      if (Math.abs(targetX - mousePosition.x) > 5 || Math.abs(targetY - mousePosition.y) > 5) {
+      if (Math.abs(targetX - mousePosition.x) > 10 || Math.abs(targetY - mousePosition.y) > 10) {
         const newTrailIdx = Date.now();
-        setTrail(prev => [{ id: newTrailIdx, x: targetX, y: targetY }, ...prev].slice(0, 8));
+        setTrail(prev => [{ id: newTrailIdx, x: targetX, y: targetY }, ...prev].slice(0, 5));
       }
     };
 
@@ -51,16 +93,16 @@ const CustomCursor = () => {
       
       if (targetX === undefined || targetY === undefined) return;
 
-      const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#FF9F43'];
-      const newSparkles = Array.from({ length: 12 }).map((_, i) => ({
+      const colors = ['#FF6B6B', '#DD2A7B', '#8134AF', '#F58529'];
+      const newSparkles = Array.from({ length: 8 }).map((_, i) => ({
         id: Date.now() + i,
         x: targetX,
         y: targetY,
-        angle: (i * 30) * (Math.PI / 180),
+        angle: (i * 45) * (Math.PI / 180),
         color: colors[i % colors.length],
-        scale: Math.random() * 1.5 + 0.5
+        scale: Math.random() * 1.2 + 0.5
       }));
-      setSparkles(prev => [...prev.slice(-24), ...newSparkles]);
+      setSparkles(prev => [...prev.slice(-16), ...newSparkles]);
     };
 
     const handleUp = () => setIsClicking(false);
@@ -85,30 +127,13 @@ const CustomCursor = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       if (trail.length > 0) setTrail(prev => prev.slice(0, -1));
-      if (sparkles.length > 0) setSparkles(prev => prev.slice(4));
-    }, 100);
+      if (sparkles.length > 0) setSparkles(prev => prev.slice(2));
+    }, 150);
     return () => clearInterval(timer);
   }, [trail, sparkles]);
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[9999] overflow-hidden">
-      {trail.map((point, i) => (
-        <motion.div
-            key={point.id}
-            initial={{ opacity: 0.4, scale: 1 }}
-            animate={{ opacity: 0, scale: 0 }}
-            className="absolute rounded-full bg-brand-primary"
-            style={{
-                left: point.x - 2,
-                top: point.y - 2,
-                width: 4,
-                height: 4,
-                filter: 'blur(1px)',
-                opacity: (8 - i) / 20
-            }}
-        />
-      ))}
-
       <AnimatePresence>
         {sparkles.map((s) => (
           <motion.div
@@ -117,50 +142,32 @@ const CustomCursor = () => {
             animate={{ 
               opacity: 0, 
               scale: s.scale, 
-              x: s.x + Math.cos(s.angle) * 100, 
-              y: s.y + Math.sin(s.angle) * 100,
-              rotate: 360
+              x: s.x + Math.cos(s.angle) * 80, 
+              y: s.y + Math.sin(s.angle) * 80,
+              rotate: 180
             }}
             exit={{ opacity: 0 }}
             className="absolute"
             style={{ color: s.color }}
           >
-            <Star fill="currentColor" size={12} />
+            <Sparkles fill="currentColor" size={10} />
           </motion.div>
         ))}
       </AnimatePresence>
 
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border-2 border-brand-primary/20 flex items-center justify-center"
+        className="fixed top-0 left-0 will-change-transform"
         style={{
           x: cursorX,
           y: cursorY,
-          scale: isClicking ? 0.8 : (isHovering ? 2.2 : 1),
-          borderColor: isHovering ? 'rgba(255, 107, 107, 1)' : 'rgba(255, 107, 107, 0.2)',
-          backgroundColor: isHovering ? 'rgba(255, 107, 107, 0.05)' : 'transparent'
+        }}
+        animate={{
+          scale: isClicking ? 0.6 : (isHovering ? 1.0 : 0.7),
+          filter: isHovering ? 'drop-shadow(0 0 12px rgba(180, 37, 51, 0.4))' : 'drop-shadow(0 4px 6px rgba(0,0,0,0.1))',
         }}
       >
-        <AnimatePresence>
-          {isHovering && (
-            <motion.div
-              initial={{ opacity: 0, rotate: -180 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              exit={{ opacity: 0, rotate: 180 }}
-            >
-              <Sparkles className="text-brand-primary animate-pulse" size={12} />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <BalloonIcon color="#b42533" isHovering={isHovering} />
       </motion.div>
-
-      <motion.div
-        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-brand-primary shadow-[0_0_10px_rgba(255,107,107,0.5)]"
-        animate={{
-          x: mousePosition.x - 4,
-          y: mousePosition.y - 4,
-          scale: isClicking ? 2 : 1,
-        }}
-      />
     </div>
   );
 };

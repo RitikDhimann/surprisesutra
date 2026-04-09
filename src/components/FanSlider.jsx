@@ -2,6 +2,7 @@ import React, { useState, memo, useEffect } from "react";
 import { motion, useAnimationFrame, useMotionValue, useTransform } from "framer-motion";
 import { Gift, Baby, Heart, PartyPopper, Camera } from "lucide-react";
 import useWindowSize from "../hooks/useWindowSize";
+import RedBow from "../assets/red-bow.png";
 
 /* Categories Data */
 const CATEGORIES = [
@@ -96,16 +97,20 @@ const Card = memo(({ img, i, count, angle, radius, cardW, cardH }) => {
         overflow: "hidden",
         boxShadow: "0 10px 30px rgba(0,0,0,0.3)",
         willChange: "transform",
+        transform: "translateZ(0)",
       }}
     >
       <img
         src={img}
         alt=""
         loading="lazy"
+        decoding="async"
         style={{
           width: "100%",
           height: "100%",
           objectFit: "cover",
+          transform: "translateZ(0)",
+          backgroundColor: "#f3f4f6"
         }}
       />
     </motion.div>
@@ -118,10 +123,10 @@ const FanSlider = () => {
   const [cfg, setCfg] = useState({ radius: 350, cardW: 150, cardH: 240, height: 500 });
 
   useEffect(() => {
-    if (width < 480) setCfg({ radius: 220, cardW: 140, cardH: 230, height: 380 });
-    else if (width < 768) setCfg({ radius: 200, cardW: 120, cardH: 170, height: 300 });
-    else if (width < 1024) setCfg({ radius: 230, cardW: 140, cardH: 200, height: 360 });
-    else setCfg({ radius: 350, cardW: 150, cardH: 240, height: 500 });
+    if (width < 480) setCfg({ radius: 280, cardW: 170, cardH: 270, height: 450 });
+    else if (width < 768) setCfg({ radius: 280, cardW: 160, cardH: 240, height: 400 });
+    else if (width < 1024) setCfg({ radius: 350, cardW: 180, cardH: 260, height: 480 });
+    else setCfg({ radius: 400, cardW: 220, cardH: 320, height: 600 });
   }, [width]);
 
   const { radius, cardW, cardH, height } = cfg;
@@ -135,55 +140,40 @@ const FanSlider = () => {
   });
 
   return (
-    <section style={{ padding: "3rem 0", background: "#f5f5f5", overflow: "hidden" }}>
-      <div style={{ textAlign: "center", marginBottom: "3rem", padding: "0 1rem" }}>
-        <div style={{
-          display: "inline-flex", alignItems: "center", gap: "0.5rem",
-          padding: "0.4rem 1.2rem", borderRadius: "999px",
-          background: "rgba(221,42,123, 0.05)",
-          color: "#DD2A7B", fontSize: "0.75rem", fontWeight: 800,
-          letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "1.2rem",
-        }}>
-          <Camera size={16} strokeWidth={2.5} />
-          MAGIC MOMENTS
+    <section style={{ padding: "5rem 0", background: "#ffffff", overflow: "hidden" }}>
+      <div style={{ textAlign: "center", marginBottom: "4rem", padding: "0 1rem" }}>
+        {/* Custom Bow Divider replacing the badge */}
+        <div className="relative w-full flex items-center justify-center -mt-8 -mb-4 sm:-mt-12 sm:-mb-6 md:-mt-16 md:-mb-10 lg:-mt-24 lg:-mb-16 xl:-mt-32 xl:-mb-20 pointer-events-none z-0">
+          <div className="relative bg-transparent px-6">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="flex items-center justify-center"
+            >
+              <img 
+                src={RedBow} 
+                alt="Decorative Red Bow" 
+                className="w-40 sm:w-56 md:w-72 lg:w-80 xl:w-96 h-auto mix-blend-multiply"
+              />
+            </motion.div>
+          </div>
         </div>
-        <h2 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 900, color: "#202020", marginBottom: "1rem" }}>
-          Our <span style={{ color: "#DD2A7B" }}>Best Work.</span>
+
+        <h2 style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", fontWeight: 500, color: "#c73020", marginBottom: "1rem", fontFamily: "'DM Serif Display', serif", letterSpacing: "-0.02em" }}>
+          Our <span style={{ color: "#fdd825", fontStyle: "italic" }}>Best Work.</span>
         </h2>
-        <p style={{ color: "#6b7280", fontSize: "clamp(0.9rem, 2vw, 1.1rem)", fontWeight: 500, maxWidth: "600px", margin: "0 auto" }}>
-          Take a peek into the magical experiences we've crafted for our lovely clients.
+        <p style={{ color: "#6b7280", fontSize: "clamp(0.9rem, 2vw, 1.1rem)", fontWeight: 500, maxWidth: "600px", margin: "0 auto", fontFamily: "'Plus Jakarta Sans', sans-serif", opacity: 0.8 }}>
+          Real setups, real moments, real magic ✨
         </p>
       </div>
 
-      <div style={{ position: "relative", width: "100vw", height: height, perspective: "1800px", transformStyle: "preserve-3d" }}>
+      <div style={{ position: "relative", width: "100vw", height: (height * 0.7), perspective: "1800px", transformStyle: "preserve-3d", marginTop: "2rem", willChange: "transform", transform: "translateZ(0)" }}>
         {images.map((img, i) => (
           <Card key={`${activeTab}-${i}`} img={img} i={i} count={count} angle={angle} radius={radius} cardW={cardW} cardH={cardH} />
         ))}
       </div>
 
-      <div style={{ display: "flex", justifyContent: "center", gap: "clamp(0.5rem, 2vw, 2rem)", maxWidth: "700px", margin: "2rem auto 0", padding: "0 1rem", position: "relative", zIndex: 10, flexWrap: "wrap" }}>
-        {CATEGORIES.map(({ id, label, Icon }) => {
-          const isActive = id === activeTab;
-          return (
-            <button
-              key={id}
-              onClick={() => setActiveTab(id)}
-              style={{
-                background: isActive ? "linear-gradient(135deg, #F58529, #DD2A7B)" : "#fff",
-                border: "none", padding: "0.6rem 1.2rem", borderRadius: "99px", cursor: "pointer",
-                display: "flex", alignItems: "center", gap: "0.5rem", position: "relative",
-                boxShadow: isActive ? "0 4px 15px rgba(221,42,123,0.3)" : "0 2px 8px rgba(0,0,0,0.05)",
-                color: isActive ? "#fff" : "#666", transition: "all 0.3s ease",
-              }}
-            >
-              <Icon size={16} strokeWidth={isActive ? 2.5 : 2} />
-              <span style={{ fontWeight: isActive ? 700 : 600, fontSize: "0.85rem", letterSpacing: "0.02em", whiteSpace: "nowrap" }}>
-                {label}
-              </span>
-            </button>
-          );
-        })}
-      </div>
     </section>
   );
 };
