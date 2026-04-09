@@ -59,7 +59,7 @@ const MinimalNavbar = () => {
       ]
     },
     { name: "Services", path: "/services" },
-    { name: "About", path: "/about" },
+    { name: "About", path: "about" },
   ];
 
   const handleNavClick = (path) => {

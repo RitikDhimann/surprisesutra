@@ -24,6 +24,7 @@ const BetterFooter = () => {
             <ul className="space-y-3 text-sm font-medium text-gray-600">
               <li><Link to="/diy-kits" className="hover:text-[#c73020] transition-colors">DIY Kits</Link></li>
               <li><Link to="/services" className="hover:text-[#c73020] transition-colors">Services</Link></li>
+              <li><button onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-[#c73020] transition-colors bg-transparent border-none p-0 text-sm font-medium text-gray-600">About Us</button></li>
               <li><Link to="/contact" className="hover:text-[#c73020] transition-colors">Contact</Link></li>
             </ul>
           </div>

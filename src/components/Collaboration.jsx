@@ -3,19 +3,21 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Heart, Quote, Camera, Users, Cake } from "lucide-react";
 import useWindowSize from "../hooks/useWindowSize";
 import aboutimg from "../assets/about.jpg.jpeg";
-import gallery1 from "../assets/gallery-1.png";
-import gallery2 from "../assets/gallery-2.png";
-import gallery3 from "../assets/gallery-3.png";
-import gallery4 from "../assets/gallery-4.png";
-import gallery5 from "../assets/gallery-5.png";
+import a0 from "../assets/A (0).jpg";
+import a1 from "../assets/A (1).JPG";
+import a2 from "../assets/A (2).jpg";
+import a3 from "../assets/A (3).jpg";
+import a4 from "../assets/A (4).jpg";
+import a5 from "../assets/A (5).jpg";
 
 // Placeholder gallery for the slideshow
 const GALLERY = [
-  { id: 1, src: gallery1, alt: "Real Setup 1" },
-  { id: 2, src: gallery3, alt: "Real Setup 2" },
-  { id: 3, src: gallery5, alt: "Real Setup 3" },
-  { id: 4, src: gallery2, alt: "Real Setup 4" },
-  { id: 5, src: gallery4, alt: "Real Setup 5" },
+  { id: 1, src: a0, alt: "Real Setup 1" },
+  { id: 2, src: a1, alt: "Real Setup 2" },
+  { id: 3, src: a2, alt: "Real Setup 3" },
+  { id: 4, src: a3, alt: "Real Setup 4" },
+  { id: 5, src: a4, alt: "Real Setup 5" },
+  { id: 6, src: a5, alt: "Real Setup 6" },
 ];
 
 const AboutUsSection = () => {
@@ -31,7 +33,7 @@ const AboutUsSection = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-white py-20 md:py-32">
+    <section id="about" className="relative overflow-hidden bg-white py-20 md:py-32">
       {/* Decorative Elements */}
 
 
@@ -55,10 +57,6 @@ const AboutUsSection = () => {
                   loading="lazy"
                   decoding="async"
                   className="w-full h-auto rounded-[1.5rem] object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700 bg-gray-50"
-                  onError={(e) => {
-                    e.target.src = "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop";
-                    e.target.className += " opacity-50";
-                  }}
                 />
 
                 {/* Floating Badges */}
@@ -163,23 +161,37 @@ const AboutUsSection = () => {
 
           <div className="relative h-[400px] md:h-[600px] rounded-[3rem] overflow-hidden shadow-2xl">
             <AnimatePresence mode="wait">
-              <motion.div
-                key={activeSlide}
-                initial={{ opacity: 0, scale: 1.1 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 1 }}
-                className="absolute inset-0"
-              >
-                <img
-                  src={GALLERY[activeSlide].src}
-                  alt={GALLERY[activeSlide].alt}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover"
+                <motion.div
+                  key={GALLERY[activeSlide].src}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.4 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1 }}
+                  className="absolute inset-0 scale-110 blur-2xl grayscale-[30%]"
+                  style={{ 
+                    backgroundImage: `url(${GALLERY[activeSlide].src})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                  }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-              </motion.div>
+
+                <motion.div
+                  key={activeSlide}
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 1 }}
+                  className="relative w-full h-full"
+                >
+                  <img
+                    src={GALLERY[activeSlide].src}
+                    alt={GALLERY[activeSlide].alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover rounded-[3rem]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent rounded-[3rem]" />
+                </motion.div>
             </AnimatePresence>
 
             {/* Slide Navigation Dots */}

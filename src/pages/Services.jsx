@@ -5,53 +5,61 @@ import {
 } from "lucide-react";
 import { toast } from "react-toastify";
 
+import b1 from "../assets/b1.jpg";
+import b2 from "../assets/b2.jpg";
+import b3 from "../assets/b3.jpg";
+import b4 from "../assets/b4.jpg";
+import a0 from "../assets/A (0).jpg";
+import a1 from "../assets/A (1).JPG";
+import a2 from "../assets/A (2).jpg";
+import a3 from "../assets/A (3).jpg";
+import a4 from "../assets/A (4).jpg";
+import a5 from "../assets/A (5).jpg";
+import a6 from "../assets/A (6).jpg";
+import a7 from "../assets/A (7).jpg";
+
 /* ─── Service Data ─── */
 const services = [
   {
-    title: "Balloon Decorations",
-    desc: "From organic arches to massive installations, we bring color and life to every corner. Our bespoke balloon designs elevate your venue to create unforgettable, whimsical atmospheres.",
-    image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80",
-    tags: ["Birthday", "Shower", "Launch"],
+    title: "Signature Teddy Tablescapes",
+    desc: "Whimsical meets sophisticated. We combine our iconic pampas grass arrangements with playful teddy bears and delicate baby's breath to create a table setting that's heart-warming and picture-perfect.",
+    image: b1,
+    tags: ["Intimate", "Teddy", "Pampas"],
     price: "Starting from ₹3499"
   },
   {
-    title: "Surprise Room Decor",
-    desc: "Transform your hotel room or bedroom into a romantic haven for your special someone. We set the mood with premium scented candles, floating balloons, and scattered rose petals.",
-    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80",
-    tags: ["Anniversary", "Proposal", "Dating"],
+    title: "Romantic Room Surprises",
+    desc: "Transform your space into a dream. Featuring candlelit dining setups, dressed-up teddy mascots, and fresh hydrangea clusters under the glow of elegant chandeliers.",
+    image: b2,
+    tags: ["Anniversary", "Proposal", "Luxe"],
     price: "Starting from ₹4999"
   },
   {
-    title: "Theme Parties",
-    desc: "Immersive sets that transport you to another world. Jungle, Casino, Retro — you name it. We build comprehensive thematic environments complete with custom props.",
-    image: "https://images.unsplash.com/photo-1472653525502-fc569e405a74?w=800&q=80",
-    tags: ["Custom", "Props", "Large Scale"],
+    title: "Bespoke Baby & Kids Decor",
+    desc: "For life's most precious new beginnings. We craft high-fashion floral installations, character-themed cutouts, and custom stationery that make every baby shower and birthday truly one-of-a-kind.",
+    image: b3,
+    tags: ["Baby Shower", "Birthday", "Thematic"],
     price: "Starting from ₹9999"
   },
   {
-    title: "Floral Elegance",
-    desc: "Exotic and fresh flowers arranged to create a sophisticated and fragrant atmosphere. Ideal for intimate dinners, engagements, and high-end celebrations.",
-    image: "https://images.unsplash.com/photo-1522673607200-16484837dec5?w=800&q=80",
-    tags: ["Weddings", "Traditional", "Luxe"],
-    price: "Starting from ₹7499"
+    title: "Corporate & Launch Events",
+    desc: "Make your brand the center of attention. From disco-themed creator brunches to massive balloon installations and custom-branded arches, we design for impact and engagement.",
+    image: b4,
+    tags: ["Brand Launch", "Disco", "Corporate"],
+    price: "Starting from ₹14999"
   },
   {
-    title: "Proposal Setups",
-    desc: "She'll say yes! We create the most romantic backdrops for your life's biggest question. Imagine a gorgeous 'Marry Me' marquee, fairy lights, and stunning floral paths.",
-    image: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=800&q=80",
-    tags: ["Marry Me", "Romantic", "Beach"],
-    price: "Starting from ₹11999"
+    title: "Grand Milestone Outdoors",
+    desc: "Celebrate the big ones in style. Our marquee setups feature shimmering gold backdrops, neon signage, and luxurious floor-seating under a canopy of fairy lights and lanterns.",
+    image: a1,
+    tags: ["50th Birthday", "Outdoor", "Marquee"],
+    price: "Starting from ₹19999"
   }
 ];
 
 /* ─── Gallery Data Placeholder ─── */
 const galleryImages = [
-  "https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=800",
-  "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=800",
-  "https://images.unsplash.com/photo-1507504031003-b417219a15b5?q=80&w=800",
-  "https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=800",
-  "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800",
-  "https://images.unsplash.com/photo-1522673607200-16484837dec5?q=80&w=800"
+  a2, a3, a4, a5, a6, a7
 ];
 
 const Services = () => {
@@ -92,13 +100,13 @@ const Services = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen font-brand text-brand-brown">
+    <div className="bg-[#fffbeb] min-h-screen font-brand text-brand-brown">
       
       {/* ─── Editorial Hero Section ─── */}
       <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-black/40 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-[#c73020]/40 z-10" />
         <img 
-          src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2000" 
+          src={a0} 
           alt="Elegant event setup" 
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
@@ -134,7 +142,7 @@ const Services = () => {
       </section>
 
       {/* ─── Curated Experiences (Staggered Layout) ─── */}
-      <section className="py-24 md:py-32 px-6 max-w-7xl mx-auto bg-white">
+      <section className="py-24 md:py-32 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-24 max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-6xl font-heading text-brand-brown mb-6 font-normal">Curated Experiences</h2>
           <p className="text-brand-brown/60 text-lg md:text-xl font-sans leading-relaxed">
@@ -156,7 +164,7 @@ const Services = () => {
               >
                 {/* Image Side */}
                 <div className="w-full md:w-[55%] relative group">
-                  <div className="overflow-hidden aspect-[4/3] bg-gray-100">
+                  <div className="overflow-hidden aspect-[4/3] bg-white shadow-xl rounded-2xl">
                     <img 
                       src={service.image} 
                       alt={service.title}
@@ -164,7 +172,7 @@ const Services = () => {
                     />
                   </div>
                   {/* Subtle decorative block */}
-                  <div className={`absolute top-1/2 -translate-y-1/2 w-4 sm:w-12 h-1/2 bg-brand-primary/10 -z-10 ${isEven ? '-left-2 sm:-left-6' : '-right-2 sm:-right-6'}`} />
+                  <div className={`absolute top-1/2 -translate-y-1/2 w-4 sm:w-12 h-1/2 ${isEven ? 'bg-[#fdd825]/20' : 'bg-[#c73020]/10'} -z-10 ${isEven ? '-left-2 sm:-left-6' : '-right-2 sm:-right-6'}`} />
                 </div>
                 
                 {/* Text Side */}
@@ -176,18 +184,18 @@ const Services = () => {
                       </span>
                     ))}
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-heading text-brand-brown mb-6">{service.title}</h3>
+                  <h3 className="text-3xl md:text-4xl font-heading text-[#c73020] mb-6">{service.title}</h3>
                   <p className="text-brand-brown/70 text-base md:text-lg mb-8 leading-relaxed font-sans">{service.desc}</p>
-                  <span className="text-brand-primary font-black uppercase text-xs tracking-widest mb-10 block">{service.price}</span>
+                  <span className="text-[#fdd825] font-black uppercase text-xs tracking-widest bg-[#c73020] px-4 py-1.5 rounded-full w-max mb-10 block">{service.price}</span>
                   <button 
                     onClick={() => {
                         setFormData({...formData, occasion: service.title});
                         document.getElementById("query-form")?.scrollIntoView({ behavior: "smooth" });
                     }}
-                    className="flex items-center gap-3 w-max group text-brand-brown hover:text-brand-primary transition-colors"
+                    className="flex items-center gap-3 w-max group text-[#c73020] hover:text-[#fdd825] transition-colors"
                   >
                     <span className="font-bold text-xs uppercase tracking-widest">Inquire Now</span>
-                    <div className="w-8 h-[1px] bg-brand-brown group-hover:bg-brand-primary group-hover:w-12 transition-all duration-300" />
+                    <div className="w-8 h-[1px] bg-[#c73020] group-hover:bg-[#fdd825] group-hover:w-12 transition-all duration-300" />
                   </button>
                 </div>
               </motion.div>
@@ -197,7 +205,7 @@ const Services = () => {
       </section>
 
       {/* ─── Photography Gallery / Masonry Layout ─── */}
-      <section className="py-24 px-6 bg-[#fff1f2]/50 border-t border-brand-primary/10">
+      <section className="py-24 px-6 bg-[#fdd825]/10 border-t border-[#c73020]/10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 max-w-2xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-heading text-brand-brown mb-4 font-normal">Moments Captured</h2>
@@ -220,7 +228,7 @@ const Services = () => {
             ))}
           </div>
           <div className="text-center mt-12">
-            <button className="text-xs font-bold uppercase tracking-widest text-brand-brown hover:text-brand-primary underline decoration-brand-primary/30 underline-offset-8 transition-colors">
+            <button className="text-xs font-bold uppercase tracking-widest text-[#c73020] hover:text-[#fdd825] underline decoration-[#fdd825] underline-offset-8 transition-colors">
               View Instagram for More
             </button>
           </div>
@@ -228,7 +236,7 @@ const Services = () => {
       </section>
 
       {/* ─── Query Page / Inquiry Form ─── */}
-      <section id="query-form" className="py-24 px-6 bg-white relative overflow-hidden">
+      <section id="query-form" className="py-24 px-6 bg-[#fffbeb] relative overflow-hidden">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           
           {/* Left Side: Elegant Text */}
@@ -238,8 +246,8 @@ const Services = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-5xl font-heading font-medium text-brand-brown leading-tight mb-8 tracking-tighter">
-                Every celebration is <span className="text-brand-primary italic">different</span> — and honestly, we love it that way ✨
+              <h2 className="text-3xl md:text-5xl font-heading font-medium text-[#c73020] leading-tight mb-8 tracking-tighter">
+                Every celebration is <span className="text-[#fdd825] italic underline decoration-[#c73020]/20">different</span> — and honestly, we love it that way ✨
               </h2>
               <div className="text-sm md:text-base text-brand-brown/70 font-sans leading-relaxed mb-12 space-y-6">
                 <p>From cozy, intimate surprises to full-blown party setups, we design decor that feels personal, thoughtful, and very you. Whether you have everything planned out or just a bunch of saved ideas and "something cute please" in mind, we'll take it from there.</p>
@@ -247,24 +255,24 @@ const Services = () => {
                 <p className="font-bold underline decoration-brand-primary/20 underline-offset-4">Fill in your details here and let's start planning something that looks as good as it feels 💛</p>
               </div>
 
-              <div className="grid grid-cols-2 gap-8 pt-8 border-t border-brand-primary/10">
+              <div className="grid grid-cols-2 gap-8 pt-8 border-t border-[#c73020]/10">
                 <div className="space-y-1">
-                  <p className="text-[10px] font-black uppercase text-brand-brown/40 tracking-widest flex items-center gap-2">
-                    <Phone size={12} className="text-brand-primary" /> Calling Hours
+                  <p className="text-[10px] font-black uppercase text-[#c73020]/40 tracking-widest flex items-center gap-2">
+                    <Phone size={12} className="text-[#fdd825]" /> Calling Hours
                   </p>
-                  <p className="text-brand-brown font-bold text-sm">12:00 PM - 7:00 PM</p>
+                  <p className="text-[#c73020] font-bold text-sm">12:00 PM - 7:00 PM</p>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-[10px] font-black uppercase text-brand-brown/40 tracking-widest flex items-center gap-2">
-                    <MessageCircle size={12} className="text-brand-primary" /> WhatsApp
+                  <p className="text-[10px] font-black uppercase text-[#c73020]/40 tracking-widest flex items-center gap-2">
+                    <MessageCircle size={12} className="text-[#fdd825]" /> WhatsApp
                   </p>
-                  <p className="text-brand-brown font-bold text-sm">+91 88863 61515</p>
+                  <p className="text-[#c73020] font-bold text-sm">+91 88863 61515</p>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-[10px] font-black uppercase text-brand-brown/40 tracking-widest flex items-center gap-2">
-                    <MapPin size={12} className="text-brand-primary" /> Studio
+                  <p className="text-[10px] font-black uppercase text-[#c73020]/40 tracking-widest flex items-center gap-2">
+                    <MapPin size={12} className="text-[#fdd825]" /> Studio
                   </p>
-                  <p className="text-brand-brown font-bold text-sm">Delhi NCR, India</p>
+                  <p className="text-[#c73020] font-bold text-sm">Delhi NCR, India</p>
                 </div>
               </div>
             </motion.div>
@@ -275,11 +283,11 @@ const Services = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="order-1 lg:order-2 bg-[#fdfbf7] p-8 md:p-12 shadow-[0_20px_40px_rgba(0,0,0,0.03)] border border-brand-primary/5"
+            className="order-1 lg:order-2 bg-white/50 backdrop-blur-sm p-8 md:p-12 shadow-[0_20px_40px_rgba(199,48,32,0.05)] border border-[#fdd825]/30"
           >
             <div className="mb-10 text-center">
-              <h3 className="text-2xl font-heading text-brand-brown mb-2">Start the Conversation</h3>
-              <p className="text-xs uppercase tracking-widest text-brand-brown/40 font-bold">No obligations, just inspiration.</p>
+              <h3 className="text-2xl font-heading text-[#c73020] mb-2">Start the Conversation</h3>
+              <p className="text-xs uppercase tracking-widest text-[#c73020]/40 font-bold">No obligations, just inspiration.</p>
             </div>
             
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -289,21 +297,21 @@ const Services = () => {
                   <input 
                     required type="text" name="name" value={formData.name} onChange={handleChange}
                     placeholder="Jane Doe"
-                    className="w-full px-4 py-3 bg-white border border-gray-200 focus:border-brand-primary outline-none transition-all font-sans text-sm text-brand-brown"
+                    className="w-full px-4 py-3 bg-white border border-[#fdd825]/50 focus:border-[#c73020] outline-none transition-all font-sans text-sm text-brand-brown"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[9px] font-black uppercase text-brand-brown/40 tracking-widest ml-2">Contact/Whatsapp</label>
+                  <label className="text-[9px] font-black uppercase text-[#c73020]/40 tracking-widest ml-2">Contact/Whatsapp</label>
                   <input 
                     required type="tel" name="phone" value={formData.phone} onChange={handleChange}
                     placeholder="+91..."
-                    className="w-full px-4 py-3 bg-white border border-gray-200 focus:border-brand-primary outline-none transition-all font-sans text-sm text-brand-brown"
+                    className="w-full px-4 py-3 bg-white border border-[#fdd825]/50 focus:border-[#c73020] outline-none transition-all font-sans text-sm text-brand-brown"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-[9px] font-black uppercase text-brand-brown/40 tracking-widest ml-2">Email address</label>
+                <label className="text-[9px] font-black uppercase text-[#c73020]/40 tracking-widest ml-2">Email address</label>
                 <input 
                   required type="email" name="email" value={formData.email} onChange={handleChange}
                   placeholder="you@example.com"
@@ -313,43 +321,54 @@ const Services = () => {
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-[9px] font-black uppercase text-brand-brown/40 tracking-widest ml-2">Occasion</label>
-                  <input 
-                    required type="text" name="occasion" value={formData.occasion} onChange={handleChange}
-                    placeholder="Birthday, Anniversary..."
-                    className="w-full px-4 py-3 bg-white border border-gray-200 focus:border-brand-primary outline-none transition-all font-sans text-sm text-brand-brown"
-                  />
+                  <label className="text-[9px] font-black uppercase text-[#c73020]/40 tracking-widest ml-2">Occasion</label>
+                  <select 
+                    required name="occasion" value={formData.occasion} onChange={handleChange}
+                    className="w-full px-4 py-3 bg-white border border-[#fdd825]/50 focus:border-[#c73020] outline-none transition-all font-sans text-sm text-brand-brown appearance-none cursor-pointer"
+                  >
+                    <option value="" disabled>Select Occasion</option>
+                    <option value="Birthday">Birthday</option>
+                    <option value="Anniversary">Anniversary</option>
+                    <option value="Baby Shower">Baby Shower</option>
+                    <option value="Baby Welcome">Baby Welcome</option>
+                    <option value="Proposal">Proposal / Dating</option>
+                    <option value="Bachelor/Bachelorette">Bachelor / Bachelorette Party</option>
+                    <option value="Corporate Event">Corporate Event</option>
+                    <option value="Wedding / Engagement">Wedding / Engagement</option>
+                    <option value="Luxe Hamper">Luxe Hamper / Gifting</option>
+                    <option value="Others">Others</option>
+                  </select>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[9px] font-black uppercase text-brand-brown/40 tracking-widest ml-2">Date</label>
+                  <label className="text-[9px] font-black uppercase text-[#c73020]/40 tracking-widest ml-2">Date</label>
                   <input 
                     required type="date" name="date" value={formData.date} onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white border border-gray-200 focus:border-brand-primary outline-none transition-all font-sans text-sm text-brand-brown"
+                    className="w-full px-4 py-3 bg-white border border-[#fdd825]/50 focus:border-[#c73020] outline-none transition-all font-sans text-sm text-brand-brown"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-[9px] font-black uppercase text-brand-brown/40 tracking-widest ml-2">Location</label>
+                <label className="text-[9px] font-black uppercase text-[#c73020]/40 tracking-widest ml-2">Location</label>
                 <input 
                   required type="text" name="location" value={formData.location} onChange={handleChange}
                   placeholder="Delhi / Gurgaon / Noida..."
-                  className="w-full px-4 py-3 bg-white border border-gray-200 focus:border-brand-primary outline-none transition-all font-sans text-sm text-brand-brown"
+                  className="w-full px-4 py-3 bg-white border border-[#fdd825]/50 focus:border-[#c73020] outline-none transition-all font-sans text-sm text-brand-brown"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="text-[9px] font-black uppercase text-brand-brown/40 tracking-widest ml-2">Brief us your vision</label>
+                <label className="text-[9px] font-black uppercase text-[#c73020]/40 tracking-widest ml-2">Brief us your vision</label>
                 <textarea 
                   required name="vision" value={formData.vision} onChange={handleChange} rows="3"
                   placeholder="Tell us a bit about your aesthetic..."
-                  className="w-full px-4 py-3 bg-white border border-gray-200 focus:border-brand-primary outline-none transition-all font-sans text-sm text-brand-brown resize-none"
+                  className="w-full px-4 py-3 bg-white border border-[#fdd825]/50 focus:border-[#c73020] outline-none transition-all font-sans text-sm text-brand-brown resize-none"
                 ></textarea>
               </div>
 
               <button 
                 disabled={isSubmitting} type="submit"
-                className="w-full bg-brand-brown hover:bg-brand-primary text-white py-4 mt-4 transition-colors flex justify-center items-center gap-2"
+                className="w-full bg-[#c73020] hover:bg-[#fdd825] text-white hover:text-[#c73020] py-4 mt-4 transition-all duration-300 flex justify-center items-center gap-2 shadow-lg hover:shadow-xl font-black"
               >
                 {isSubmitting ? (
                   <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full" />

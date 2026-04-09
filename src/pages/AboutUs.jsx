@@ -1,10 +1,25 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles, Heart, Star, PartyPopper, MapPin,
   Instagram, ArrowRight, Zap, ShieldCheck, Smile, Gift
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+
+import aboutimg from "../assets/about.jpg.jpeg";
+import gallery1 from "../assets/gallery-1.png";
+import gallery2 from "../assets/gallery-2.png";
+import gallery3 from "../assets/gallery-3.png";
+import gallery4 from "../assets/gallery-4.png";
+import gallery5 from "../assets/gallery-5.png";
+
+const GALLERY = [
+  { id: 1, src: gallery1, alt: "Real Setup 1" },
+  { id: 2, src: gallery3, alt: "Real Setup 2" },
+  { id: 3, src: gallery5, alt: "Real Setup 3" },
+  { id: 4, src: gallery2, alt: "Real Setup 4" },
+  { id: 5, src: gallery4, alt: "Real Setup 5" },
+];
 
 /* ─── Reusable fade-up variant ─── */
 const fadeUp = {
@@ -61,106 +76,126 @@ const milestones = [
 /* ─── Component ─── */
 const AboutUs = () => {
   const navigate = useNavigate();
+  const [activeSlide, setActiveSlide] = React.useState(0);
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % GALLERY.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <div className="font-brand overflow-x-hidden">
+    <div className="font-brand bg-[#fffbeb] overflow-x-hidden min-h-screen">
 
-      {/* ═══════════ HERO ═══════════ */}
-      <section
-        className="relative min-h-screen flex items-center pt-28 md:pt-36 pb-20 px-6 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #FFFB7D 0%, #FEDA77 40%, #FCAF45 80%, #F58529 100%)" }}
-      >
-        {/* blobs */}
-        <div className="absolute top-0 right-0 w-[45%] h-[55%] blur-3xl -z-0 blob-mask"
-          style={{ background: "rgba(255,255,255,0.25)" }} />
-        <div className="absolute bottom-0 left-0 w-[40%] h-[45%] blur-3xl -z-0 blob-mask-alt"
-          style={{ background: "rgba(245,133,41,0.20)" }} />
-
-        <div className="max-w-7xl mx-auto w-full relative z-10">
+      {/* ═══════════ NEW PREMIUM HERO STORY ═══════════ */}
+      <section className="relative pt-32 md:pt-48 pb-20 px-6">
+        <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
+            
+            {/* Image Side */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="relative order-2 lg:order-1"
+            >
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-[#c73020]/5 rounded-[2rem] -rotate-3 transition-transform group-hover:rotate-0 duration-500" />
+                <div className="relative bg-white p-4 rounded-[2rem] shadow-2xl rotate-2 transition-transform group-hover:rotate-0 duration-500 border border-[#c73020]/10">
+                  <img
+                    src={aboutimg}
+                    alt="Shagun & Harshit"
+                    className="w-full h-auto rounded-[1.5rem] object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700 bg-gray-50"
+                  />
+                  <motion.div
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                    className="absolute -top-6 -right-6 bg-[#fdd825] text-[#c73020] p-4 rounded-full shadow-lg border-2 border-white z-20"
+                  >
+                    <Heart size={24} fill="#c73020" />
+                  </motion.div>
+                </div>
+              </div>
 
-            {/* Text */}
-            <div>
+              {/* Badges Strip */}
+              <div className="mt-12 grid grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  { icon: PartyPopper, text: "2500+ celebrations" },
+                  { icon: Instagram, text: "Humans of Bombay" },
+                  { icon: PartyPopper, text: "Dreamy Setups" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-white border border-[#c73020]/10 shadow-sm">
+                    <item.icon size={20} className="text-[#c73020]" />
+                    <span className="text-[10px] font-black uppercase tracking-wider text-[#c73020] leading-tight">{item.text}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Text Side */}
+            <div className="order-1 lg:order-2">
               <motion.div
-                variants={fadeUp} initial="hidden" animate="visible" custom={0}
-                className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-white font-black text-xs uppercase tracking-widest mb-8 shadow-lg"
-                style={{ background: "linear-gradient(135deg, #F58529, #DD2A7B, #8134AF)" }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-[#fdd825] text-[#c73020] font-black text-xs shadow-sm mb-8 border border-[#c73020]/10"
               >
-                <Sparkles size={14} /> Our Story
+                <Sparkles size={14} />
+                <span>A LITTLE ABOUT US 💛</span>
               </motion.div>
 
               <motion.h1
-                variants={fadeUp} initial="hidden" animate="visible" custom={1}
-                className="text-5xl md:text-7xl font-heading font-black leading-[0.95] mb-8 text-brand-brown"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-4xl md:text-6xl lg:text-7xl font-heading font-medium text-[#c73020] leading-[1.05] mb-8 tracking-tight"
               >
-                The people behind your best memories
+                We’re Shagun & Harshit — <br />
+                <span className="text-brand-brown italic">partners in business, life,</span> <br />
+                and everything in between 💛
               </motion.h1>
 
-              <motion.p
-                variants={fadeUp} initial="hidden" animate="visible" custom={2}
-                className="text-lg text-brand-brown/80 font-bold leading-relaxed max-w-xl mb-10"
-              >
-                Surprise Sutra started with one mission — to make every celebration feel extraordinary. 
-                We are Delhi's favourite balloon & event decor experts, turning ordinary moments into 
-                picture-perfect memories.
-              </motion.p>
-
-              <motion.div
-                variants={fadeUp} initial="hidden" animate="visible" custom={3}
-                className="flex flex-wrap gap-4"
-              >
-                <button
-                  onClick={() => navigate("/contact")}
-                  className="btn-bubbly text-white text-xs py-3 px-8"
-                  style={{ background: "linear-gradient(135deg, #DD2A7B, #8134AF)" }}
-                >
-                  Work With Us
-                </button>
-                <button
-                  onClick={() => navigate("/products")}
-                  className="btn-bubbly bg-white text-brand-brown text-xs py-3 px-8"
-                >
-                  Explore Products
-                </button>
-              </motion.div>
-            </div>
-
-            {/* Image collage */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="relative hidden lg:block"
-            >
-              <div
-                className="w-full aspect-square blob-mask overflow-hidden border-8 border-white shadow-2xl"
-                style={{ background: "linear-gradient(135deg, #DD2A7B22, #8134AF22)" }}
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=900&h=900&fit=crop"
-                  alt="Celebration setup by Surprise Sutra"
-                  className="w-full h-full object-cover"
-                />
+              <div className="space-y-6 text-brand-brown/80 font-libre text-lg leading-relaxed">
+                <p>What began as a random idea 7 years ago has now been a part of over 2500 celebrations (and counting). Along the way, we’ve had our little viral moments, been featured on <span className="font-bold text-[#c73020]">Humans of Bombay</span>, and most importantly — been trusted with some really special days.</p>
+                <p>We even got married last year, somewhere between all the setups and celebrations — so this journey is as personal to us as it gets.</p>
+                <div className="flex items-center gap-4 mt-10">
+                   <button onClick={() => navigate("/contact")} className="bg-[#c73020] text-white px-8 py-4 rounded-full font-black uppercase text-xs tracking-widest hover:bg-[#fdd825] hover:text-[#c73020] transition-colors shadow-xl">Start Your Story</button>
+                </div>
               </div>
-              {/* floating badge */}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Real Magic Slideshow Section ── */}
+      <section className="py-24 px-6 bg-white shadow-inner">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h3 className="text-4xl md:text-5xl font-heading font-medium text-[#c73020] mb-4 tracking-tight">Real setups, real moments, real magic ✨</h3>
+            <div className="w-24 h-1.5 bg-[#fdd825] mx-auto rounded-full" />
+          </div>
+
+          <div className="relative h-[400px] md:h-[650px] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-[#fffbeb]">
+            <AnimatePresence mode="wait">
               <motion.div
-                animate={{ y: [0, -16, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-6 -left-6 z-20 text-white px-6 py-4 rounded-[2rem] shadow-2xl"
-                style={{ background: "linear-gradient(135deg, #F58529, #DD2A7B)" }}
+                key={activeSlide}
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 1 }}
+                className="absolute inset-0"
               >
-                <p className="text-2xl font-heading font-black">1,500+</p>
-                <p className="text-xs font-black uppercase tracking-widest opacity-80">Events Styled</p>
+                <img src={GALLERY[activeSlide].src} alt={GALLERY[activeSlide].alt} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
               </motion.div>
-              <motion.div
-                animate={{ y: [0, 14, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -top-6 -right-6 z-20 text-white p-4 rounded-[1.5rem] shadow-xl"
-                style={{ background: "linear-gradient(135deg, #8134AF, #515BD4)" }}
-              >
-                <Star size={28} className="fill-white" />
-              </motion.div>
-            </motion.div>
+            </AnimatePresence>
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+              {GALLERY.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveSlide(i)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${i === activeSlide ? "bg-[#fdd825] w-10" : "bg-white/50"}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>

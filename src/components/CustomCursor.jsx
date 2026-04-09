@@ -162,7 +162,7 @@ const CustomCursor = () => {
           y: cursorY,
         }}
         animate={{
-          scale: isClicking ? 0.6 : (isHovering ? 1.0 : 0.7),
+          scale: isClicking ? 0.4 : (isHovering ? 0.8 : 0.5),
           filter: isHovering ? 'drop-shadow(0 0 12px rgba(180, 37, 51, 0.4))' : 'drop-shadow(0 4px 6px rgba(0,0,0,0.1))',
         }}
       >
