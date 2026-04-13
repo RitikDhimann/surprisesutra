@@ -2,10 +2,8 @@ import {
   MessageSquare,
   Mail,
   Phone,
-  Heart,
   Instagram,
   Facebook,
-  Clock,
   MapPin,
 } from "lucide-react";
 import { motion } from "framer-motion";

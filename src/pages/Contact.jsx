@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Phone, Mail, Sparkles, Send, User, MessageSquare } from "lucide-react";
+import { useState } from "react";
+import { Send } from "lucide-react";
 
 import { motion } from "framer-motion";
 import axios from "axios";

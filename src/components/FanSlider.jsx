@@ -133,9 +133,9 @@ const FanSlider = () => {
               viewport={{ once: true }}
               className="flex items-center justify-center"
             >
-              <img 
-                src={RedBow} 
-                alt="Decorative Red Bow" 
+              <img
+                src={RedBow}
+                alt="Decorative Red Bow"
                 className="w-40 sm:w-56 md:w-72 lg:w-80 xl:w-96 h-auto mix-blend-multiply"
               />
             </motion.div>
@@ -152,15 +152,15 @@ const FanSlider = () => {
 
       <div style={{ position: "relative", width: "100vw", height: (height * 0.7), perspective: "1800px", transformStyle: "preserve-3d", marginTop: "3rem", willChange: "transform", transform: "translateZ(0)" }}>
         {videos.map((vid, i) => (
-          <Card 
-            key={`${activeTab}-${i}`} 
-            video={vid} 
-            i={i} 
-            count={count} 
-            angle={angle} 
-            radius={radius} 
-            cardW={cardW} 
-            cardH={cardH} 
+          <Card
+            key={`${activeTab}-${i}`}
+            video={vid}
+            i={i}
+            count={count}
+            angle={angle}
+            radius={radius}
+            cardW={cardW}
+            cardH={cardH}
             onClick={setSelectedVideo}
           />
         ))}
@@ -209,7 +209,7 @@ const FanSlider = () => {
               {/* Header */}
               <div style={{ padding: "1.5rem", display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #f3f4f6" }}>
                 <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "1.5rem", color: "#c73020" }}>Video Preview</h3>
-                <button 
+                <button
                   onClick={() => setSelectedVideo(null)}
                   style={{ pading: "0.5rem", borderRadius: "50%", background: "#f3f4f6", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
                 >
