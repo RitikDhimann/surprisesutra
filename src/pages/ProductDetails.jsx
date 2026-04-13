@@ -199,15 +199,15 @@ const ProductDetails = () => {
       </div>
 
       <div className="relative z-10">
-        <main className="max-w-6xl mx-auto px-4 md:px-8 pt-24 md:pt-32 pb-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+        <main className="max-w-6xl mx-auto px-4 md:px-8 pt-20 md:pt-24 pb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-start">
             
             {/* LEFT: GALLERY SYSTEM */}
             <div className="relative lg:sticky lg:top-32 space-y-6 md:space-y-8">
               <div className="relative group max-w-md mx-auto lg:mx-0">
                 <motion.div 
                    layoutId="product-image"
-                   className="aspect-square bg-white rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl shadow-gray-200/50 border-4 border-white relative cursor-zoom-in"
+                   className="aspect-square bg-white rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl shadow-gray-200/50 border-4 border-white relative cursor-zoom-in p-8 md:p-12"
                 >
                       <AnimatePresence mode="wait">
                         <motion.img 
@@ -219,7 +219,7 @@ const ProductDetails = () => {
                           src={galleryImages[selectedImageIdx]?.src || "/placeholder.jpg"}
                           alt={product.title}
                           loading="lazy"
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain rounded-xl"
                         />
                       </AnimatePresence>
 
@@ -262,8 +262,8 @@ const ProductDetails = () => {
             </div>
 
             {/* RIGHT: BUYING SYSTEM */}
-            <div className="space-y-10 md:space-y-14">
-              <div className="space-y-6">
+            <div className="space-y-6 md:space-y-8">
+              <div className="space-y-4">
                  <div className="flex items-center gap-3">
                     <span className="text-[10px] md:text-xs font-black text-brand-primary uppercase tracking-[0.3em]">{product.vendor}</span>
                     <div className="w-12 h-px bg-brand-primary/20" />
@@ -289,9 +289,9 @@ const ProductDetails = () => {
               </div>
 
               {/* Selection Grids */}
-              <div className="space-y-12">
+              <div className="space-y-8">
                 {hasColourVariants && (
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     <div className="flex justify-between items-center">
                         <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Magic Hue: <span className="text-gray-900">{selectedColor}</span></label>
                     </div>
@@ -327,7 +327,7 @@ const ProductDetails = () => {
                 )}
 
                 {hasColourVariants && selectedSize && (
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Pick a Weight / Size</label>
                     <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
                       {Object.keys(product._variantMap[selectedColor]).filter(s => s !== "default").map((sz) => {
@@ -351,17 +351,17 @@ const ProductDetails = () => {
                     </div>
                   </div>
                 )}
-                <div className="flex flex-wrap items-center gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="space-y-3">
                         <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Quantity</label>
-                        <div className="flex items-center bg-white p-1.5 rounded-xl border-2 border-gray-50 shadow-sm">
+                        <div className="flex items-center bg-white p-1.5 rounded-xl border-2 border-gray-50 shadow-sm h-[56px]">
                             <button onClick={dec} className="w-10 h-10 flex items-center justify-center hover:bg-gray-50 rounded-lg transition-colors text-gray-400 hover:text-brand-primary"><Minus size={14} /></button>
                             <span className="w-10 text-center font-black text-base text-gray-900">{quantity}</span>
                             <button onClick={inc} className="w-10 h-10 flex items-center justify-center hover:bg-gray-50 rounded-lg transition-colors text-gray-400 hover:text-brand-primary"><Plus size={14} /></button>
                         </div>
                     </div>
                     
-                    <div className="space-y-3 flex-1 min-w-[140px]">
+                    <div className="space-y-3">
                         <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Stock Status</label>
                         <div className="h-[56px] flex items-center px-5 rounded-xl bg-white border-2 border-gray-50">
                              {inStock ? (
@@ -377,8 +377,16 @@ const ProductDetails = () => {
                              )}
                         </div>
                     </div>
+
+                    <div className="space-y-3">
+                        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Delivery</label>
+                        <div className="h-[56px] flex items-center px-5 rounded-xl bg-white border-2 border-gray-50 gap-2">
+                             <Truck size={14} className="text-brand-primary" />
+                             <span className="text-[10px] font-black text-gray-900 uppercase tracking-widest">3-4 Days</span>
+                        </div>
+                    </div>
                 </div>
-                  <div className="flex flex-col sm:flex-row gap-3 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-3 pt-4">
                   <motion.button 
                     whileHover={{ y: -3 }} 
                     whileTap={{ scale: 0.98 }} 
@@ -400,139 +408,99 @@ const ProductDetails = () => {
                 </div>
               </div>
 
-              {/* USP Bars */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 pt-4">
-                <div className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-gray-100/50 shadow-sm relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-12 h-12 bg-brand-primary/5 rounded-full -mr-6 -mt-6 transition-transform group-hover:scale-150" />
-                    <div className="w-8 h-8 rounded-full bg-brand-primary/10 flex items-center justify-center text-brand-primary"><Truck size={16} /></div>
-                    <div className="text-[8px] font-black text-gray-400 uppercase tracking-widest">EXPRESS MAGIC<br /><span className="text-gray-900 text-[10px] normal-case font-bold">In 3-4 Days</span></div>
-                </div>
-                <div className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-gray-100/50 shadow-sm relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-12 h-12 bg-pastel-blue/5 rounded-full -mr-6 -mt-6 transition-transform group-hover:scale-150" />
-                    <div className="w-8 h-8 rounded-full bg-pastel-blue/10 flex items-center justify-center text-pastel-blue"><Shield size={16} /></div>
-                    <div className="text-[8px] font-black text-gray-400 uppercase tracking-widest">SECURE JOY<br /><span className="text-gray-900 text-[10px] normal-case font-bold whitespace-nowrap">100% Protection</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* BELOW THE FOLD: TABS & CONTENT */}
-          <section className="mt-16 md:mt-24 space-y-8">
-            <div className="flex items-center justify-center gap-4 md:gap-16 border-b border-gray-100">
-                {['description', 'details', 'shipping'].map((tab) => (
-                    <button 
-                        key={tab}
-                        onClick={() => setActiveTab(tab)}
-                        className={`pb-6 text-xs md:text-sm font-black uppercase tracking-[0.3em] transition-all relative ${activeTab === tab ? "text-brand-primary" : "text-gray-400 hover:text-gray-600"}`}
-                    >
-                        {tab}
-                        {activeTab === tab && <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 right-0 h-1 bg-brand-primary rounded-full" />}
-                    </button>
-                ))}
-            </div>
-
-            <div className="max-w-4xl mx-auto py-10">
-                <AnimatePresence mode="wait">
-                    {activeTab === 'description' && (
-                        <motion.div 
-                            key="desc"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            className="space-y-12"
+              {/* TABS MOVED UP */}
+              <section className="pt-8 space-y-6">
+                <div className="flex items-center gap-8 border-b border-gray-100">
+                    {['description', 'details', 'shipping'].map((tab) => (
+                        <button 
+                            key={tab}
+                            onClick={() => setActiveTab(tab)}
+                            className={`pb-4 text-[10px] font-black uppercase tracking-[0.2em] transition-all relative ${activeTab === tab ? "text-brand-primary" : "text-gray-400 hover:text-gray-600"}`}
                         >
-                            <div className="prose prose-lg max-w-none prose-headings:font-black prose-p:font-medium prose-p:text-gray-600 prose-p:leading-relaxed" dangerouslySetInnerHTML={{ __html: product.description }} />
-                            
-                            {product.boxContents && (
-                                <div className="bg-white p-10 md:p-14 rounded-[3.5rem] border-2 border-gray-50 shadow-xl relative overflow-hidden group">
-                                    <div className="absolute top-0 right-0 w-48 h-48 bg-pastel-pink/5 rounded-full -mr-24 -mt-24 blur-3xl transition-transform group-hover:scale-150" />
-                                    <div className="relative z-10 space-y-6">
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-12 h-12 bg-pastel-pink/10 rounded-2xl flex items-center justify-center text-brand-primary">
-                                                <Gift size={24} />
-                                            </div>
-                                            <h3 className="text-2xl font-black text-gray-900 tracking-tighter">Magic Box Contents</h3>
-                                        </div>
-                                        <p className="text-gray-500 font-medium leading-loose text-lg">{product.boxContents}</p>
+                            {tab}
+                            {activeTab === tab && <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-primary rounded-full" />}
+                        </button>
+                    ))}
+                </div>
+
+                <div className="py-2">
+                    <AnimatePresence mode="wait">
+                        {activeTab === 'description' && (
+                             <motion.div 
+                                key="description"
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                className="space-y-4"
+                            >
+                                <div className="prose prose-sm max-w-none prose-p:text-gray-600 prose-p:leading-relaxed" dangerouslySetInnerHTML={{ __html: product.description }} />
+                                {product.boxContents && (
+                                    <div className="p-4 bg-pastel-pink/5 rounded-xl border border-pastel-pink/10">
+                                        <h6 className="text-[9px] font-black text-brand-primary uppercase tracking-widest mb-2 flex items-center gap-2">
+                                            <Gift size={10} /> box contents
+                                        </h6>
+                                        <p className="text-[10px] text-gray-500 font-medium leading-relaxed">{product.boxContents}</p>
                                     </div>
-                                </div>
-                            )}
-                        </motion.div>
-                    )}
+                                )}
+                            </motion.div>
+                        )}
 
-                    {activeTab === 'details' && (
-                         <motion.div 
-                            key="details"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-                        >
-                             <div className="p-10 bg-white rounded-[2.5rem] border-2 border-gray-50">
-                                <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest mb-6">Specifications</h4>
-                                <div className="space-y-4">
+                        {activeTab === 'details' && (
+                             <motion.div 
+                                key="details"
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                className="space-y-4"
+                            >
+                                 <div className="grid grid-cols-2 gap-4">
                                     {[
                                         { label: 'Category', value: product.productCategory || 'Party Supply' },
                                         { label: 'Type', value: product.type || 'DIY Kit' },
                                         { label: 'SKU', value: currentVariant.sku || 'N/A' },
-                                        { label: 'Standard Delivery', value: '3-4 Working Days' }
+                                        { label: 'Delivery', value: '3-4 Working Days' }
                                     ].map(spec => (
-                                        <div key={spec.label} className="flex justify-between items-center py-2 border-b border-gray-50">
-                                            <span className="text-xs font-bold text-gray-400">{spec.label}</span>
-                                            <span className="text-xs font-black text-gray-900 uppercase tracking-widest">{spec.value}</span>
+                                        <div key={spec.label} className="bg-white p-4 rounded-xl border border-gray-50">
+                                            <span className="block text-[8px] font-bold text-gray-400 uppercase mb-1">{spec.label}</span>
+                                            <span className="text-[10px] font-black text-gray-900 uppercase tracking-widest whitespace-nowrap overflow-hidden text-ellipsis block">{spec.value}</span>
+                                        </div>
+                                    ))}
+                                 </div>
+                            </motion.div>
+                        )}
+
+                        {activeTab === 'shipping' && (
+                            <motion.div 
+                                key="shipping"
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                className="space-y-4"
+                            >
+                                <div className="p-4 bg-brand-primary/5 rounded-2xl border border-brand-primary/10">
+                                    <p className="text-[10px] text-gray-500 font-medium leading-relaxed">Orders ship within 24-48 hours. Expect your surprise in 3-5 business days across India.</p>
+                                </div>
+                                <div className="grid grid-cols-3 gap-2">
+                                    {[
+                                        { icon: <MapPin size={12} />, title: "Free Shipping" },
+                                        { icon: <Shield size={12} />, title: "Safe Packed" },
+                                        { icon: <Zap size={12} />, title: "Live Tracking" }
+                                    ].map((item, idx) => (
+                                        <div key={idx} className="p-3 bg-white rounded-xl border border-gray-50 text-center space-y-2">
+                                            <div className="text-brand-primary flex justify-center">{item.icon}</div>
+                                            <h5 className="font-black text-gray-900 uppercase tracking-[0.1em] text-[7px] leading-tight">{item.title}</h5>
                                         </div>
                                     ))}
                                 </div>
-                             </div>
-                             <div className="p-10 bg-white rounded-[2.5rem] border-2 border-gray-50 flex flex-col justify-center items-center text-center gap-6">
-                                <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center text-green-500">
-                                    <Shield size={32} />
-                                </div>
-                                <div>
-                                    <h4 className="text-lg font-black text-gray-900 mb-2 tracking-tighter">Quality Guarantee</h4>
-                                    <p className="text-xs text-gray-400 font-bold leading-relaxed uppercase tracking-widest">Handpicked items & careful packaging for the perfect surprise.</p>
-                                </div>
-                             </div>
-                        </motion.div>
-                    )}
-
-                    {activeTab === 'shipping' && (
-                        <motion.div 
-                            key="shipping"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            className="space-y-8"
-                        >
-                            <div className="p-10 bg-brand-primary/5 rounded-[3rem] border-2 border-brand-primary/10 flex flex-col md:flex-row items-center gap-10">
-                                <div className="w-24 h-24 bg-white rounded-[32px] shadow-xl flex items-center justify-center text-brand-primary shrink-0 relative">
-                                    <Truck size={40} />
-                                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center animate-pulse"><Check size={16} /></div>
-                                </div>
-                                <div className="space-y-3">
-                                    <h4 className="text-2xl font-black text-gray-900 tracking-tighter">Reliable Magic Transit</h4>
-                                    <p className="text-gray-500 font-medium leading-relaxed">We ship all orders within 24-48 magical hours. Expect your surprise at your doorstep in 3-5 business days across India.</p>
-                                </div>
-                            </div>
-                            
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                {[
-                                    { icon: <MapPin size={20} />, title: "Free Shipping", desc: "On all orders above ₹499" },
-                                    { icon: <Shield size={20} />, title: "Safe Packed", desc: "No damage guaranteed" },
-                                    { icon: <Zap size={20} />, title: "Live Tracking", desc: "Follow the magic path" }
-                                ].map((item, idx) => (
-                                    <div key={idx} className="p-8 bg-white rounded-[2rem] border-2 border-gray-50 text-center space-y-3 hover:border-brand-primary/20 transition-all">
-                                        <div className="w-12 h-12 mx-auto bg-gray-50 rounded-2xl flex items-center justify-center text-gray-400 group-hover:text-brand-primary transition-all">{item.icon}</div>
-                                        <h5 className="font-black text-gray-900 uppercase tracking-widest text-[10px]">{item.title}</h5>
-                                        <p className="text-xs text-gray-400 font-bold leading-none">{item.desc}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+              </section>
             </div>
-          </section>
+          </div>
+
+
 
           {/* Sticky Mobile Add To Cart */}
           <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 p-2 bg-white/80 backdrop-blur-xl border-t border-gray-100 flex items-center gap-2">

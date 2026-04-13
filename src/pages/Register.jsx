@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { USER_API_BASE } from "../config";
 import YellowLogo from '../assets/YellowLogo.webp';
 
-const RegisterPage = () => {
+const Register = () => {
     const navigate = useNavigate();
 
     const [showPassword, setShowPassword] = useState(false);
@@ -50,10 +50,10 @@ const RegisterPage = () => {
     };
 
     return (
-        <div className="min-h-screen font-brand relative overflow-hidden flex flex-col px-4 md:px-6 pt-28 pb-12 md:pt-32" style={{ background: "linear-gradient(135deg, #fce4f3 0%, #f3e6ff 50%, #fff3e0 100%)" }}>
+        <div className="min-h-screen font-brand relative overflow-hidden flex flex-col px-4 md:px-6 pt-28 pb-12 md:pt-32" style={{ background: "linear-gradient(135deg, #fffbeb 0%, #fff3e0 50%, #fef2f2 100%)" }}>
             {/* Whimsical Background Elements */}
             <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-white/40 rounded-full blur-3xl animate-float" />
-            <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-brand-pink/20 rounded-full blur-[120px] animate-float-delayed" />
+            <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#c73020]/10 rounded-full blur-[120px] animate-float-delayed" />
 
             <div className="w-full max-w-2xl relative z-10 m-auto">
                 <motion.div
@@ -63,7 +63,7 @@ const RegisterPage = () => {
                 >
                     <button
                         onClick={() => navigate('/')}
-                        className="absolute top-6 left-6 md:top-10 md:left-10 p-3 md:p-4 bg-pastel-pink/10 rounded-full text-brand-primary hover:bg-brand-primary hover:text-white transition-all group z-20"
+                        className="absolute top-6 left-6 md:top-10 md:left-10 p-3 md:p-4 bg-[#fdd825]/10 rounded-full text-[#c73020] hover:bg-[#c73020] hover:text-white transition-all group z-20"
                     >
                         <ArrowLeft size={18} className="md:size-[20px] group-hover:-translate-x-1 transition-transform" />
                     </button>
@@ -71,19 +71,19 @@ const RegisterPage = () => {
                     <div className="flex flex-col items-center mb-10 md:mb-12">
                         <motion.div
                             whileHover={{ scale: 1.1, rotate: -5 }}
-                            className="bg-pastel-pink/10 p-5 md:p-6 rounded-2xl md:rounded-[2.5rem] mb-6 md:mb-8 relative"
+                            className="bg-[#fdd825]/20 p-5 md:p-6 rounded-2xl md:rounded-[2.5rem] mb-6 md:mb-8 relative"
                         >
                             <img src={YellowLogo} alt="Logo" className="h-16 md:h-20 w-auto relative z-10" />
-                            <div className="absolute inset-0 bg-brand-primary/10 rounded-2xl md:rounded-[2.5rem] blur-lg animate-pulse" />
+                            <div className="absolute inset-0 bg-[#c73020]/10 rounded-2xl md:rounded-[2.5rem] blur-lg animate-pulse" />
                         </motion.div>
-                        <h1 className="text-2xl md:text-4xl font-heading font-black text-brand-brown tracking-tighter mb-4 text-center leading-tight">Join the <span className="text-brand-primary">Party!</span></h1>
+                        <h1 className="text-2xl md:text-4xl font-heading font-black text-brand-brown tracking-tighter mb-4 text-center leading-tight">Join the <span className="text-[#c73020]">Party!</span></h1>
                         <p className="text-brand-brown/40 font-bold text-[10px] md:text-sm uppercase tracking-widest text-center px-4">Create your account for more magic and surprises</p>
                     </div>
 
                     <form onSubmit={handleRegister} className="space-y-6" autoComplete="off" noValidate>
                         <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                             <div className="space-y-2">
-                                <label className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-brand-brown/40 ml-4 md:ml-6">Username</label>
+                                <label className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-brand-brown/40 ml-4 md:ml-6">Full Name</label>
                                 <div className="relative group">
                                     <User className="absolute left-5 md:left-6 top-1/2 -translate-y-1/2 text-brand-brown/20 group-focus-within:text-brand-primary transition-colors size-[18px] md:size-[20px]" />
                                     <input
@@ -99,7 +99,7 @@ const RegisterPage = () => {
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <label className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-brand-brown/40 ml-4 md:ml-6">Email Addresss </label>
+                                <label className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-brand-brown/40 ml-4 md:ml-6">Email Address</label>
                                 <div className="relative group">
                                     <Mail className="absolute left-5 md:left-6 top-1/2 -translate-y-1/2 text-brand-brown/20 group-focus-within:text-brand-primary transition-colors size-[18px] md:size-[20px]" />
                                     <input
@@ -118,7 +118,7 @@ const RegisterPage = () => {
 
                         <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                             <div className="space-y-2">
-                                <label className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-brand-brown/40 ml-4 md:ml-6">Secret Key</label>
+                                <label className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-brand-brown/40 ml-4 md:ml-6">Password</label>
                                 <div className="relative group">
                                     <Lock className="absolute left-5 md:left-6 top-1/2 -translate-y-1/2 text-brand-brown/20 group-focus-within:text-brand-primary transition-colors size-[18px] md:size-[20px]" />
                                     <input
@@ -137,7 +137,7 @@ const RegisterPage = () => {
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <label className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-brand-brown/40 ml-4 md:ml-6">Just to be Sure</label>
+                                <label className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-brand-brown/40 ml-4 md:ml-6">Confirm Password</label>
                                 <div className="relative group">
                                     <Lock className="absolute left-5 md:left-6 top-1/2 -translate-y-1/2 text-brand-brown/20 group-focus-within:text-brand-primary transition-colors size-[18px] md:size-[20px]" />
                                     <input
@@ -186,4 +186,4 @@ const RegisterPage = () => {
     );
 };
 
-export default RegisterPage;
+export default Register;

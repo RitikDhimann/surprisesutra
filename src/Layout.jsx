@@ -15,12 +15,12 @@ import ContactUs from "./pages/ContactUs";
 import ProductList from "./pages/Products";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckOut";
-import LoginPage from "./pages/LoginPage";
+import Login from "./pages/Login";
 import ProfilePage from "./pages/Profile";
 import MyOrdersPage from "./pages/MyOrders";
 import ScrollToTop from "./components/ScrollToTop";
 import ProductDetails from "./pages/ProductDetails";
-import RegisterForm from "./pages/Register";
+import Register from "./pages/Register";
 import WishlistPage from "./pages/Wishlist";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsConditions from "./pages/TermsConditions";
@@ -28,7 +28,7 @@ import RefundPolicy from "./pages/RefundPolicy";
 import ShippingPolicy from "./pages/ShippingPolicy";
 import Faqs from "./pages/Faqs";
 import Services from "./pages/Services";
-import ForgotPassword from "../src/pages/ForgetPassword"
+import ForgotPassword from "./pages/ForgotPassword"
 import AboutUs from "./pages/AboutUs";
 import CollabPage from "./pages/Collab";
 import BookNow from "./pages/BookNow";
@@ -58,8 +58,8 @@ function Layout() {
             <Route path="/cart" element={<CartPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterForm />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/my-orders" element={<MyOrdersPage />} />

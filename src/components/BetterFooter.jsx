@@ -47,9 +47,9 @@ const BetterFooter = () => {
                  <Mail size={16} />
                  <span>surprisesutra@gmail.com</span>
                </a>
-               <a href="tel:+91PARTYPROPZ" className="flex items-center gap-3 text-sm text-gray-600 hover:text-[#c73020]">
+               <a href="tel:+919999416896" className="flex items-center gap-3 text-sm text-gray-600 hover:text-[#c73020]">
                  <Phone size={16} />
-                 <span>+91-PARTY-PROPZ</span>
+                 <span>+91 99994 16896</span>
                </a>
                <div className="flex items-center gap-3 text-sm text-gray-600">
                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>

@@ -1,8 +1,20 @@
 import React, { useState, memo, useEffect } from "react";
-import { motion, useAnimationFrame, useMotionValue, useTransform } from "framer-motion";
-import { Gift, Baby, Heart, PartyPopper } from "lucide-react";
+import { motion, useAnimationFrame, useMotionValue, useTransform, AnimatePresence } from "framer-motion";
+import { Gift, Baby, Heart, PartyPopper, X } from "lucide-react";
 import useWindowSize from "../hooks/useWindowSize";
 import RedBow from "../assets/red-bow.png";
+import Video1 from "../assets/Aarviv2.mp4";
+import Video2 from "../assets/Chiyav5.mp4";
+import Video3 from "../assets/Cub SSv4.mp4";
+import Video4 from "../assets/Divit Part 2v6.mp4";
+import Video5 from "../assets/Goosev6.mp4";
+import Video6 from "../assets/Pritika and Somil.mp4";
+import Video7 from "../assets/SSKeychain.mp4";
+import Video8 from "../assets/SSv4Opalite.mp4";
+import Video9 from "../assets/Teddybearv3.mp4";
+import Video10 from "../assets/Wishlinkv9.mp4";
+import Video11 from "../assets/Divit Part 2v6 (1).mp4";
+import Video12 from "../assets/Divitv9.mp4";
 
 /* Categories Data */
 const CATEGORIES = [
@@ -10,65 +22,29 @@ const CATEGORIES = [
     id: "birthday",
     label: "Birthday",
     Icon: Gift,
-    images: [
-      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600",
-      "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=600",
-      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600",
-      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600",
-      "https://images.unsplash.com/photo-1505909182942-e2f09aee3e89?w=600",
-      "https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?w=600",
-      "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600",
-      "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600",
-    ]
+    videos: [Video1, Video2, Video3, Video4, Video5, Video6]
   },
   {
     id: "baby-shower",
     label: "Baby Shower",
     Icon: Baby,
-    images: [
-      "https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?w=600",
-      "https://images.unsplash.com/photo-1505909182942-e2f09aee3e89?w=600",
-      "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600",
-      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600",
-      "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600",
-      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600",
-      "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=600",
-      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600",
-    ]
+    videos: [Video7, Video8, Video9, Video10, Video11, Video12]
   },
   {
     id: "anniversary",
     label: "Anniversary",
     Icon: Heart,
-    images: [
-      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600",
-      "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=600",
-      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600",
-      "https://images.unsplash.com/photo-1505909182942-e2f09aee3e89?w=600",
-      "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600",
-      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600",
-      "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600",
-      "https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?w=600",
-    ]
+    videos: [Video1, Video3, Video5, Video7, Video9, Video11]
   },
   {
     id: "party",
     label: "Party Setups",
     Icon: PartyPopper,
-    images: [
-      "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600",
-      "https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?w=600",
-      "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600",
-      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600",
-      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600",
-      "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=600",
-      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600",
-      "https://images.unsplash.com/photo-1505909182942-e2f09aee3e89?w=600",
-    ]
+    videos: [Video2, Video4, Video6, Video8, Video10, Video12]
   }
 ];
 
-const Card = memo(({ img, i, count, angle, radius, cardW, cardH }) => {
+const Card = memo(({ video, i, count, angle, radius, cardW, cardH, onClick }) => {
   const offset = i * (360 / count);
 
   const x = useTransform(angle, (a) => {
@@ -83,6 +59,8 @@ const Card = memo(({ img, i, count, angle, radius, cardW, cardH }) => {
 
   return (
     <motion.div
+      onClick={() => onClick(video)}
+      whileHover={{ scale: 1.05 }}
       style={{
         position: "absolute",
         left: "50%",
@@ -96,15 +74,18 @@ const Card = memo(({ img, i, count, angle, radius, cardW, cardH }) => {
         borderRadius: "0.8rem",
         overflow: "hidden",
         boxShadow: "0 10px 30px rgba(0,0,0,0.3)",
-        willChange: "transform",
+        willChange: "transform, opacity",
         transform: "translateZ(0)",
+        cursor: "pointer",
       }}
     >
-      <img
-        src={img}
-        alt=""
-        loading="lazy"
-        decoding="async"
+      <video
+        src={video}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
         style={{
           width: "100%",
           height: "100%",
@@ -120,19 +101,20 @@ const Card = memo(({ img, i, count, angle, radius, cardW, cardH }) => {
 const FanSlider = () => {
   const { width } = useWindowSize();
   const [activeTab] = useState(CATEGORIES[0].id);
+  const [selectedVideo, setSelectedVideo] = useState(null);
   const [cfg, setCfg] = useState({ radius: 350, cardW: 150, cardH: 240, height: 500 });
 
   useEffect(() => {
-    if (width < 480) setCfg({ radius: 280, cardW: 170, cardH: 270, height: 450 });
-    else if (width < 768) setCfg({ radius: 280, cardW: 160, cardH: 240, height: 400 });
-    else if (width < 1024) setCfg({ radius: 350, cardW: 180, cardH: 260, height: 480 });
-    else setCfg({ radius: 400, cardW: 220, cardH: 320, height: 600 });
+    if (width < 480) setCfg({ radius: 260, cardW: 180, cardH: 300, height: 480 });
+    else if (width < 768) setCfg({ radius: 280, cardW: 170, cardH: 280, height: 480 });
+    else if (width < 1024) setCfg({ radius: 360, cardW: 200, cardH: 320, height: 550 });
+    else setCfg({ radius: 400, cardW: 240, cardH: 400, height: 750 });
   }, [width]);
 
   const { radius, cardW, cardH, height } = cfg;
   const currentCategory = CATEGORIES.find(c => c.id === activeTab) || CATEGORIES[0];
-  const images = currentCategory.images;
-  const count = images.length;
+  const videos = currentCategory.videos;
+  const count = videos.length;
   const angle = useMotionValue(0);
 
   useAnimationFrame((_t, delta) => {
@@ -168,11 +150,103 @@ const FanSlider = () => {
         </p>
       </div>
 
-      <div style={{ position: "relative", width: "100vw", height: (height * 0.7), perspective: "1800px", transformStyle: "preserve-3d", marginTop: "2rem", willChange: "transform", transform: "translateZ(0)" }}>
-        {images.map((img, i) => (
-          <Card key={`${activeTab}-${i}`} img={img} i={i} count={count} angle={angle} radius={radius} cardW={cardW} cardH={cardH} />
+      <div style={{ position: "relative", width: "100vw", height: (height * 0.7), perspective: "1800px", transformStyle: "preserve-3d", marginTop: "3rem", willChange: "transform", transform: "translateZ(0)" }}>
+        {videos.map((vid, i) => (
+          <Card 
+            key={`${activeTab}-${i}`} 
+            video={vid} 
+            i={i} 
+            count={count} 
+            angle={angle} 
+            radius={radius} 
+            cardW={cardW} 
+            cardH={cardH} 
+            onClick={setSelectedVideo}
+          />
         ))}
       </div>
+
+      {/* Side Panel Drawer */}
+      <AnimatePresence>
+        {selectedVideo && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedVideo(null)}
+              style={{
+                position: "fixed",
+                inset: 0,
+                background: "rgba(0,0,0,0.4)",
+                backdropFilter: "blur(8px)",
+                zIndex: 100,
+                cursor: "zoom-out"
+              }}
+            />
+
+            {/* Panel */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              style={{
+                position: "fixed",
+                top: 0,
+                right: 0,
+                bottom: 0,
+                width: width < 640 ? "100%" : "450px",
+                background: "#ffffff",
+                boxShadow: "-10px 0 50px rgba(0,0,0,0.2)",
+                zIndex: 101,
+                display: "flex",
+                flexDirection: "column",
+                overflow: "hidden"
+              }}
+            >
+              {/* Header */}
+              <div style={{ padding: "1.5rem", display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #f3f4f6" }}>
+                <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "1.5rem", color: "#c73020" }}>Video Preview</h3>
+                <button 
+                  onClick={() => setSelectedVideo(null)}
+                  style={{ pading: "0.5rem", borderRadius: "50%", background: "#f3f4f6", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
+                >
+                  <X size={20} color="#6b7280" />
+                </button>
+              </div>
+
+              {/* Video Player */}
+              <div style={{ flex: 1, position: "relative", background: "#000", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <video
+                  src={selectedVideo}
+                  autoPlay
+                  controls
+                  preload="metadata"
+                  style={{ width: "100%", maxHeight: "100%", objectFit: "contain" }}
+                />
+              </div>
+
+              {/* Footer/Info */}
+              <div style={{ padding: "2rem", background: "#fff" }}>
+                <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginBottom: "1rem" }}>
+                  <div style={{ width: "40px", height: "40px", borderRadius: "10px", background: "#fef3c7", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <currentCategory.Icon size={20} color="#fdd825" />
+                  </div>
+                  <div>
+                    <p style={{ fontSize: "0.8rem", color: "#9ca3af", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.1rem" }}>Category</p>
+                    <p style={{ fontWeight: 600, color: "#1f2937" }}>{currentCategory.label}</p>
+                  </div>
+                </div>
+                <p style={{ color: "#6b7280", fontSize: "0.95rem", lineHeight: 1.6 }}>
+                  Experience the magic of our {currentCategory.label.toLowerCase()} setups. Every detail is curated to create unforgettable memories.
+                </p>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
     </section>
   );

@@ -1,4 +1,3 @@
-
 import {
   MessageSquare,
   Mail,
@@ -7,143 +6,87 @@ import {
   Instagram,
   Facebook,
   Clock,
+  MapPin,
 } from "lucide-react";
+import { motion } from "framer-motion";
 import ContactForm from "./Contact";
 
 export default function ContactUs() {
-  const contactDetails = [
-    {
-      id: 1,
-      icon: Mail,
-      title: "Email Us",
-      value: "surprisesutra@gmail.com",
-      action: "mailto:surprisesutra@gmail.com",
-    },
-    {
-      id: 2,
-      icon: Phone,
-      title: "Call Us",
-      value: "+91-8886361515",
-      action: "tel:+918886361515",
-    },
-    {
-      id: 3,
-      icon: MessageSquare,
-      title: "WhatsApp",
-      value: "+91-8886361515",
-      action: "https://wa.me/918886361515",
-    },
-    {
-      id: 4,
-      icon: Clock,
-      title: "Business Hours",
-      value: "Mon-Sat: 12 PM - 7 PM",
-    },
-  ];
-
-  const socialLinks = [
-    {
-      id: 1,
-      icon: Instagram,
-      name: "Instagram",
-      link: "https://instagram.com/surprisesutra",
-    },
-    {
-      id: 2,
-      icon: Facebook,
-      name: "Facebook",
-      link: "https://facebook.com/surprisesutra",
-    },
-  ];
-
   return (
-    <div className="min-h-screen relative overflow-hidden font-brand pt-32 pb-20" style={{ background: "linear-gradient(135deg, #FFFB7D 0%, #FEDA77 40%, #FCAF45 80%, #F58529 100%)" }}>
-      {/* Background blobs */}
-      <div className="absolute top-10 right-10 w-[400px] h-[400px] bg-white opacity-20 blur-[100px] rounded-full -z-0" />
-      <div className="absolute bottom-10 left-10 w-[300px] h-[300px] bg-white opacity-20 blur-[100px] rounded-full -z-0" />
-
-      <div className="container mx-auto px-4 max-w-7xl relative">
-        <div className="flex flex-col lg:flex-row gap-16">
-          {/* Left Column: Contact Info & Socials */}
-          <div className="lg:w-2/5 space-y-12">
-            <div className="space-y-6">
-              <div className="flex items-center gap-3">
-                <span className="w-12 h-[2px] bg-brand-primary"></span>
-                <span className="text-brand-brown font-black tracking-[0.2em] uppercase text-xs">
+    <div className="bg-[#fffbeb] min-h-screen font-brand text-brand-brown">
+      {/* ─── Query Page / Inquiry Form ─── */}
+      <section id="query-form" className="py-32 md:py-48 px-6 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          
+          {/* Left Side: Elegant Text */}
+          <div className="order-2 lg:order-1">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center gap-3 mb-8">
+                <span className="w-12 h-[2px] bg-[#c73020]"></span>
+                <span className="text-[#c73020] font-black tracking-[0.2em] uppercase text-xs">
                   Get In Touch
                 </span>
               </div>
-              <h1 className="text-5xl lg:text-7xl font-black leading-[0.9] text-brand-brown tracking-tighter">
-                Let's <span className="text-brand-primary">Collaborate</span> On Your
-                Next Event.
+
+              <h1 className="text-4xl md:text-6xl font-heading font-medium text-[#c73020] leading-tight mb-8 tracking-tighter">
+                Let's <span className="text-[#fdd825] italic underline decoration-[#c73020]/20">Collaborate</span> On Your Next Event.
               </h1>
-              <p className="text-brand-brown/70 text-lg font-bold max-w-sm leading-relaxed">
-                Whether it's a grand celebration or an intimate surprise, we're
-                here to bring your vision to life.
-              </p>
-            </div>
+              <div className="text-sm md:text-base text-brand-brown/70 font-sans leading-relaxed mb-12 space-y-6">
+                <p>From cozy, intimate surprises to full-blown party setups, we design decor that feels personal, thoughtful, and very you. Whether you have everything planned out or just a bunch of saved ideas and "something cute please" in mind, we'll take it from there.</p>
+                <p>We're big on details (the kind people actually notice), smooth setups, and making sure you don't have to stress about a thing. You just show up, enjoy, and take all the credit 😌</p>
+                <p className="font-bold underline decoration-[#c73020]/20 underline-offset-4">Fill in your details here and let's start planning something that looks as good as it feels 💛</p>
+              </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
-              {contactDetails.map((item) => (
-                <a
-                  key={item.id}
-                  href={item.action}
-                  className="group p-6 rounded-3xl bg-white/40 backdrop-blur-md border border-white/40 hover:bg-white hover:scale-[1.02] transition-all duration-500 flex items-start gap-4 shadow-sm hover:shadow-xl"
-                >
-                  <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center text-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-all duration-500 shadow-sm">
-                    <item.icon size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-[10px] font-black text-brand-brown/40 uppercase tracking-widest mb-1">
-                      {item.title}
-                    </h3>
-                    <p className="text-brand-brown font-black group-hover:text-brand-primary transition-all duration-500 tracking-tight">
-                      {item.value}
-                    </p>
-                  </div>
+              <div className="grid grid-cols-2 gap-8 pt-8 border-t border-[#c73020]/10">
+                <div className="space-y-1">
+                  <p className="text-[10px] font-black uppercase text-[#c73020]/40 tracking-widest flex items-center gap-2">
+                    <Phone size={12} className="text-[#fdd825]" /> Calling Hours
+                  </p>
+                  <p className="text-[#c73020] font-bold text-sm">12:00 PM - 7:00 PM</p>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-[10px] font-black uppercase text-[#c73020]/40 tracking-widest flex items-center gap-2">
+                    <MessageSquare size={12} className="text-[#fdd825]" /> WhatsApp
+                  </p>
+                  <p className="text-[#c73020] font-bold text-sm">+91 99994 16896</p>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-[10px] font-black uppercase text-[#c73020]/40 tracking-widest flex items-center gap-2">
+                    <Mail size={12} className="text-[#fdd825]" /> Surprise Sutra
+                  </p>
+                  <p className="text-[#c73020] font-bold text-sm">surprisesutra@gmail.com</p>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-[10px] font-black uppercase text-[#c73020]/40 tracking-widest flex items-center gap-2">
+                    <MapPin size={12} className="text-[#fdd825]" /> Studio
+                  </p>
+                  <p className="text-[#c73020] font-bold text-sm">Delhi NCR, India</p>
+                </div>
+              </div>
+              
+              {/* Social Links */}
+              <div className="flex gap-4 mt-12 pt-8 border-t border-[#c73020]/10">
+                <a href="https://instagram.com/surprisesutra" className="p-3 bg-white shadow-sm hover:shadow-md transition-shadow text-[#c73020] rounded-full border border-[#fdd825]/30">
+                  <Instagram size={18} />
                 </a>
-              ))}
-            </div>
-
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 text-xs font-black text-brand-brown/40 uppercase tracking-widest">
-                <Heart size={16} className="text-brand-primary" />
-                <span>Follow our journey</span>
+                <a href="https://facebook.com/surprisesutra" className="p-3 bg-white shadow-sm hover:shadow-md transition-shadow text-[#c73020] rounded-full border border-[#fdd825]/30">
+                  <Facebook size={18} />
+                </a>
               </div>
-              <div className="flex gap-4">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.id}
-                    href={social.link}
-                    className="w-14 h-14 rounded-2xl bg-white/40 backdrop-blur-md border border-white/40 flex items-center justify-center text-brand-brown/60 hover:text-white hover:bg-brand-primary hover:border-brand-primary transition-all duration-300 shadow-sm"
-                  >
-                    <social.icon size={22} />
-                  </a>
-                ))}
-              </div>
-            </div>
+            </motion.div>
           </div>
 
-          {/* Right Column: Contact Form */}
-          <div className="lg:w-3/5">
+          {/* Right Side: Editorial Form */}
+          <div className="order-1 lg:order-2">
             <ContactForm />
           </div>
+          
         </div>
-      </div>
-
-      <style jsx>{`
-        .text-gradient {
-          background: linear-gradient(135deg, #f97316 0%, #eab308 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-
-        @media (max-width: 1024px) {
-          h1 {
-            font-size: 3.5rem;
-          }
-        }
-      `}</style>
+      </section>
     </div>
   );
 }

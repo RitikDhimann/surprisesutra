@@ -269,7 +269,7 @@ const Services = () => {
                   <p className="text-[10px] font-black uppercase text-[#c73020]/40 tracking-widest flex items-center gap-2">
                     <MessageCircle size={12} className="text-[#fdd825]" /> WhatsApp
                   </p>
-                  <p className="text-[#c73020] font-bold text-sm">+91 88863 61515</p>
+                  <p className="text-[#c73020] font-bold text-sm">+91 99994 16896</p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-[10px] font-black uppercase text-[#c73020]/40 tracking-widest flex items-center gap-2">
