@@ -141,9 +141,9 @@ const OccasionsSection = () => {
                 viewport={{ once: true }}
                 className="flex items-center justify-center"
               >
-                <img 
-                  src={RedBow} 
-                  alt="Decorative Red Bow" 
+                <img
+                  src={RedBow}
+                  alt="Decorative Red Bow"
                   className="w-40 sm:w-56 md:w-72 lg:w-80 xl:w-96 h-auto mix-blend-multiply"
                 />
               </motion.div>
@@ -222,13 +222,13 @@ const OccasionsSection = () => {
                         <h3 className="text-sm sm:text-2xl font-libre font-bold text-white mb-2 sm:mb-6 tracking-wide group-hover:text-brand-primary transition-colors">
                           {occasion.title}
                         </h3>
-                        <div className="flex flex-row gap-3 sm:gap-4 w-full justify-center px-1 sm:px-2">
+                        <div className="flex flex-row gap-2 sm:gap-4 w-full justify-center px-1 sm:px-2">
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
                               navigate("/diy-kits");
                             }}
-                            className="flex-1 relative overflow-hidden bg-white/95 backdrop-blur-md text-brand-brown border border-white/50 font-semibold text-[8px] xs:text-[10px] sm:text-[11px] uppercase tracking-[0.15em] py-3 sm:py-3.5 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-500 hover:bg-brand-primary hover:border-brand-primary hover:text-white hover:shadow-[0_8px_30px_rgba(180,37,51,0.4)] transform hover:-translate-y-1 cursor-pointer"
+                            className=" relative overflow-hidden bg-white/95 backdrop-blur-md text-brand-brown border border-white/50 font-semibold text-[8px] xs:text-[10px] sm:text-[11px] uppercase tracking-[0.15em] py-1 px-1 sm:py-3.5 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-500 hover:bg-brand-primary hover:border-brand-primary hover:text-white hover:shadow-[0_8px_30px_rgba(180,37,51,0.4)] transform hover:-translate-y-1 cursor-pointer"
                           >
                             SHOP NOW
                           </button>
@@ -237,7 +237,7 @@ const OccasionsSection = () => {
                               e.stopPropagation();
                               navigate("/book-now", { state: { occasion: occasion.title } });
                             }}
-                            className="flex-1 relative overflow-hidden bg-white/10 backdrop-blur-md text-white border border-white/70 font-semibold text-[8px] xs:text-[10px] sm:text-[11px] uppercase tracking-[0.15em] py-3 sm:py-3.5 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-500 hover:bg-white hover:text-brand-brown hover:shadow-xl transform hover:-translate-y-1 cursor-pointer"
+                            className="relative overflow-hidden bg-white/10 backdrop-blur-md text-white border border-white/70 font-semibold text-[8px] xs:text-[10px] sm:text-[11px] uppercase tracking-[0.15em] py-1 px-1 sm:py-3.5 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-500 hover:bg-white hover:text-brand-brown hover:shadow-xl transform hover:-translate-y-1 cursor-pointer"
                           >
                             BOOK NOW
                           </button>

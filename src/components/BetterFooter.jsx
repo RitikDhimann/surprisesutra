@@ -9,7 +9,7 @@ const BetterFooter = () => {
   return (
     <footer className="bg-white border-t border-gray-100 py-12 px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 mb-12">
           
           {/* Brand section */}
           <div className="md:col-span-1">
