@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { Sparkles, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import HeroEvent1 from "../assets/hero_event_1.jpg";
 import HeroEvent2 from "../assets/hero_event_2.jpg";
@@ -14,9 +14,9 @@ const HeroSection = () => {
   const [isHovering2, setIsHovering2] = useState(false);
 
   return (
-    <section id="home" className="relative pt-24 md:pt-54 pb-24 md:pb-40 overflow-hidden min-h-[100vh] flex items-center" style={{ background: "radial-gradient(circle at bottom right, rgba(180, 37, 51, 0.7) 0%, rgba(77, 18, 23, 0.4) 35%, rgba(180, 37, 51, 0) 85%), #fef200" }}>
+    <section id="home" className="relative pt-24 md:pt-54 pb-44 md:pb-40 overflow-hidden min-h-[100vh] flex items-center" style={{ background: "radial-gradient(circle at bottom right, rgba(253, 216, 37, 0.7) 0%, rgba(253, 216, 37, 0.4) 35%, rgba(253, 216, 37, 0) 85%), #ffffff" }}>
       {/* Organic Background Blobs */}
-      <div className="absolute top-10 right-10 w-[40%] h-[40%] blob-mask blur-2xl -z-0" style={{ background: "rgba(254,218,119,0.15)" }} />
+      <div className="absolute top-10 right-10 w-[40%] h-[40%] blob-mask blur-2xl -z-0" style={{ background: "rgba(255,255,255,0.15)" }} />
       <div className="absolute bottom-10 left-10 w-[30%] h-[30%] blob-mask-alt blur-3xl -z-0" style={{ background: "rgba(245,133,41,0.12)" }} />
 
       {/* Artistic Integrated Background Element */}
@@ -50,56 +50,43 @@ const HeroSection = () => {
       <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
         {/* Mobile-only Badge and Heading (Between Header and Images) */}
         <div className="md:hidden flex flex-col items-center text-center px-4 mb-8">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-transparent border border-[#4d1217]/20 text-[#4d1217] font-black text-xs mb-6"
-          >
-            <Sparkles size={14} className="text-[#b42533]" />
-            <span>GENUINE MAGIC BUILDERS</span>
-          </motion.div>
+
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl xs:text-5xl font-libre font-bold text-[#4d1217] leading-[1.1]"
+            className="text-4xl xs:text-5xl font-libre font-bold leading-[1.1]"
           >
-            You bring the <span className="text-[#4d1217]">occasion</span>, <br />
-            <span className="text-[#b42533]">we bring the magic!</span>
+            <span className="text-[#c73020]">You bring the</span> <span className="text-[#fdd825] italic">occasion, </span> <br />
+            <span className="text-[#c73020]">we bring the </span>
+            <span className="text-[#fdd825] italic">magic!</span>
           </motion.h1>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Text Content */}
           <div className="text-left order-2 lg:order-1  lg:pt-0">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="hidden md:inline-flex items-center gap-2 px-6 py-2 rounded-full bg-transparent border border-[#4d1217]/20 text-[#4d1217] font-black text-sm mb-8"
-            >
-              <Sparkles size={16} className="text-[#b42533]" />
-              <span>GENUINE MAGIC BUILDERS</span>
-            </motion.div>
+
 
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="hidden md:block text-4xl xs:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-libre font-bold text-[#4d1217] leading-[1.1] mb-8"
+              className="hidden md:block text-4xl xs:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-libre font-bold leading-[1.1] mb-8"
             >
-              You bring the occasion, <br />
-              <span className="relative inline-block text-[#b42533]">
-                we bring the magic!
+              <span className="text-[#c73020]">You bring the</span> <span className="text-[#fdd825] italic">occasion, </span> <br />
+              <span className="relative inline-block text-[#c73020]">
+                we bring the
               </span>
+              <span className="text-[#fdd825] italic"> magic!</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-base md:text-lg text-brand-brown/70 font-libre max-w-xl mb-12 leading-relaxed"
+              className="text-base md:text-lg text-brand-brown/70 font-montserrat max-w-xl mb-8 md:mb-12 leading-relaxed"
             >
               Cute party supplies shipped across India & dreamy decor setups across Delhi NCR
             </motion.p>
@@ -108,7 +95,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-row gap-3 md:gap-6 items-start lg:items-start justify-start w-full overflow-visible"
+              className="flex flex-col sm:flex-row gap-4 md:gap-6 items-start lg:items-start justify-start w-full overflow-visible mt-0"
             >
               {/* Button 1 Cluster */}
               <motion.div
@@ -119,7 +106,7 @@ const HeroSection = () => {
               >
                 <button
                   onClick={() => navigate("/diy-kits")}
-                  className="btn-action btn-action-primary flex-1 px-3 py-4 md:px-10 md:py-3 text-[10px] md:text-[13px] text-center leading-tight"
+                  className="btn-action bg-[#fdd825] text-brand-brown hover:bg-[#eec61d] font-montserrat hover:italic w-full sm:flex-1 px-4 py-4 md:px-10 md:py-3 text-[11px] md:text-[11px] text-center leading-tight shadow-lg"
                 >
                   <span className="break-words">Curated Party Supplies</span>
                   <ArrowRight size={14} className="shrink-0 md:w-[18px] md:h-[18px]" />
@@ -144,9 +131,9 @@ const HeroSection = () => {
                   }}
                   onMouseEnter={() => setIsHovering1(true)}
                   onMouseLeave={() => setIsHovering1(false)}
-                  className="absolute left-1/2 -translate-x-1/2 lg:left-1/2 lg:-translate-x-1/2 top-full mt-3 text-[#b42533] font-handwritten text-lg md:text-2xl whitespace-nowrap pointer-events-none drop-shadow-sm bg-white/60 backdrop-blur-[2px] px-2 py-0.5 rounded-lg border border-white/30 z-30"
+                  className="absolute left-1/2 -translate-x-1/2 lg:left-1/2 lg:-translate-x-1/2 top-full mt-3 text-[#b42533] font-montserrat font-bold text-sm md:text-base whitespace-nowrap pointer-events-none drop-shadow-sm bg-white/80 backdrop-blur-[2px] px-4 py-1.5 rounded-full border border-white/30 z-30"
                 >
-                  (I’ll do it myself😤)
+                  I’ll do it myself
                 </motion.span>
               </motion.div>
 
@@ -159,7 +146,7 @@ const HeroSection = () => {
               >
                 <button
                   onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="btn-action btn-action-secondary flex-1 px-3 py-4 md:px-10 md:py-3 text-[10px] md:text-[13px] text-center leading-tight"
+                  className="btn-action bg-white text-brand-brown hover:bg-gray-50 font-montserrat hover:italic w-full sm:flex-1 px-4 py-4 md:px-10 md:py-3 text-[11px] md:text-[11px] text-center leading-tight border-2 border-brand-brown/10"
                 >
                   <span className="break-words">Signature Decor Services</span>
                   <ArrowRight size={14} className="shrink-0 md:w-[18px] md:h-[18px]" />
@@ -184,16 +171,16 @@ const HeroSection = () => {
                   }}
                   onMouseEnter={() => setIsHovering2(true)}
                   onMouseLeave={() => setIsHovering2(false)}
-                  className="absolute left-1/2 -translate-x-1/2 lg:left-1/2 lg:-translate-x-1/2 top-full mt-3 text-[#b42533] font-handwritten text-lg md:text-2xl whitespace-nowrap pointer-events-none drop-shadow-sm bg-white/60 backdrop-blur-[2px] px-2 py-0.5 rounded-lg border border-white/30 z-30"
+                  className="absolute left-1/2 -translate-x-1/2 lg:left-1/2 lg:-translate-x-1/2 top-full mt-3 text-[#b42533] font-montserrat font-bold text-sm md:text-base whitespace-nowrap pointer-events-none drop-shadow-sm bg-white/80 backdrop-blur-[2px] px-4 py-1.5 rounded-full border border-white/30 z-30"
                 >
-                  (Please do it for me😭)
+                  Please do it for me.
                 </motion.span>
               </motion.div>
             </motion.div>
           </div>
 
           {/* Visual Side - Floating Collage Concept */}
-          <div className="relative order-1 lg:order-2 h-[400px] sm:h-[500px] lg:h-[600px] w-full flex items-center justify-center lg:mt-0">
+          <div className="relative order-1 lg:order-2 h-[320px] sm:h-[500px] lg:h-[600px] w-full flex items-center justify-center mt-6 lg:mt-20">
             {/* Main Image (Back) */}
             <motion.div
               initial={{ opacity: 0, x: 30, rotate: 10 }}
@@ -203,7 +190,7 @@ const HeroSection = () => {
               style={{ transform: "translateZ(0)" }}
             >
               <img
-                src={HeroEvent1}
+                src={HeroEvent2}
                 alt="Premium Celebration Decor"
                 className="w-full h-full object-cover rounded-2xl"
                 loading="eager"
@@ -221,7 +208,7 @@ const HeroSection = () => {
               style={{ transform: "translateZ(0)" }}
             >
               <img
-                src={HeroEvent2}
+                src={HeroEvent1}
                 alt="Event Entrance Welcome Decor"
                 className="w-full h-full object-cover rounded-2xl"
                 loading="eager"

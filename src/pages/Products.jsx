@@ -66,7 +66,7 @@ const SearchHeader = memo(({ search, setSearch, loading }) => (
         <span>Discover the Magic</span>
       </motion.div>
       <h1 className="text-3xl xs:text-4xl md:text-6xl font-medium tracking-[0.05em] text-brand-brown mb-6 md:mb-8 leading-[1.2]">
-        The <span className="text-brand-primary mx-3 md:mx-4 italic">Propz</span> Shop
+        The <span className="text-brand-primary mx-3 md:mx-4 italic">Prop</span> Shop
       </h1>
 
       <div className="relative w-full max-w-sm group mb-6">
@@ -75,7 +75,7 @@ const SearchHeader = memo(({ search, setSearch, loading }) => (
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search magic..."
-          className="w-full pl-10 md:pl-11 pr-4 py-2 md:py-2.5 rounded-full bg-white shadow-lg border-none focus:ring-4 focus:ring-pastel-pink/50 text-xs md:text-sm font-medium text-gray-700 placeholder:text-gray-300 transition-all font-brand"
+          className="w-full pl-10 md:pl-11 pr-4 py-2 md:py-2.5 rounded-full bg-white shadow-lg border-none focus:ring-4 focus:ring-pastel-pink/50 text-xs md:text-sm font-medium text-gray-700 placeholder:text-gray-300 transition-all font-montserrat"
         />
         {loading && <Loader2 className="absolute right-4 top-1/2 -translate-y-1/2 animate-spin text-brand-primary" size={16} />}
       </div>
@@ -92,10 +92,10 @@ const FilterSidebar = memo(({ options, selectedCategories, toggleSet, maxPrice, 
       <div className="p-6 md:p-6 flex-1 overflow-y-auto  custom-scrollbar">
         <div className="flex items-center justify-between mb-6 md:mb-6">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 md:w-12 md:h-12 bg-brand-primary/10 rounded-2xl flex items-center justify-center font-brand">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-brand-primary/10 rounded-2xl flex items-center justify-center font-montserrat">
               <Filter className="text-brand-primary" size={20} />
             </div>
-            <h2 className="text-xl md:text-2xl font-black text-gray-900 tracking-tight font-brand">Filters</h2>
+            <h2 className="text-xl md:text-2xl font-black text-gray-900 tracking-tight font-montserrat">Filters</h2>
           </div>
           {isMobile && (
             <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
@@ -117,7 +117,7 @@ const FilterSidebar = memo(({ options, selectedCategories, toggleSet, maxPrice, 
         </button>
 
         {/* Categories Accordion */}
-        <div className="mb-8 font-brand">
+        <div className="mb-8 font-montserrat">
           <button
             onClick={() => toggleAccordion('categories')}
             className="w-full flex items-center justify-between text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-4 group"
@@ -171,7 +171,7 @@ const FilterSidebar = memo(({ options, selectedCategories, toggleSet, maxPrice, 
         </div>
 
         {/* Price Range Accordion */}
-        <div className="mb-4 font-brand">
+        <div className="mb-4 font-montserrat">
           <button
             onClick={() => toggleAccordion('price')}
             className="w-full flex items-center justify-between text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-4 group"
@@ -217,7 +217,7 @@ const FilterSidebar = memo(({ options, selectedCategories, toggleSet, maxPrice, 
 
   if (isMobile) {
     return (
-      <div className="fixed inset-0 z-[100] font-brand overflow-hidden pointer-events-none">
+      <div className="fixed inset-0 z-[100] font-montserrat overflow-hidden pointer-events-none">
         <AnimatePresence>
           {isOpen && (
             <>
@@ -505,7 +505,7 @@ const ProductList = () => {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen font-brand" style={{ background: "linear-gradient(180deg, #fff 0%, #fffbeb 30%, #fff 100%)" }}>
+    <div className="min-h-screen font-montserrat" style={{ background: "linear-gradient(180deg, #fff 0%, #fffbeb 30%, #fff 100%)" }}>
       <SearchHeader search={search} setSearch={setSearch} loading={loading} />
 
       <div className="max-w-[1600px] mx-auto px-4 md:px-10 py-6 md:py-16">

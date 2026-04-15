@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Fredoka:wght@300..700&family=Comfortaa:wght@300..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400..700&family=DM+Serif+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Fredoka:wght@300..700&family=Comfortaa:wght@300..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400..700&family=DM+Serif+Display:ital@0;1&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -47,7 +47,7 @@
   }
 
   .btn-action {
-    @apply relative px-6 py-3 md:px-10 md:py-3 rounded-full md:rounded-tl-[2rem] md:rounded-br-[2rem] md:rounded-tr-none md:rounded-bl-none font-sans font-black uppercase tracking-[0.2em] text-[11px] md:text-[13px] transition-all duration-300 transform active:scale-95 shadow-[0_12px_24px_-8px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_32px_-12px_rgba(0,0,0,0.5)] border-none flex items-center justify-center gap-2;
+    @apply relative px-6 py-3 md:px-10 md:py-3 rounded-tl-[2.2rem] rounded-br-[2.2rem] rounded-tr-[0.8rem] rounded-bl-[0.8rem] font-sans font-bold uppercase tracking-[0.2em] text-[11px] md:text-[13px] transition-all duration-300 transform active:scale-95 shadow-[0_12px_24px_-8px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_32px_-12px_rgba(0,0,0,0.5)] border-none flex items-center justify-center gap-2;
   }
 
   .btn-action-primary {

@@ -105,7 +105,7 @@ const WishlistPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white font-brand pt-32 pb-20 px-4 md:px-10">
+    <div className="min-h-screen bg-white font-montserrat pt-32 pb-20 px-4 md:px-10">
       <div className="max-w-7xl mx-auto">
         <header className="mb-12">
           <Link to="/diy-kits" className="inline-flex items-center gap-2 text-brand-primary font-black mb-4 hover:gap-4 transition-all uppercase tracking-widest text-[10px]">

@@ -125,7 +125,7 @@ const FanSlider = () => {
     <section style={{ padding: "5rem 0", background: "#ffffff", overflow: "hidden" }}>
       <div style={{ textAlign: "center", marginBottom: "4rem", padding: "0 1rem" }}>
         {/* Custom Bow Divider replacing the badge */}
-        <div className="relative w-full flex items-center justify-center -mt-8 -mb-4 sm:-mt-12 sm:-mb-6 md:-mt-16 md:-mb-10 lg:-mt-24 lg:-mb-16 xl:-mt-32 xl:-mb-20 pointer-events-none z-0">
+        <div className="relative w-full flex items-center justify-center -mt-8 -mb-4 sm:-mt-12 sm:-mb-6 md:-mt-16 md:-mb-10 lg:-mt-28 lg:-mb-20 xl:-mt-32 xl:-mb-20 pointer-events-none z-0">
           <div className="relative bg-transparent px-6">
             <motion.div
               initial={{ opacity: 0, scale: 0.5 }}
@@ -136,13 +136,13 @@ const FanSlider = () => {
               <img
                 src={RedBow}
                 alt="Decorative Red Bow"
-                className="w-40 sm:w-56 md:w-72 lg:w-80 xl:w-96 h-auto mix-blend-multiply"
+                className="w-28 sm:w-40 md:w-52 lg:w-60 xl:w-72 h-auto mix-blend-multiply"
               />
             </motion.div>
           </div>
         </div>
 
-        <h2 style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", fontWeight: 500, color: "#c73020", marginBottom: "1rem", fontFamily: "'DM Serif Display', serif", letterSpacing: "-0.02em" }}>
+        <h2 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 500, color: "#c73020", marginBottom: "0.5rem", fontFamily: "'DM Serif Display', serif", letterSpacing: "-0.02em" }}>
           Our <span style={{ color: "#fdd825", fontStyle: "italic" }}>Best Work.</span>
         </h2>
         <p style={{ color: "#6b7280", fontSize: "clamp(0.9rem, 2vw, 1.1rem)", fontWeight: 500, maxWidth: "600px", margin: "0 auto", fontFamily: "'Plus Jakarta Sans', sans-serif", opacity: 0.8 }}>
@@ -198,7 +198,7 @@ const FanSlider = () => {
                 right: 0,
                 bottom: 0,
                 width: width < 640 ? "100%" : "450px",
-                background: "#ffffff",
+                // background: "#ffffff",
                 boxShadow: "-10px 0 50px rgba(0,0,0,0.2)",
                 zIndex: 101,
                 display: "flex",
@@ -207,42 +207,46 @@ const FanSlider = () => {
               }}
             >
               {/* Header */}
-              <div style={{ padding: "1.5rem", display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #f3f4f6" }}>
-                <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "1.5rem", color: "#c73020" }}>Video Preview</h3>
+              {/* <div style={{ padding: "1.5rem", display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #f3f4f6" }}> */}
+
+              <div style={{
+                flex: 1,
+                position: "relative",   // ✅ important
+                background: "#000",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
+              }}>
                 <button
                   onClick={() => setSelectedVideo(null)}
-                  style={{ pading: "0.5rem", borderRadius: "50%", background: "#f3f4f6", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
+                  style={{
+                    position: "absolute",
+                    top: "15px",
+                    right: "15px",
+                    zIndex: 20,
+                    background: "rgba(0,0,0,0.5)",  // thoda visible (optional)
+                    border: "none",
+                    borderRadius: "50%",
+                    padding: "6px",
+                    cursor: "pointer"
+                  }}
                 >
-                  <X size={20} color="#6b7280" />
+                  <X size={22} color="#fff" />
                 </button>
               </div>
 
               {/* Video Player */}
-              <div style={{ flex: 1, position: "relative", background: "#000", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div style={{ flex: 1, position: "relative", background: "transparent", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <video
                   src={selectedVideo}
                   autoPlay
                   controls
                   preload="metadata"
-                  style={{ width: "100%", maxHeight: "100%", objectFit: "contain" }}
+                  style={{ width: "100%", height: "100vh", maxHeight: "100%", objectFit: "cover" }}
                 />
               </div>
 
-              {/* Footer/Info */}
-              <div style={{ padding: "2rem", background: "#fff" }}>
-                <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginBottom: "1rem" }}>
-                  <div style={{ width: "40px", height: "40px", borderRadius: "10px", background: "#fef3c7", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <currentCategory.Icon size={20} color="#fdd825" />
-                  </div>
-                  <div>
-                    <p style={{ fontSize: "0.8rem", color: "#9ca3af", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.1rem" }}>Category</p>
-                    <p style={{ fontWeight: 600, color: "#1f2937" }}>{currentCategory.label}</p>
-                  </div>
-                </div>
-                <p style={{ color: "#6b7280", fontSize: "0.95rem", lineHeight: 1.6 }}>
-                  Experience the magic of our {currentCategory.label.toLowerCase()} setups. Every detail is curated to create unforgettable memories.
-                </p>
-              </div>
+          
             </motion.div>
           </>
         )}

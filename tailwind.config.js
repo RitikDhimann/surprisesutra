@@ -27,6 +27,8 @@ module.exports = {
         heading: ["'Playfair Display'", "serif"],
         libre: ["'Playfair Display'", "serif"],
         sans: ["'Playfair Display'", "serif"],
+        jakarta: ["'Plus Jakarta Sans'", "sans-serif"],
+        montserrat: ["'Montserrat'", "sans-serif"],
       },
       borderRadius: {
         "4xl": "2rem",

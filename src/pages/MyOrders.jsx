@@ -72,7 +72,7 @@ const MyOrdersPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white font-brand flex items-center justify-center p-6">
+      <div className="min-h-screen bg-white font-montserrat flex items-center justify-center p-6">
         <div className="text-center">
           <div className="w-16 h-16 border-8 border-pastel-pink/20 border-t-brand-primary rounded-full animate-spin mx-auto mb-6"></div>
           <p className="text-gray-400 font-black uppercase tracking-widest text-[10px]">Summoning your treasures...</p>
@@ -82,7 +82,7 @@ const MyOrdersPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] font-brand relative overflow-hidden pt-28 pb-10 md:pt-44 md:pb-24 px-4 md:px-8 lg:px-12">
+    <div className="min-h-screen bg-[#FAFAFA] font-montserrat relative overflow-hidden pt-28 pb-10 md:pt-44 md:pb-24 px-4 md:px-8 lg:px-12">
       {/* Background Blobs */}
       <div className="absolute top-0 right-0 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-brand-primary/5 rounded-full blur-[80px] md:blur-[120px] -mr-32 -mt-32 md:-mr-64 md:-mt-64" />
       <div className="absolute bottom-0 left-0 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-pastel-yellow/5 rounded-full blur-[80px] md:blur-[120px] -ml-32 -mb-32 md:-ml-64 md:-mb-64" />
@@ -92,7 +92,7 @@ const MyOrdersPage = () => {
         <header className="mb-10 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8">
           <div className="space-y-4 text-center md:text-left">
             <Link to="/" className="inline-flex items-center gap-2 text-brand-primary font-black hover:gap-4 transition-all uppercase tracking-widest text-[9px] md:text-[10px]">
-              <ArrowLeft size={14} /> Heart of Propz
+              <ArrowLeft size={14} /> Heart of Prop
             </Link>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-gray-900 tracking-tighter leading-none italic">
                My <span className="text-brand-primary not-italic">Treasures!</span>
@@ -292,11 +292,11 @@ const MyOrdersPage = () => {
                         <span className="text-xs md:text-sm font-black text-gray-900">{orders.length}</span>
                     </div>
                     <div className="flex justify-between items-center bg-green-50/30 p-3 rounded-xl border border-white/50 text-green-600">
-                        <span className="text-[11px] md:text-xs font-medium text-gray-500 font-brand">Delivered Boxes</span>
+                        <span className="text-[11px] md:text-xs font-medium text-gray-500 font-montserrat">Delivered Boxes</span>
                         <span className="text-xs md:text-sm font-black italic">{orders.filter(o => o.orderStatus === 'delivered').length}</span>
                     </div>
                     <div className="flex justify-between items-center bg-purple-50/30 p-3 rounded-xl border border-white/50 text-brand-primary">
-                        <span className="text-[11px] md:text-xs font-medium text-gray-500 font-brand">Brewing Magic</span>
+                        <span className="text-[11px] md:text-xs font-medium text-gray-500 font-montserrat">Brewing Magic</span>
                         <span className="text-xs md:text-sm font-black italic underline underline-offset-4">{orders.filter(o => o.orderStatus === 'processing').length}</span>
                     </div>
                 </div>

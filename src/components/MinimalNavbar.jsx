@@ -87,7 +87,7 @@ const MinimalNavbar = () => {
       >
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           {/* Logo */}
-          <Link to="/" className="group h-[48px] md:h-[66px]">
+          <Link to="/" className="group h-[36px] md:h-[50px]">
             <motion.img
               whileHover={{ scale: 1.05 }}
               src={Logo}
@@ -117,7 +117,7 @@ const MinimalNavbar = () => {
               >
                 <button
                   onClick={() => handleNavClick(link.path)}
-                  className="text-sm font-heading font-bold text-brand-brown/40 hover:text-brand-brown transition-colors relative flex items-center gap-1 uppercase tracking-widest group bg-transparent border-none py-2"
+                  className="text-sm font-montserrat font-bold text-brand-brown/40 hover:text-brand-brown transition-colors relative flex items-center gap-1 uppercase tracking-widest group bg-transparent border-none py-2"
                 >
                   {link.name}
                   {link.subMenu && (
@@ -145,7 +145,7 @@ const MinimalNavbar = () => {
                               <button
                                 key={sub.name}
                                 onClick={() => handleNavClick(sub.path)}
-                                className="px-5 py-3 rounded-2xl text-[10px] font-heading font-black text-brand-brown/60 hover:text-brand-primary hover:bg-brand-primary/5 transition-all text-left uppercase tracking-[0.15em] whitespace-nowrap bg-transparent border-none"
+                                className="px-5 py-3 rounded-2xl text-[10px] font-montserrat font-black text-brand-brown/60 hover:text-brand-primary hover:bg-brand-primary/5 transition-all text-left uppercase tracking-[0.15em] whitespace-nowrap bg-transparent border-none"
                               >
                                 {sub.name}
                               </button>
@@ -222,7 +222,7 @@ const MinimalNavbar = () => {
                 <button
                   key={link.name}
                   onClick={() => handleNavClick(link.path)}
-                  className="text-3xl md:text-4xl font-heading font-bold text-brand-brown tracking-tighter hover:text-brand-primary transition-all border-none bg-transparent"
+                  className="text-3xl md:text-4xl font-montserrat font-bold text-brand-brown tracking-tighter hover:text-brand-primary transition-all border-none bg-transparent"
                 >
                   {link.name}
                 </button>
@@ -232,7 +232,7 @@ const MinimalNavbar = () => {
                       <button
                         key={sub.name}
                         onClick={() => handleNavClick(sub.path)}
-                        className="text-[10px] font-heading font-bold text-brand-brown/40 hover:text-brand-primary transition-all uppercase tracking-widest border border-brand-brown/10 px-4 py-2 rounded-full bg-transparent active:scale-95 transition-transform"
+                        className="text-[10px] font-montserrat font-bold text-brand-brown/40 hover:text-brand-primary transition-all uppercase tracking-widest border border-brand-brown/10 px-4 py-2 rounded-full bg-transparent active:scale-95 transition-transform"
                       >
                         {sub.name}
                       </button>
@@ -247,7 +247,7 @@ const MinimalNavbar = () => {
                 navigate("/wishlist");
                 setMobileMenuOpen(false);
               }}
-              className="flex items-center gap-4 text-2xl font-heading font-bold text-brand-brown hover:text-brand-primary transition-all border-none bg-transparent"
+              className="flex items-center gap-4 text-2xl font-montserrat font-bold text-brand-brown hover:text-brand-primary transition-all border-none bg-transparent"
             >
               <Heart size={32} /> WISHLIST
             </button>
@@ -256,7 +256,7 @@ const MinimalNavbar = () => {
                 navigate("/profile");
                 setMobileMenuOpen(false);
               }}
-              className="flex items-center gap-4 text-2xl font-heading font-bold text-brand-brown hover:text-brand-primary transition-all border-none bg-transparent"
+              className="flex items-center gap-4 text-2xl font-montserrat font-bold text-brand-brown hover:text-brand-primary transition-all border-none bg-transparent"
             >
               <User size={32} /> PROFILE
             </button>

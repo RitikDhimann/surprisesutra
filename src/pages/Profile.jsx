@@ -137,7 +137,7 @@ const ProfilePage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white font-brand flex items-center justify-center p-4">
+      <div className="min-h-screen bg-white font-montserrat flex items-center justify-center p-4">
         <div className="text-center">
           <div className="w-16 h-16 border-8 border-pastel-pink/20 border-t-brand-primary rounded-full animate-spin mx-auto mb-6"></div>
           <p className="text-gray-400 font-black uppercase tracking-widest text-xs">Summoning your profile...</p>
@@ -148,7 +148,7 @@ const ProfilePage = () => {
 
   if (error && !user) {
     return (
-      <div className="min-h-screen bg-white font-brand flex items-center justify-center p-4">
+      <div className="min-h-screen bg-white font-montserrat flex items-center justify-center p-4">
         <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="bg-white rounded-[2.5rem] shadow-2xl p-10 md:p-16 text-center max-w-md border-2 border-white">
           <X className="w-20 h-20 mx-auto text-red-400 mb-8" />
           <p className="text-gray-900 font-black text-xl mb-6">{error}</p>
@@ -159,14 +159,14 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white font-brand pt-32 pb-10 md:pt-40 md:pb-20 px-4 md:px-6 relative overflow-hidden">
+    <div className="min-h-screen bg-white font-montserrat pt-32 pb-10 md:pt-40 md:pb-20 px-4 md:px-6 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-[40%] h-[40%] bg-pastel-pink/10 rounded-full blur-[120px]" />
       <div className="absolute bottom-0 right-0 w-[40%] h-[40%] bg-pastel-yellow/10 rounded-full blur-[120px]" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <header className="mb-10 md:mb-16">
-          <Link to="/" className="inline-flex items-center gap-2 text-brand-primary font-black mb-4 hover:gap-4 transition-all uppercase tracking-widest text-[10px]"><ArrowLeft size={14} /> Heart of Propz</Link>
+          <Link to="/" className="inline-flex items-center gap-2 text-brand-primary font-black mb-4 hover:gap-4 transition-all uppercase tracking-widest text-[10px]"><ArrowLeft size={14} /> Heart of Prop</Link>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tighter leading-none mb-3">My <span className="text-brand-primary">Space!</span></h1>
           <p className="text-gray-400 font-bold text-[9px] sm:text-[10px] uppercase tracking-widest">Manage your magic and delivery spots</p>
         </header>

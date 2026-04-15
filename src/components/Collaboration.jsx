@@ -1,36 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Heart, Quote, Camera, Users, Cake } from "lucide-react";
+import React from "react";
+import { motion } from "framer-motion";
+import { Heart, Quote, Camera, Users, Cake } from "lucide-react";
 import useWindowSize from "../hooks/useWindowSize";
 import aboutimg from "../assets/about.jpg.jpeg";
-import a0 from "../assets/A (0).jpg";
-import a1 from "../assets/A (1).JPG";
-import a2 from "../assets/A (2).jpg";
-import a3 from "../assets/A (3).jpg";
-import a4 from "../assets/A (4).jpg";
-import a5 from "../assets/A (5).jpg";
-
-// Placeholder gallery for the slideshow
-const GALLERY = [
-  { id: 1, src: a0, alt: "Real Setup 1" },
-  { id: 2, src: a1, alt: "Real Setup 2" },
-  { id: 3, src: a2, alt: "Real Setup 3" },
-  { id: 4, src: a3, alt: "Real Setup 4" },
-  { id: 5, src: a4, alt: "Real Setup 5" },
-  { id: 6, src: a5, alt: "Real Setup 6" },
-];
 
 const AboutUsSection = () => {
   useWindowSize();
-  const [activeSlide, setActiveSlide] = useState(0);
-
-  // Auto-slide for the gallery
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % GALLERY.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, []);
 
   return (
     <section id="about" className="relative overflow-hidden bg-white py-20 md:py-32">
@@ -88,13 +63,12 @@ const AboutUsSection = () => {
           {/* Text Side - Storytelling */}
           <div className="order-1 lg:order-2">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-[#fdd825] text-[#c73020] font-black text-xs shadow-sm mb-8 border border-[#c73020]/10"
+              className="inline-flex items-center text-[#fdd825] mb-8 pb-1 border-b-2 border-[#fdd825]/30 group cursor-default"
             >
-              <Sparkles size={14} />
-              <span>A LITTLE ABOUT US 💛</span>
+              <span className="font-montserrat font-bold text-[16px] sm:text-[19px] uppercase tracking-[0.4em]">A LITTLE ABOUT US</span>
             </motion.div>
 
             <motion.h2
@@ -141,68 +115,6 @@ const AboutUsSection = () => {
                   </p>
                 </div>
               </motion.div>
-            </div>
-          </div>
-        </div>
-
-        {/* ── Real Magic Slideshow Section ── */}
-        <div className="mt-32">
-          <div className="text-center mb-16">
-            <motion.h3
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-heading font-medium text-[#c73020] mb-4 tracking-tight"
-            >
-              Real setups, real moments, real magic ✨
-            </motion.h3>
-            <div className="w-24 h-1.5 bg-[#fdd825] mx-auto rounded-full" />
-          </div>
-
-          <div className="relative h-[400px] md:h-[600px] rounded-[3rem] overflow-hidden shadow-2xl bg-black">
-            <AnimatePresence>
-              <motion.div
-                key={activeSlide}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1 }}
-                className="absolute inset-0"
-              >
-                {/* Background Blur Layer */}
-                <div
-                  className="absolute inset-0 scale-110 blur-2xl grayscale-[30%] opacity-40"
-                  style={{ 
-                    backgroundImage: `url(${GALLERY[activeSlide].src})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                  }}
-                />
-
-                {/* Main Image Overlay Layer */}
-                <div className="relative w-full h-full p-4 md:p-8">
-                  <img
-                    src={GALLERY[activeSlide].src}
-                    alt={GALLERY[activeSlide].alt}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover rounded-[2.5rem] shadow-2xl"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-[3rem] pointer-events-none" />
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Slide Navigation Dots */}
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-20">
-              {GALLERY.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActiveSlide(i)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${i === activeSlide ? "bg-[#fdd825] w-10" : "bg-white/50 hover:bg-white"
-                    }`}
-                />
-              ))}
             </div>
           </div>
         </div>

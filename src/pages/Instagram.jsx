@@ -53,24 +53,21 @@ const InstagramSection = () => {
   }, [isVisible]);
 
   return (
-    <section ref={sectionRef} id="instagram-feed" className="pt-4 pb-20 relative overflow-hidden" style={{background: "#ffffff"}}>
+    <section ref={sectionRef} id="instagram-feed" className="pt-0 pb-20 relative overflow-hidden" style={{background: "#ffffff"}}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         {/* Header Section */}
-        <div className="text-center mb-6">
+        <div className="text-center mb-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="inline-flex items-center justify-center space-x-2 text-white px-6 py-2 rounded-full mb-6 shadow-md" style={{background: "linear-gradient(135deg, #c73020, #fdd825)"}}>
-              <Instagram size={20} />
-              <span className="font-black text-xs uppercase tracking-widest">@surprisesutra</span>
-            </div>
-            <h2 className="text-4xl md:text-7xl font-heading font-medium mb-6 px-2 tracking-tight" style={{background: "linear-gradient(90deg, #c73020, #fdd825, #c73020)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text"}}>
-              Follow the Magic ✨
+
+            <h2 className="text-4xl md:text-7xl font-heading font-medium mb-2 px-2 tracking-tight">
+              <span className="text-[#c73020]">Insta</span> <span className="text-[#fdd825] italic">Moments 🎈</span>
             </h2>
-            <p className="text-gray-500 max-w-2xl mx-auto text-base md:text-xl px-2 font-brand opacity-80">
+            <p className="text-gray-500 max-w-2xl mx-auto text-base md:text-xl px-2 font-jakarta opacity-80">
               Get daily decoration inspiration and latest updates from our studio.
             </p>
           </motion.div>
@@ -104,7 +101,7 @@ const InstagramSection = () => {
             href="https://www.instagram.com/surprisesutra"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-3 bg-gradient-to-tr from-[#c73020] to-[#fdd825] hover:scale-105 text-white font-black uppercase tracking-widest text-xs py-5 px-10 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform"
+            className="btn-action inline-flex items-center justify-center gap-3 bg-transparent text-[#c73020] border-2 border-[#c73020] font-montserrat tracking-widest text-xs py-5 px-10 transition-all duration-300 hover:bg-[#c73020] hover:text-white hover:border-transparent"
           >
             <Instagram size={20} />
             <span>Follow Us on Instagram</span>

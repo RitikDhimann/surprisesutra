@@ -191,7 +191,7 @@ const ProductDetails = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#fafafa] font-brand selection:bg-brand-primary/10 overflow-x-hidden">
+    <div className="min-h-screen bg-[#fafafa] font-montserrat selection:bg-brand-primary/10 overflow-x-hidden">
       {/* Dynamic Background */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-[-5%] right-[-5%] w-[45%] h-[45%] bg-pastel-pink/10 rounded-full blur-[120px] animate-pulse" />

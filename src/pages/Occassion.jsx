@@ -125,15 +125,15 @@ const OccasionsSection = () => {
 
       {/* Background Blobs */}
       <div className="absolute top-[10%] right-0 w-[30%] h-[40%] blur-3xl pointer-events-none opacity-20"
-        style={{ background: "linear-gradient(135deg, #c73020, #fdd825)" }} />
+        style={{ background: "linear-gradient(135deg, #FEDA77, #F58529)" }} />
       <div className="absolute bottom-0 left-0 w-[35%] h-[40%] blur-3xl pointer-events-none opacity-20"
-        style={{ background: "linear-gradient(135deg, #fdd825, #c73020)" }} />
+        style={{ background: "linear-gradient(135deg, #FCAF45, #FFFB7D)" }} />
 
       <div className="max-w-screen-xl mx-auto px-4 sm:px-12 relative z-10">
         {/* Header Section */}
         <div className="text-center mb-16 px-4">
           {/* Custom Bow Divider replacing the badge */}
-          <div className="relative w-full flex items-center justify-center -mt-8 -mb-4 sm:-mt-12 sm:-mb-6 md:-mt-16 md:-mb-10 lg:-mt-24 lg:-mb-16 xl:-mt-32 xl:-mb-20 pointer-events-none z-0">
+          <div className="relative w-full flex items-center justify-center -mt-8 -mb-10 sm:-mb-12 md:-mb-20 lg:-mb-17  xl:-mb-17 pointer-events-none z-0">
             <div className="relative bg-transparent px-6">
               <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
@@ -144,7 +144,7 @@ const OccasionsSection = () => {
                 <img
                   src={RedBow}
                   alt="Decorative Red Bow"
-                  className="w-40 sm:w-56 md:w-72 lg:w-80 xl:w-96 h-auto mix-blend-multiply"
+                  className="w-28 sm:w-40 md:w-52 lg:w-60 xl:w-72 h-auto mix-blend-multiply"
                 />
               </motion.div>
             </div>
@@ -154,22 +154,17 @@ const OccasionsSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl sm:text-5xl md:text-7xl font-heading font-medium mb-6 pb-4 tracking-tight"
-            style={{
-              background: "linear-gradient(90deg,#c73020,#fdd825,#c73020)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
+            className="text-4xl sm:text-5xl md:text-7xl font-heading font-medium pb-4 tracking-tight"
           >
-            What are we celebrating today?
+            <span className="text-[#c73020]">What are we</span> <br className="sm:hidden" />
+            <span className="text-[#fdd825] italic"> celebrating today?</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-base sm:text-lg md:text-xl text-brand-brown/60 font-libre max-w-3xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-brand-brown/60 font-jakarta max-w-3xl mx-auto leading-relaxed"
           >
             From DIY party supplies to full decor setups — choose your celebration and get started your way
           </motion.p>
@@ -219,16 +214,16 @@ const OccasionsSection = () => {
 
                       {/* Content Overlay */}
                       <div className="relative z-10 p-4 sm:p-10 mt-auto flex flex-col items-center text-center">
-                        <h3 className="text-sm sm:text-2xl font-libre font-bold text-white mb-2 sm:mb-6 tracking-wide group-hover:text-brand-primary transition-colors">
+                        <h3 className="text-sm sm:text-2xl font-libre font-bold italic text-white mb-2 sm:mb-6 tracking-wide group-hover:text-[#FEDA77] transition-colors">
                           {occasion.title}
                         </h3>
-                        <div className="flex flex-row gap-2 sm:gap-4 w-full justify-center px-1 sm:px-2">
+                        <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-4 w-full justify-center px-4 sm:px-2">
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
                               navigate("/diy-kits");
                             }}
-                            className=" relative overflow-hidden bg-white/95 backdrop-blur-md text-brand-brown border border-white/50 font-semibold text-[8px] xs:text-[10px] sm:text-[11px] uppercase tracking-[0.15em] py-1 px-1 sm:py-3.5 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-500 hover:bg-brand-primary hover:border-brand-primary hover:text-white hover:shadow-[0_8px_30px_rgba(180,37,51,0.4)] transform hover:-translate-y-1 cursor-pointer"
+                            className="btn-action bg-[#FEDA77] text-brand-brown hover:bg-[#FCAF45] font-montserrat text-[11px] sm:text-[11px] w-full sm:flex-1 py-3.5 sm:py-2.5 px-3 shadow-lg"
                           >
                             SHOP NOW
                           </button>
@@ -237,9 +232,9 @@ const OccasionsSection = () => {
                               e.stopPropagation();
                               navigate("/book-now", { state: { occasion: occasion.title } });
                             }}
-                            className="relative overflow-hidden bg-white/10 backdrop-blur-md text-white border border-white/70 font-semibold text-[8px] xs:text-[10px] sm:text-[11px] uppercase tracking-[0.15em] py-1 px-1 sm:py-3.5 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-500 hover:bg-white hover:text-brand-brown hover:shadow-xl transform hover:-translate-y-1 cursor-pointer"
+                            className="btn-action bg-white text-brand-brown hover:bg-gray-50 font-montserrat text-[11px] sm:text-[11px] w-full sm:flex-1 py-3.5 sm:py-2.5 px-3 shadow-lg border-2 border-brand-brown/10"
                           >
-                            BOOK NOW
+                            EXPLORE
                           </button>
                         </div>
                       </div>
@@ -271,7 +266,7 @@ const OccasionsSection = () => {
                   style={{
                     width: (current % cardTotal) === i ? "3rem" : "0.75rem",
                     background: (current % cardTotal) === i
-                      ? "linear-gradient(90deg,#c73020,#fdd825)"
+                      ? "linear-gradient(90deg, #FEDA77, #F58529)"
                       : "rgba(0,0,0,0.1)",
                   }}
                 />

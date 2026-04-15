@@ -52,7 +52,7 @@ const Navbar = () => {
           <Link to="/" className="group">
              <motion.div 
                whileHover={{ scale: 1.05 }}
-               className="h-[60px] md:h-[104px] flex items-center"
+               className="h-[45px] md:h-[80px] flex items-center"
              >
                 <img src={Logo} alt="Surprise Sutra Logo" className="h-full w-auto object-contain" />
              </motion.div>
@@ -64,7 +64,7 @@ const Navbar = () => {
               <Link 
                 key={link.path} 
                 to={link.path}
-                className={`text-sm font-heading font-black uppercase tracking-wider transition-all relative group ${
+                className={`text-sm font-montserrat font-black uppercase tracking-wider transition-all relative group ${
                   location.pathname === link.path ? "text-brand-primary" : "text-brand-brown/40 hover:text-brand-brown"
                 }`}
               >
@@ -130,7 +130,7 @@ const Navbar = () => {
                     key={link.path} 
                     to={link.path} 
                     onClick={() => setIsOpen(false)}
-                    className="text-3xl md:text-4xl font-heading font-black text-brand-brown tracking-tighter hover:text-brand-primary transition-all"
+                    className="text-3xl md:text-4xl font-montserrat font-black text-brand-brown tracking-tighter hover:text-brand-primary transition-all"
                 >
                     {link.name}
                 </Link>

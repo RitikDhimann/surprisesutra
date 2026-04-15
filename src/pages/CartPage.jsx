@@ -87,7 +87,7 @@ const CartPage = () => {
 
     if (cartItems.length === 0) {
         return (
-            <div className="min-h-screen bg-white font-brand flex flex-col items-center justify-center p-4 md:p-6 relative overflow-hidden">
+            <div className="min-h-screen bg-white font-montserrat flex flex-col items-center justify-center p-4 md:p-6 relative overflow-hidden">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-pastel-pink/10 rounded-full blur-[120px]" />
                 <motion.div
                     initial={{ scale: 0.9, opacity: 0 }}
@@ -113,7 +113,7 @@ const CartPage = () => {
 
     return (
 
-        <div className="min-h-screen bg-white font-brand relative overflow-hidden pt-32 pb-10 md:pt-48 md:pb-20 px-4 md:px-6">
+        <div className="min-h-screen bg-white font-montserrat relative overflow-hidden pt-32 pb-10 md:pt-48 md:pb-20 px-4 md:px-6">
             <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-pastel-yellow/10 rounded-full blur-[120px]" />
             <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-pastel-pink/10 rounded-full blur-[120px]" />
 
