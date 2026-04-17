@@ -223,18 +223,18 @@ const OccasionsSection = () => {
                               e.stopPropagation();
                               navigate("/diy-kits");
                             }}
-                            className="btn-action bg-[#FEDA77] text-brand-brown hover:bg-[#FCAF45] font-montserrat text-[11px] sm:text-[11px] w-full sm:flex-1 py-3.5 sm:py-2.5 px-3 shadow-lg"
+                            className="btn-action bg-[#FEDA77] text-brand-brown hover:bg-[#FCAF45] font-montserrat text-[9px] sm:text-[11px] w-full sm:flex-1 py-1 sm:py-2.5 px-2 shadow-lg whitespace-nowrap tracking-tight sm:tracking-[0.2em]"
                           >
-                            SHOP NOW
+                            SHOP PRODUCTS
                           </button>
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
-                              navigate("/book-now", { state: { occasion: occasion.title } });
+                              navigate("/services", { state: { occasion: occasion.title } });
                             }}
-                            className="btn-action bg-white text-brand-brown hover:bg-gray-50 font-montserrat text-[11px] sm:text-[11px] w-full sm:flex-1 py-3.5 sm:py-2.5 px-3 shadow-lg border-2 border-brand-brown/10"
+                            className="btn-action bg-white text-brand-brown hover:bg-gray-50 font-montserrat text-[9px] sm:text-[11px] w-full sm:flex-1 py-1 sm:py-2.5 px-2 shadow-lg border-2 border-brand-brown/10 whitespace-nowrap tracking-tight sm:tracking-[0.2em]"
                           >
-                            EXPLORE
+                            EXPLORE SERVICES
                           </button>
                         </div>
                       </div>

@@ -57,14 +57,7 @@ const SearchHeader = memo(({ search, setSearch, loading }) => (
     <div className="absolute bottom-0 left-0 w-full h-16 md:h-24 bg-white wavy-scallop translate-y-1" />
 
     <div className="max-w-7xl mx-auto flex flex-col items-center text-center relative z-10">
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        className="inline-flex items-center gap-2 px-3 md:px-5 py-1.5 rounded-full bg-white/80 backdrop-blur-md text-brand-primary font-bold text-[10px] md:text-xs mb-6 md:mb-8 shadow-sm"
-      >
-        <Sparkles size={14} />
-        <span>Discover the Magic</span>
-      </motion.div>
+
       <h1 className="text-3xl xs:text-4xl md:text-6xl font-medium tracking-[0.05em] text-brand-brown mb-6 md:mb-8 leading-[1.2]">
         The <span className="text-brand-primary mx-3 md:mx-4 italic">Prop</span> Shop
       </h1>

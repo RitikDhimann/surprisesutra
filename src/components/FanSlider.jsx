@@ -125,7 +125,7 @@ const FanSlider = () => {
     <section style={{ padding: "5rem 0", background: "#ffffff", overflow: "hidden" }}>
       <div style={{ textAlign: "center", marginBottom: "4rem", padding: "0 1rem" }}>
         {/* Custom Bow Divider replacing the badge */}
-        <div className="relative w-full flex items-center justify-center -mt-8 -mb-4 sm:-mt-12 sm:-mb-6 md:-mt-16 md:-mb-10 lg:-mt-28 lg:-mb-20 xl:-mt-32 xl:-mb-20 pointer-events-none z-0">
+        <div className="relative w-full flex items-center justify-center -mt-8 -mb-10 sm:-mb-11 md:-mt-16 md:-mb-10 lg:-mt-16 lg:-mb-16 xl:-mt-24 xl:-mb-24 pointer-events-none z-0">
           <div className="relative bg-transparent px-6">
             <motion.div
               initial={{ opacity: 0, scale: 0.5 }}
@@ -246,7 +246,7 @@ const FanSlider = () => {
                 />
               </div>
 
-          
+
             </motion.div>
           </>
         )}

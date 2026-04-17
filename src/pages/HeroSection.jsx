@@ -73,7 +73,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="hidden md:block text-4xl xs:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-libre font-bold leading-[1.1] mb-8"
+              className="hidden md:block text-4xl xs:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-libre font-bold leading-[1.1]"
             >
               <span className="text-[#c73020]">You bring the</span> <span className="text-[#fdd825] italic">occasion, </span> <br />
               <span className="relative inline-block text-[#c73020]">
@@ -180,13 +180,13 @@ const HeroSection = () => {
           </div>
 
           {/* Visual Side - Floating Collage Concept */}
-          <div className="relative order-1 lg:order-2 h-[320px] sm:h-[500px] lg:h-[600px] w-full flex items-center justify-center mt-6 lg:mt-20">
+          <div className="relative order-1 lg:order-2 h-[450px] sm:h-[550px] lg:h-[650px] w-full flex items-center justify-center  lg:mt-20">
             {/* Main Image (Back) */}
             <motion.div
               initial={{ opacity: 0, x: 30, rotate: 10 }}
               animate={{ opacity: 1, x: 0, rotate: -6 }}
               transition={{ duration: 1, ease: "easeOut" }}
-              className="absolute left-[5%] top-[5%] w-[65%] max-w-[320px] aspect-[4/5] bg-white p-2 sm:p-4 rounded-3xl shadow-2xl z-10 animate-float-delayed will-change-transform"
+              className="absolute left-[5%] top-[1%] md:top-[5%] w-[60%] md:w-[65%] max-w-[320px] aspect-[4/5] bg-white p-2 sm:p-4 rounded-3xl shadow-2xl z-10 animate-float-delayed will-change-transform"
               style={{ transform: "translateZ(0)" }}
             >
               <img
@@ -204,7 +204,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 50, rotate: -15 }}
               animate={{ opacity: 1, y: 0, rotate: 8 }}
               transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-              className="absolute right-[5%] bottom-[5%] w-[60%] max-w-[300px] aspect-square bg-white p-2 sm:p-4 rounded-3xl shadow-2xl z-20 animate-float will-change-transform"
+              className="absolute right-[5%] bottom-[-6%] md:bottom-[5%] w-[55%] md:w-[60%] max-w-[300px] aspect-square bg-white p-2 sm:p-4 rounded-3xl shadow-2xl z-20 animate-float will-change-transform"
               style={{ transform: "translateZ(0)" }}
             >
               <img

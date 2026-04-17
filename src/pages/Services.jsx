@@ -408,6 +408,7 @@ import {
   Send, Phone, MessageCircle, MapPin
 } from "lucide-react";
 import { toast } from "react-toastify";
+import useWindowSize from "../hooks/useWindowSize";
 
 import b1 from "../assets/b1.jpg";
 import b2 from "../assets/b2.jpg";
@@ -426,6 +427,7 @@ import a7 from "../assets/A (7).jpg";
 /* ─── Gallery Data Placeholder ─── */
 
 const Services = () => {
+  const { isMobile } = useWindowSize();
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -576,11 +578,9 @@ const Services = () => {
                     <option value="Anniversary">ANNIVERSARY</option>
                     <option value="Baby Shower">BABY SHOWER</option>
                     <option value="Baby Welcome">BABY WELCOME</option>
-                    <option value="Proposal">PROPOSAL / DATING</option>
+                    <option value="Proposal">PROPOSAL</option>
                     <option value="Bachelor/Bachelorette">BACHELOR / BACHELORETTE PARTY</option>
                     <option value="Corporate Event">CORPORATE EVENT</option>
-                    <option value="Wedding / Engagement">WEDDING / ENGAGEMENT</option>
-                    <option value="Luxe Hamper">LUXE HAMPER / GIFTING</option>
                     <option value="Others">OTHERS</option>
                   </select>
                 </div>
@@ -651,16 +651,16 @@ const Services = () => {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 1.4fr 1.4fr 1.4fr 1fr",
-              gridTemplateRows: "320px 320px 320px",
-              gap: "6px",
+              gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "1fr 1.4fr 1.4fr 1.4fr 1fr",
+              gridTemplateRows: isMobile ? "repeat(auto-fill, 240px)" : "320px 320px 320px",
+              gap: isMobile ? "10px" : "6px",
             }}
           >
 
             {/* ── Col 1, Rows 1–2: Tall left ── */}
             <motion.div
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-              style={{ gridColumn: "1", gridRow: "1 / 3" }}
+              style={{ gridColumn: isMobile ? "1" : "1", gridRow: isMobile ? "1" : "1 / 3" }}
               className="relative overflow-hidden rounded-xl group"
             >
               <img src={a2} alt="Gallery 1" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
@@ -669,7 +669,7 @@ const Services = () => {
             {/* ── Col 2, Row 1: Square top-left-center ── */}
             <motion.div
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-              style={{ gridColumn: "2", gridRow: "1" }}
+              style={{ gridColumn: isMobile ? "2" : "2", gridRow: isMobile ? "1" : "1" }}
               className="relative overflow-hidden rounded-xl group"
             >
               <img src={a3} alt="Gallery 2" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
@@ -678,7 +678,7 @@ const Services = () => {
             {/* ── Col 3, Row 1: Square top-center ── */}
             <motion.div
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}
-              style={{ gridColumn: "3", gridRow: "1" }}
+              style={{ gridColumn: isMobile ? "1" : "3", gridRow: isMobile ? "2" : "1" }}
               className="relative overflow-hidden rounded-xl group"
             >
               <img src={a4} alt="Gallery 3" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
@@ -687,7 +687,7 @@ const Services = () => {
             {/* ── Col 4, Row 1: Square top-right-center ── */}
             <motion.div
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-              style={{ gridColumn: "4", gridRow: "1" }}
+              style={{ gridColumn: isMobile ? "2" : "4", gridRow: isMobile ? "2" : "1" }}
               className="relative overflow-hidden rounded-xl group"
             >
               <img src={a5} alt="Gallery 4" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
@@ -696,7 +696,7 @@ const Services = () => {
             {/* ── Col 5, Rows 1–2: Tall right ── */}
             <motion.div
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.25 }}
-              style={{ gridColumn: "5", gridRow: "1 / 3" }}
+              style={{ gridColumn: isMobile ? "1" : "5", gridRow: isMobile ? "3" : "1 / 3" }}
               className="relative overflow-hidden rounded-xl group"
             >
               <img src={a6} alt="Gallery 5" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
@@ -705,7 +705,7 @@ const Services = () => {
             {/* ── Col 2, Row 2: Square mid-left-center ── */}
             <motion.div
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
-              style={{ gridColumn: "2", gridRow: "2" }}
+              style={{ gridColumn: isMobile ? "2" : "2", gridRow: isMobile ? "3" : "2" }}
               className="relative overflow-hidden rounded-xl group"
             >
               <img src={a7} alt="Gallery 6" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
@@ -714,7 +714,7 @@ const Services = () => {
             {/* ── Col 3, Row 2: Brand Text Card (center) ── */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
-              style={{ gridColumn: "3", gridRow: "2" }}
+              style={{ gridColumn: isMobile ? "1 / 3" : "3", gridRow: isMobile ? "4" : "2" }}
               className="bg-white flex flex-col items-center justify-center p-6 text-center shadow-sm rounded-xl border border-[#fdd825]/10"
             >
               <span className="font-heading italic text-[#c73020] text-lg mb-1 lowercase leading-none">the</span>
@@ -733,7 +733,7 @@ const Services = () => {
             {/* ── Col 4, Row 2: Square mid-right-center ── */}
             <motion.div
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.35 }}
-              style={{ gridColumn: "4", gridRow: "2" }}
+              style={{ gridColumn: isMobile ? "1" : "4", gridRow: isMobile ? "5" : "2" }}
               className="relative overflow-hidden rounded-xl group"
             >
               <img src={b2} alt="Gallery 7" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
@@ -742,7 +742,7 @@ const Services = () => {
             {/* ── Col 1, Row 3: Square bottom-left ── */}
             <motion.div
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}
-              style={{ gridColumn: "1", gridRow: "3" }}
+              style={{ gridColumn: isMobile ? "2" : "1", gridRow: isMobile ? "5" : "3" }}
               className="relative overflow-hidden rounded-xl group"
             >
               <img src={b3} alt="Gallery 8" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
@@ -751,7 +751,7 @@ const Services = () => {
             {/* ── Col 2–3, Row 3: Wide horizontal center ── */}
             <motion.div
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.45 }}
-              style={{ gridColumn: "2 / 4", gridRow: "3" }}
+              style={{ gridColumn: isMobile ? "1 / 3" : "2 / 4", gridRow: isMobile ? "6" : "3" }}
               className="relative overflow-hidden rounded-xl group"
             >
               <img src={a1} alt="Gallery 9" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
@@ -760,7 +760,7 @@ const Services = () => {
             {/* ── Col 4, Row 3: Square bottom-right-center ── */}
             <motion.div
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5 }}
-              style={{ gridColumn: "4", gridRow: "3" }}
+              style={{ gridColumn: isMobile ? "1" : "4", gridRow: isMobile ? "7" : "3" }}
               className="relative overflow-hidden rounded-xl group"
             >
               <img src={b4} alt="Gallery 10" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
@@ -769,7 +769,7 @@ const Services = () => {
             {/* ── Col 5, Row 3: Square bottom-right ── */}
             <motion.div
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.55 }}
-              style={{ gridColumn: "5", gridRow: "3" }}
+              style={{ gridColumn: isMobile ? "2" : "5", gridRow: isMobile ? "7" : "3" }}
               className="relative overflow-hidden rounded-xl group"
             >
               <img src={b1} alt="Gallery 11" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
