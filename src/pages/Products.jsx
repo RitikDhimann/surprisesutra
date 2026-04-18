@@ -47,29 +47,25 @@ const useLocalStorage = (key, initial) => {
 // --- Sub-components ---
 
 const SearchHeader = memo(({ search, setSearch, loading }) => (
-  <header className="pt-20 md:pt-36 pb-8 md:pb-16 px-6 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #FFFB7D 0%, #FEDA77 40%, #FCAF45 80%, #F58529 100%)" }}>
+  <header className="pt-24 md:pt-40 pb-12 md:pb-20 px-6 relative overflow-hidden" style={{ background: "radial-gradient(circle at bottom right, rgba(253, 216, 37, 0.7) 0%, rgba(253, 216, 37, 0.4) 35%, rgba(253, 216, 37, 0) 85%), #ffffff" }}>
     {/* Organic Background Blobs */}
     <div className="absolute top-10 right-10 w-[40%] h-[40%] bg-white/30 blob-mask blur-2xl animate-float" />
-    <div className="absolute bottom-10 left-10 w-[30%] h-[30%] bg-white/20 blob-mask-alt blur-3xl animate-float-delayed" />
-
-    {/* Scalloped Divider */}
-    <div className="absolute bottom-0 left-0 w-full h-16 md:h-24 bg-white wavy-scallop translate-y-1" />
+    <div className="absolute bottom-10 left-10 w-[30%] h-[30%] bg-[#f58529]/10 blob-mask-alt blur-3xl animate-float-delayed" />
 
     <div className="max-w-7xl mx-auto flex flex-col items-center text-center relative z-10">
-
-      <h1 className="text-3xl xs:text-4xl md:text-6xl font-medium tracking-[0.05em] text-brand-brown mb-6 md:mb-8 leading-[1.2]">
-        The <span className="text-brand-primary mx-3 md:mx-4 italic">Prop</span> Shop
+      <h1 className="text-3xl xs:text-4xl md:text-5xl font-bold tracking-tight mb-6 md:mb-8 leading-tight font-jakarta">
+        <span className="text-brand-secondary">The</span> <span className="text-brand-primary italic mx-2">Prop</span> <span className="text-brand-secondary">Shop</span>
       </h1>
 
-      <div className="relative w-full max-w-sm group mb-6">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-primary transition-colors size-3.5" />
+      <div className="relative w-full max-w-md group mb-6">
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-primary transition-colors size-4" />
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search magic..."
-          className="w-full pl-10 md:pl-11 pr-4 py-2 md:py-2.5 rounded-full bg-white shadow-lg border-none focus:ring-4 focus:ring-pastel-pink/50 text-xs md:text-sm font-medium text-gray-700 placeholder:text-gray-300 transition-all font-montserrat"
+          placeholder="Search products..."
+          className="w-full pl-12 pr-4 py-3 rounded-xl bg-white shadow-sm border border-gray-200 focus:ring-4 focus:ring-brand-primary/10 focus:border-brand-primary outline-none text-sm font-medium text-gray-700 placeholder:text-gray-400 transition-all font-jakarta"
         />
-        {loading && <Loader2 className="absolute right-4 top-1/2 -translate-y-1/2 animate-spin text-brand-primary" size={16} />}
+        {loading && <Loader2 className="absolute right-4 top-1/2 -translate-y-1/2 animate-spin text-brand-primary" size={18} />}
       </div>
     </div>
   </header>
@@ -84,10 +80,10 @@ const FilterSidebar = memo(({ options, selectedCategories, toggleSet, maxPrice, 
       <div className="p-6 md:p-6 flex-1 overflow-y-auto  custom-scrollbar">
         <div className="flex items-center justify-between mb-6 md:mb-6">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 md:w-12 md:h-12 bg-brand-primary/10 rounded-2xl flex items-center justify-center font-montserrat">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-100 rounded-xl flex items-center justify-center font-jakarta">
               <Filter className="text-brand-primary" size={20} />
             </div>
-            <h2 className="text-xl md:text-2xl font-black text-gray-900 tracking-tight font-montserrat">Filters</h2>
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900 tracking-tight font-jakarta">Filters</h2>
           </div>
           {isMobile && (
             <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
@@ -102,17 +98,17 @@ const FilterSidebar = memo(({ options, selectedCategories, toggleSet, maxPrice, 
             clearAll();
             if (isMobile) onClose();
           }}
-          className="w-full py-2.5 mb-8 rounded-xl border-2 border-brand-primary/10 text-brand-primary font-black text-[10px] uppercase tracking-widest hover:bg-brand-primary/5 transition-all active:scale-95 flex items-center justify-center gap-2 group"
+          className="w-full py-2.5 mb-8 rounded-xl border border-gray-200 text-gray-600 font-bold text-[10px] uppercase tracking-widest hover:bg-gray-50 transition-all active:scale-95 flex items-center justify-center gap-2 group font-jakarta"
         >
           <X size={12} className="group-hover:rotate-90 transition-transform" />
           Reset All
         </button>
 
         {/* Categories Accordion */}
-        <div className="mb-8 font-montserrat">
+        <div className="mb-8 font-jakarta">
           <button
             onClick={() => toggleAccordion('categories')}
-            className="w-full flex items-center justify-between text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-4 group"
+            className="w-full flex items-center justify-between text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 group"
           >
             <span className="flex items-center gap-3">
               Categories
@@ -150,7 +146,7 @@ const FilterSidebar = memo(({ options, selectedCategories, toggleSet, maxPrice, 
                         }`}>
                         {selectedCategories.has(cat) && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="w-1.5 h-1.5 bg-white rounded-full" />}
                       </div>
-                      <span className={`text-sm font-bold transition-colors ${selectedCategories.has(cat) ? 'text-brand-primary' : 'text-gray-500 group-hover:text-gray-900'
+                      <span className={`text-sm font-medium transition-colors ${selectedCategories.has(cat) ? 'text-brand-primary' : 'text-gray-600 group-hover:text-gray-900'
                         }`}>
                         {cat}
                       </span>
@@ -163,10 +159,10 @@ const FilterSidebar = memo(({ options, selectedCategories, toggleSet, maxPrice, 
         </div>
 
         {/* Price Range Accordion */}
-        <div className="mb-4 font-montserrat">
+        <div className="mb-4 font-jakarta">
           <button
             onClick={() => toggleAccordion('price')}
-            className="w-full flex items-center justify-between text-xs font-black text-gray-400 uppercase tracking-[0.2em] mb-4 group"
+            className="w-full flex items-center justify-between text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 group"
           >
             <span className="flex items-center gap-3">
               Price Range
@@ -209,7 +205,7 @@ const FilterSidebar = memo(({ options, selectedCategories, toggleSet, maxPrice, 
 
   if (isMobile) {
     return (
-      <div className="fixed inset-0 z-[100] font-montserrat overflow-hidden pointer-events-none">
+      <div className="fixed inset-0 z-[100] font-jakarta overflow-hidden pointer-events-none">
         <AnimatePresence>
           {isOpen && (
             <>
@@ -238,7 +234,7 @@ const FilterSidebar = memo(({ options, selectedCategories, toggleSet, maxPrice, 
 
   return (
     <aside className="hidden lg:block w-72 shrink-0 h-[calc(100vh-180px)] sticky top-32">
-      <div className="bg-white/80 backdrop-blur-xl rounded-[2.5rem] md:rounded-[3.5rem] border-2 border-white shadow-sm ring-1 ring-gray-100/50 overflow-hidden">
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
         {content}
       </div>
     </aside>
@@ -262,7 +258,7 @@ const ProductCard = memo(({ product, onNavigate, onAddToCart, wishlist = [], onT
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
-      className="group bg-white rounded-[1.5rem] md:rounded-[2rem] overflow-hidden border-2 border-pastel-pink/10 hover:border-brand-primary/30 transition-all duration-500 shadow-sm hover:shadow-xl flex flex-col h-full"
+      className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-brand-primary/20 transition-all duration-500 shadow-sm hover:shadow-lg flex flex-col h-full font-jakarta"
     >
       <div
         className="relative overflow-hidden cursor-pointer shrink-0 bg-gray-50/50 flex items-center justify-center p-8 md:p-12 w-full aspect-square"
@@ -275,8 +271,8 @@ const ProductCard = memo(({ product, onNavigate, onAddToCart, wishlist = [], onT
           className="w-full h-full object-contain mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
         />
         {hasDiscount && (
-          <div className="absolute top-3 left-3 bg-brand-primary text-white text-[8px] font-black px-2.5 py-1 rounded-full shadow-lg">
-            SPECIAL OFFER
+          <div className="absolute top-3 left-3 bg-brand-primary text-white text-[9px] font-bold px-3 py-1 rounded-lg shadow-sm">
+            OFFER
           </div>
         )}
         <button
@@ -291,22 +287,22 @@ const ProductCard = memo(({ product, onNavigate, onAddToCart, wishlist = [], onT
       </div>
 
       <div className="p-4 md:p-5 flex flex-col h-full">
-        <h3 className="text-xs md:text-sm font-bold text-gray-900 mb-1.5 line-clamp-2 leading-tight group-hover:text-brand-primary transition-colors cursor-pointer" onClick={() => onNavigate(product._id)}>
+        <h3 className="text-sm font-semibold text-gray-900 mb-2 line-clamp-2 leading-snug group-hover:text-brand-primary transition-colors cursor-pointer" onClick={() => onNavigate(product._id)}>
           {product.title}
         </h3>
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-sm md:text-lg font-black text-brand-primary">₹{product.variants?.[0]?.price}</span>
+        <div className="flex items-center gap-2 mb-4">
+          <span className="text-base md:text-xl font-bold text-gray-900">₹{product.variants?.[0]?.price}</span>
           {hasDiscount && (
-            <span className="text-[10px] text-gray-400 line-through font-bold">₹{product.variants[0].compareAtPrice}</span>
+            <span className="text-xs text-gray-400 line-through font-medium">₹{product.variants[0].compareAtPrice}</span>
           )}
         </div>
-        <div className="flex flex-col gap-1.5 mt-auto">
+        <div className="flex flex-col gap-2 mt-auto">
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => onAddToCart(product)}
-            className="flex-1 bg-pastel-pink/10 text-brand-primary font-black text-[9px] uppercase tracking-widest py-2.5 rounded-lg border-2 border-transparent hover:border-brand-primary/20 transition-all flex items-center justify-center gap-1.5 px-2"
+            className="flex-1 bg-gray-50 text-gray-900 font-bold text-[10px] uppercase tracking-wider py-3 rounded-xl border border-gray-100 hover:bg-gray-100 transition-all flex items-center justify-center gap-2 px-2"
           >
-            <ShoppingBag size={12} /> Add
+            <ShoppingBag size={14} /> Add to Cart
           </motion.button>
           <motion.button
             whileTap={{ scale: 0.95 }}
@@ -315,7 +311,7 @@ const ProductCard = memo(({ product, onNavigate, onAddToCart, wishlist = [], onT
                 onNavigate('/checkout', true);
               }
             }}
-            className="flex-1 btn-bubbly bg-brand-primary text-white font-black text-[9px] uppercase tracking-widest py-2.5 border-none px-2 whitespace-nowrap !rounded-lg"
+            className="flex-1 bg-brand-primary text-white font-bold text-[10px] uppercase tracking-wider py-3 rounded-xl border-none px-2 whitespace-nowrap"
           >
             Buy Now
           </motion.button>
@@ -356,7 +352,7 @@ const ProductList = () => {
   const toggleWishlist = useCallback(async (productId) => {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     if (!user?._id) {
-      toast.info("Please login to save magic bits!");
+      toast.info("Please login to save products!");
       return navigate('/login');
     }
     try {
@@ -365,7 +361,7 @@ const ProductList = () => {
         productId
       });
       setWishlist(data.wishlist);
-      toast.success(data.wishlist.includes(productId) ? "Added to wishlist! ✨" : "Removed from wishlist");
+      toast.success(data.wishlist.includes(productId) ? "Added to wishlist!" : "Removed from wishlist");
     } catch (err) {
       console.error("Toggle error:", err);
       toast.error("Failed to update wishlist");
@@ -449,7 +445,7 @@ const ProductList = () => {
   const addToCart = useCallback((product) => {
     const user = JSON.parse(localStorage.getItem("user") || "null");
     if (!user || !user._id) {
-      toast.info("Please login to add magic bits to your cart! ✨");
+      toast.info("Please login to add products to your cart!");
       navigate("/login");
       return false;
     }
@@ -484,7 +480,7 @@ const ProductList = () => {
 
     localStorage.setItem(key, JSON.stringify(newCart));
     window.dispatchEvent(new Event("cartUpdated"));
-    toast.success("Magic added to cart! ✨");
+    toast.success("Added to cart!");
     return true;
   }, [navigate]);
 
@@ -497,7 +493,7 @@ const ProductList = () => {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen font-montserrat" style={{ background: "linear-gradient(180deg, #fff 0%, #fffbeb 30%, #fff 100%)" }}>
+    <div className="min-h-screen font-jakarta bg-white">
       <SearchHeader search={search} setSearch={setSearch} loading={loading} />
 
       <div className="max-w-[1600px] mx-auto px-4 md:px-10 py-6 md:py-16">
@@ -506,7 +502,7 @@ const ProductList = () => {
           <div className="lg:hidden flex items-center gap-4 mb-2">
             <button
               onClick={() => setIsSidebarOpen(true)}
-              className="flex-1 flex items-center justify-center gap-3 bg-white py-3 md:py-4 rounded-2xl text-brand-primary font-black text-xs md:text-sm uppercase tracking-widest border-2 border-pastel-pink/20 shadow-sm"
+              className="flex-1 flex items-center justify-center gap-3 bg-white py-4 rounded-xl text-gray-900 font-bold text-sm uppercase tracking-wider border border-gray-200 shadow-sm"
             >
               <Filter size={18} /> Filters
             </button>
@@ -537,18 +533,18 @@ const ProductList = () => {
 
           {/* Main Content */}
           <main className="flex-1">
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 md:gap-6 mb-8">
-                <p className="text-gray-400 font-bold text-[10px] md:text-sm uppercase tracking-[0.1em] md:tracking-[0.15em] hidden sm:block">
-                  <span className="text-brand-primary">{totalCount}</span> Magic bits found
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 md:gap-6 mb-8 font-jakarta">
+                <p className="text-gray-500 font-bold text-xs uppercase tracking-wider hidden sm:block">
+                  <span className="text-brand-primary">{totalCount}</span> Products found
                 </p>
                 <div className="flex items-center gap-2 md:gap-4 w-full sm:w-auto">
                   <div className="relative flex-1 sm:flex-none">
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value)}
-                      className="w-full bg-white border-2 border-pastel-pink/10 rounded-full px-6 py-2.5 text-[11px] md:text-sm font-black text-gray-700 outline-none cursor-pointer shadow-sm hover:border-brand-primary/20 transition-all appearance-none pr-10"
+                      className="w-full bg-white border border-gray-200 rounded-xl px-6 py-2.5 text-sm font-bold text-gray-700 outline-none cursor-pointer shadow-sm hover:border-brand-primary/20 transition-all appearance-none pr-10"
                     >
-                      <option value="relevance">Sort: Magic Flow</option>
+                      <option value="relevance">Sort: Featured</option>
                       <option value="price_asc">Price: Low to High</option>
                       <option value="price_desc">Price: High to Low</option>
                     </select>
@@ -603,9 +599,9 @@ const ProductList = () => {
                       <button
                         key={pageNum}
                         onClick={() => setPage(pageNum)}
-                        className={`w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl font-black text-xs md:text-sm transition-all ${page === pageNum
-                          ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20'
-                          : 'bg-white border-2 border-pastel-pink/10 text-gray-500 hover:border-brand-primary/20'
+                        className={`w-10 h-10 md:w-12 md:h-12 rounded-xl font-bold text-xs md:text-sm transition-all ${page === pageNum
+                          ? 'bg-brand-primary text-white shadow-md'
+                          : 'bg-white border border-gray-200 text-gray-500 hover:border-brand-primary/20'
                           }`}
                       >
                         {pageNum}
