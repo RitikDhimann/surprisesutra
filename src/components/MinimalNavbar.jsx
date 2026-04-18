@@ -47,8 +47,8 @@ const MinimalNavbar = () => {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { 
-      name: "Supplies", 
+    {
+      name: "Supplies",
       path: "/diy-kits",
       subMenu: [
         { name: "Birthday Party", path: "/diy-kits?category=birthday" },
@@ -100,7 +100,7 @@ const MinimalNavbar = () => {
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-8 xl:gap-12">
             {navLinks.map((link) => (
-              <div 
+              <div
                 key={link.name}
                 className="relative"
                 onMouseEnter={() => {
@@ -195,9 +195,9 @@ const MinimalNavbar = () => {
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden w-12 h-12 blob-mask bg-brand-pink/5 flex items-center justify-center text-brand-brown border-none"
+              className="lg:hidden w-12 h-12 blob-mask bg-transparent flex items-center justify-center text-brand-brown border-none"
             >
-              {mobileMenuOpen ? <X size={20} /> : <MenuGiftIcon size={32} />}
+              {mobileMenuOpen ? <X size={20} /> : <MenuGiftIcon size={22} className="mb-1" />}
             </button>
           </div>
         </div>
