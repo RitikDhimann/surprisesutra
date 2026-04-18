@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Star, Heart, Loader2 } from "lucide-react";
+import { Heart, Loader2 } from "lucide-react";
 import axios from "axios";
 import { API_BASE, BASE_URL } from "../config";
 

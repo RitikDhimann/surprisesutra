@@ -5,7 +5,6 @@ import {
   Search,
   Filter,
   Loader2,
-  Sparkles,
   ShoppingBag,
   Heart,
   X,
