@@ -301,7 +301,7 @@
 
 //           {/* Magazine Style Collage Grid - MATCHING REFERENCE IMAGE PATTERN */}
 //           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[250px] md:auto-rows-[350px]">
-            
+
 //             {/* Slot 1: Col 1, Rows 1-2 (Tall) */}
 //             <motion.div 
 //               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
@@ -460,7 +460,7 @@ const Services = () => {
       delete submissionData.vision;
 
       await axios.post(`${API_BASE}/api/queries`, submissionData);
-      
+
       toast.success("Inquiry sent successfully! We'll get back to you soon.");
       setFormData({
         name: "",

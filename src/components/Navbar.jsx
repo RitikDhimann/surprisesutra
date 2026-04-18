@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ShoppingCart, User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "../assets/new_logo.png";
+import MenuGiftIcon from "./MenuGiftIcon";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -108,7 +109,7 @@ const Navbar = () => {
                 onClick={() => setIsOpen(!isOpen)}
                 className="lg:hidden w-10 h-10 md:w-14 md:h-14 blob-mask bg-brand-pink/5 flex items-center justify-center text-brand-brown hover:bg-brand-pink/20 transition-all font-bold border-none"
             >
-                {isOpen ? <X size={20} className="md:size-[24px]" /> : <Menu size={20} className="md:size-[24px]" />}
+                {isOpen ? <X size={20} className="md:size-[24px]" /> : <MenuGiftIcon size={32} className="md:size-[40px]" />}
             </button>
           </div>
         </div>

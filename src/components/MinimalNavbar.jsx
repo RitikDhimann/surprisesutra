@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingCart, User, Gift, X, Heart, ChevronDown } from "lucide-react";
+import { ShoppingCart, User, X, Heart, ChevronDown } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/new_logo.png";
+import MenuGiftIcon from "./MenuGiftIcon";
 
 const MinimalNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -194,9 +195,9 @@ const MinimalNavbar = () => {
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden w-10 h-10 blob-mask bg-brand-pink/5 flex items-center justify-center text-brand-brown border-none"
+              className="lg:hidden w-12 h-12 blob-mask bg-brand-pink/5 flex items-center justify-center text-brand-brown border-none"
             >
-              {mobileMenuOpen ? <X size={20} /> : <Gift size={20} />}
+              {mobileMenuOpen ? <X size={20} /> : <MenuGiftIcon size={32} />}
             </button>
           </div>
         </div>
