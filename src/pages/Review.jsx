@@ -1,56 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Star, Heart } from "lucide-react";
-
-const reviews = [
-  {
-    name: "Priya Sharma",
-    occasion: "Birthday Party",
-    rating: 5,
-    text: "Absolutely stunning decoration for my daughter's 5th birthday! The team was professional, creative, and brought our princess theme to life perfectly.",
-    image: "https://i.pravatar.cc/150?img=1",
-    bg: "#fff9f9",
-    rotation: -2,
-  },
-  {
-    name: "Rahul Verma",
-    occasion: "Anniversary",
-    rating: 5,
-    text: "Surprised my wife with a beautiful anniversary setup at home. The attention to detail was incredible and it made our evening truly special.",
-    image: "https://i.pravatar.cc/150?img=33",
-    bg: "#f9fff9",
-    rotation: 3,
-  },
-  {
-    name: "Anjali Patel",
-    occasion: "Baby Shower",
-    rating: 5,
-    text: "The baby shower decoration exceeded all expectations! Everything was perfect from the balloon arrangements to the cute centerpieces.",
-    image: "https://i.pravatar.cc/150?img=5",
-    bg: "#f9f9ff",
-    rotation: -1.5,
-  },
-  {
-    name: "Neha Gupta",
-    occasion: "Bachelor Party",
-    rating: 5,
-    text: "Epic setup for my bachelorette! Every corner was Instagram-worthy and my friends couldn't stop complimenting the team's creativity.",
-    image: "https://i.pravatar.cc/150?img=9",
-    bg: "#fffdf9",
-    rotation: 2.5,
-  },
-  {
-    name: "Aditya Singh",
-    occasion: "Corporate Event",
-    rating: 5,
-    text: "Professional, punctual and absolutely creative. Our office anniversary event was a huge hit. Will definitely hire them again!",
-    image: "https://i.pravatar.cc/150?img=12",
-    bg: "#fdf9ff",
-    rotation: -3,
-  },
-];
+import { Star, Heart, Loader2 } from "lucide-react";
+import axios from "axios";
+import { API_BASE, BASE_URL } from "../config";
 
 const ReviewCard = ({ review, index }) => {
+  const getImageUrl = (url) => {
+    if (!url) return 'https://via.placeholder.com/150';
+    if (url.startsWith('http')) return url;
+    return `${BASE_URL}${url}`;
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50, rotate: review.rotation }}
@@ -72,9 +32,9 @@ const ReviewCard = ({ review, index }) => {
       }}
       className="relative flex-shrink-0 w-72 md:w-80 p-8 shadow-xl border border-black/5"
       style={{ 
-        background: review.bg,
+        background: review.bg || "#ffffff",
         boxShadow: "0 10px 25px -10px rgba(0,0,0,0.1), 0 4px 10px -5px rgba(0,0,0,0.05)",
-        marginTop: `${Math.abs(review.rotation) * 10}px` // Slight vertical variance
+        marginTop: `${Math.abs(review.rotation || 0) * 10 + (index === 1 ? 30 : index === 2 ? 20 : 0)}px` 
       }}
     >
       {/* Clip / Pin */}
@@ -86,27 +46,25 @@ const ReviewCard = ({ review, index }) => {
       </div>
 
       {/* Card Content */}
-      <div className="flex flex-col gap-4">
-        <div className="flex gap-1">
-          {[...Array(review.rating)].map((_, i) => (
-            <Star key={i} size={14} fill="#c73020" className="text-[#c73020]" />
-          ))}
+      <div className="flex flex-col h-full">
+        {/* Full Image Preview at Top */}
+        <div className="relative -mx-8 -mt-8 mb-6 overflow-hidden rounded-t-[inherit] border-t border-l border-r border-black/10 p-2">
+          <img 
+            src={getImageUrl(review.image)} 
+            alt={review.name} 
+            className="w-full h-48 object-cover rounded-lg"
+          />
         </div>
 
-        <p className="text-gray-700 font-libre italic leading-relaxed text-sm md:text-base">
-          "{review.text}"
-        </p>
-
-        <div className="flex items-center gap-3 mt-4 pt-4 border-t border-black/5">
-          <img 
-            src={review.image} 
-            alt={review.name} 
-            className="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm"
-          />
-          <div>
-            <h4 className="font-bold text-gray-900 text-sm">{review.name}</h4>
-            <p className="text-xs text-[#c73020] font-bold uppercase tracking-wider">{review.occasion}</p>
+        <div className="flex flex-col gap-4">
+          <div className="border-b border-black/5 pb-3">
+            <h4 className="font-bold text-gray-900 text-base leading-tight">{review.name}</h4>
+            <p className="text-[10px] text-[#c73020] font-black uppercase tracking-wider mt-1">{review.occasion}</p>
           </div>
+
+          <p className="text-gray-700 font-libre italic leading-relaxed text-sm md:text-base">
+            "{review.text}"
+          </p>
         </div>
       </div>
     </motion.div>
@@ -114,6 +72,23 @@ const ReviewCard = ({ review, index }) => {
 };
 
 const ReviewsSection = () => {
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const res = await axios.get(`${API_BASE}/api/reviews`);
+        setReviews(res.data);
+      } catch (err) {
+        console.error("Error fetching reviews:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchReviews();
+  }, []);
+
   return (
     <section className="pt-12 pb-0 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-10">
@@ -154,9 +129,19 @@ const ReviewsSection = () => {
 
           {/* The Hanging Cards */}
           <div className="flex gap-8 items-start relative z-10">
-            {reviews.map((review, index) => (
-              <ReviewCard key={review.name} review={review} index={index} />
-            ))}
+            {loading ? (
+              <div className="w-full flex justify-center py-20">
+                <Loader2 className="w-10 h-10 text-[#c73020] animate-spin" />
+              </div>
+            ) : reviews.length === 0 ? (
+              <div className="w-full text-center py-20 text-gray-400 font-medium">
+                No reviews yet. Check back soon!
+              </div>
+            ) : (
+              reviews.map((review, index) => (
+                <ReviewCard key={review._id} review={review} index={index} />
+              ))
+            )}
           </div>
         </div>
       </div>

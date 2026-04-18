@@ -4,6 +4,8 @@ export const API_BASE = isLocalhost
   ? 'http://localhost:3043'
   : process.env.REACT_APP_API_BASE;
 
+export const BASE_URL = API_BASE;
+
 console.log(process.env.REACT_APP_API_BASE)
 // : 'https://apisurprise.dodunsoftsolutions.com';
 

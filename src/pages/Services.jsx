@@ -408,6 +408,8 @@ import {
   Send, Phone, MessageCircle, MapPin
 } from "lucide-react";
 import { toast } from "react-toastify";
+import axios from "axios";
+import { API_BASE } from "../config";
 import useWindowSize from "../hooks/useWindowSize";
 
 import b1 from "../assets/b1.jpg";
@@ -444,12 +446,21 @@ const Services = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      // Map 'vision' field to 'message' for the backend
+      const submissionData = {
+        ...formData,
+        message: formData.vision
+      };
+      // Remove vision to avoid redundancy if the backend doesn't expect it
+      delete submissionData.vision;
+
+      await axios.post(`${API_BASE}/api/queries`, submissionData);
+      
       toast.success("Inquiry sent successfully! We'll get back to you soon.");
       setFormData({
         name: "",
@@ -460,8 +471,12 @@ const Services = () => {
         location: "",
         vision: ""
       });
+    } catch (err) {
+      console.error("Submission error:", err);
+      toast.error(err.response?.data?.message || "Failed to send inquiry. Please try again.");
+    } finally {
       setIsSubmitting(false);
-    }, 2000);
+    }
   };
 
   return (
