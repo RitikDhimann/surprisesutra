@@ -13,7 +13,7 @@ import {
   ChevronDown
 } from "lucide-react";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { API_BASE } from "../config";
 const PRODUCTS_PER_PAGE = 16;
 
@@ -54,7 +54,7 @@ const SearchHeader = memo(({ search, setSearch, loading }) => (
 
     <div className="max-w-7xl mx-auto flex flex-col items-center text-center relative z-10">
       <h1 className="text-3xl xs:text-4xl md:text-5xl font-bold tracking-tight mb-6 md:mb-8 leading-tight font-jakarta">
-        <span className="text-brand-secondary">The</span> <span className="text-brand-primary italic mx-2">Prop</span> <span className="text-brand-secondary">Shop</span>
+        <span className="text-gray-900">The</span> <span className="text-brand-primary italic mx-2">Prop</span> <span className="text-gray-900">Shop</span>
       </h1>
 
       <div className="relative w-full max-w-md group mb-6">
@@ -131,26 +131,40 @@ const FilterSidebar = memo(({ options, selectedCategories, toggleSet, maxPrice, 
                 className="overflow-hidden"
               >
                 <div className="space-y-2 pb-4 max-h-[40vh] overflow-y-auto custom-scrollbar pr-2">
-                  {options.categories.map((cat) => (
-                    <label
-                      key={cat}
-                      className="group flex items-center gap-3 cursor-pointer py-1.5 px-2 rounded-xl hover:bg-brand-primary/5 transition-colors"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        toggleSet(cat);
-                      }}
-                    >
-                      <div className={`w-5 h-5 rounded-md border-2 transition-all flex items-center justify-center ${selectedCategories.has(cat)
-                        ? 'bg-brand-primary border-brand-primary shadow-sm'
-                        : 'bg-white border-gray-200 group-hover:border-brand-primary/40'
-                        }`}>
-                        {selectedCategories.has(cat) && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="w-1.5 h-1.5 bg-white rounded-full" />}
+                  {options.categories.map((group) => (
+                    <div key={group.parent?._id || 'root'} className="space-y-4">
+                      {/* Parent Label (if it's a group of subcategories) */}
+                      {group.parent && (
+                        <div className="flex items-center gap-2 px-2 mt-4 mb-2">
+                           <div className="h-[1px] w-4 bg-slate-100" />
+                           <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">{group.parent.name}</span>
+                        </div>
+                      )}
+                      
+                      <div className="space-y-2">
+                        {group.items.map((cat) => (
+                          <label
+                            key={cat._id}
+                            className={`group flex items-center gap-3 cursor-pointer py-1.5 px-2 rounded-xl hover:bg-brand-primary/5 transition-colors ${cat.parent ? 'ml-4' : ''}`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              toggleSet(cat.name);
+                            }}
+                          >
+                            <div className={`w-5 h-5 rounded-md border-2 transition-all flex items-center justify-center ${selectedCategories.has(cat.name)
+                              ? 'bg-brand-primary border-brand-primary shadow-sm'
+                              : 'bg-white border-gray-200 group-hover:border-brand-primary/40'
+                              }`}>
+                              {selectedCategories.has(cat.name) && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="w-1.5 h-1.5 bg-white rounded-full" />}
+                            </div>
+                            <span className={`text-sm font-medium transition-colors ${selectedCategories.has(cat.name) ? 'text-brand-primary font-bold' : 'text-gray-600 group-hover:text-gray-900'
+                              }`}>
+                              {cat.name}
+                            </span>
+                          </label>
+                        ))}
                       </div>
-                      <span className={`text-sm font-medium transition-colors ${selectedCategories.has(cat) ? 'text-brand-primary' : 'text-gray-600 group-hover:text-gray-900'
-                        }`}>
-                        {cat}
-                      </span>
-                    </label>
+                    </div>
                   ))}
                 </div>
               </motion.div>
@@ -324,6 +338,7 @@ const ProductCard = memo(({ product, onNavigate, onAddToCart, wishlist = [], onT
 // --- Main Component ---
 
 const ProductList = () => {
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [wishlist, setWishlist] = useState([]);
@@ -331,13 +346,24 @@ const ProductList = () => {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [maxPrice, setMaxPrice] = useState(10000);
-  const [selectedCategories, setSelectedCategories] = useState(new Set());
+  const [selectedCategories, setSelectedCategories] = useState(() => {
+    const fromUrl = searchParams.getAll("categories");
+    return fromUrl.length > 0 ? new Set(fromUrl) : new Set();
+  });
   const [sortBy, setSortBy] = useLocalStorage("ss.sort", "relevance");
   const [page, setPage] = useState(1);
   const [options, setOptions] = useState({ categories: [] });
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const dSearch = useDebounced(search, 500);
+
+  // Sync state with URL changes (e.g. when clicking a new category in the navbar while already on the products page)
+  useEffect(() => {
+    const fromUrl = searchParams.getAll("categories");
+    if (fromUrl.length > 0) {
+      setSelectedCategories(new Set(fromUrl));
+    }
+  }, [searchParams]);
   
   // Fetch wishlist
   useEffect(() => {
@@ -376,9 +402,33 @@ const ProductList = () => {
         const { data } = await axios.get(`${API_BASE}/api/category`);
         if (!active) return;
 
-        const cats = (data.categories || []).map(cat => cat.name);
+        const allCats = data.categories || [];
+        
+        // Filter to only show product categories in the sidebar
+        const productCats = allCats.filter(cat => cat.type === 'product');
+        
+        // Group categories by parent
+        const grouped = [];
+        const topLevel = productCats.filter(c => !c.parent);
+        
+        // Add root items (no parent)
+        if (topLevel.length > 0) {
+            grouped.push({ parent: null, items: topLevel.sort((a,b) => a.name.localeCompare(b.name)) });
+        }
+        
+        // Add children under parents
+        topLevel.forEach(parent => {
+            const children = productCats.filter(c => c.parent?._id === parent._id);
+            if (children.length > 0) {
+                grouped.push({ 
+                    parent: parent, 
+                    items: children.sort((a,b) => a.name.localeCompare(b.name)) 
+                });
+            }
+        });
+
         setOptions({
-          categories: cats.sort(),
+          categories: grouped,
         });
       } catch (err) {
         console.error("Failed to fetch categories:", err);

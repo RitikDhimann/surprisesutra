@@ -4,6 +4,8 @@ import { ShoppingCart, User, X, Heart, ChevronDown } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/new_logo.png";
 import MenuGiftIcon from "./MenuGiftIcon";
+import axios from "axios";
+import { API_BASE } from "../config";
 
 const MinimalNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -46,18 +48,39 @@ const MinimalNavbar = () => {
     }
   }, [mobileMenuOpen]);
 
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const { data } = await axios.get(`${API_BASE}/api/category`);
+        // Filter to only show occasions in the navbar
+        const occasions = (data.categories || []).filter(cat => cat.type === 'occasion');
+        setCategories(occasions);
+      } catch (error) {
+        console.error("Error fetching categories for navbar:", error);
+      }
+    };
+    fetchCategories();
+  }, []);
+
   const navLinks = [
     {
       name: "Supplies",
       path: "/diy-kits",
-      subMenu: [
-        { name: "Birthday Party", path: "/diy-kits?category=birthday" },
-        { name: "Anniversary", path: "/diy-kits?category=anniversary" },
-        { name: "Baby Shower", path: "/diy-kits?category=babyshower" },
-        { name: "Baby Welcome", path: "/diy-kits?category=babywelcome" },
-        { name: "Bachelorette", path: "/diy-kits?category=bachelorette" },
-        { name: "Brand Events", path: "/diy-kits?category=brandevent" },
-      ]
+      subMenu: categories.length > 0 
+        ? categories.map(cat => ({
+            name: cat.name,
+            path: `/diy-kits?categories=${encodeURIComponent(cat.name)}`
+          }))
+        : [
+            { name: "Birthday Party", path: "/diy-kits?categories=Birthday%20Party" },
+            { name: "Anniversary", path: "/diy-kits?categories=Anniversary" },
+            { name: "Baby Shower", path: "/diy-kits?categories=Baby%20Shower" },
+            { name: "Baby Welcome", path: "/diy-kits?categories=Baby%20Welcome" },
+            { name: "Bachelorette", path: "/diy-kits?categories=Bachelorette" },
+            { name: "Brand Events", path: "/diy-kits?categories=Brand%20Events" },
+          ]
     },
     { name: "Services", path: "/services" },
     { name: "About", path: "about" },
@@ -138,15 +161,15 @@ const MinimalNavbar = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-60 z-[110]"
+                        className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-72 z-[110]"
                       >
-                        <div className="bg-white/95 backdrop-blur-2xl rounded-3xl shadow-[0_25px_70px_rgba(180,37,51,0.15)] border-2 border-brand-primary/10 p-3">
+                        <div className="bg-white/95 backdrop-blur-2xl rounded-3xl shadow-[0_25px_70px_rgba(180,37,51,0.15)] border-2 border-brand-primary/10 p-3 max-h-[70vh] overflow-y-auto custom-scrollbar">
                           <div className="flex flex-col gap-1">
                             {link.subMenu.map((sub) => (
                               <button
                                 key={sub.name}
                                 onClick={() => handleNavClick(sub.path)}
-                                className="px-5 py-3 rounded-2xl text-[10px] font-montserrat font-black text-brand-brown/60 hover:text-brand-primary hover:bg-brand-primary/5 transition-all text-left uppercase tracking-[0.15em] whitespace-nowrap bg-transparent border-none"
+                                className="px-5 py-4 rounded-2xl text-[11px] font-montserrat font-black text-brand-brown/70 hover:text-brand-primary hover:bg-brand-primary/5 transition-all text-left uppercase tracking-[0.15em] bg-transparent border-none active:scale-[0.98]"
                               >
                                 {sub.name}
                               </button>
@@ -233,7 +256,7 @@ const MinimalNavbar = () => {
                       <button
                         key={sub.name}
                         onClick={() => handleNavClick(sub.path)}
-                        className="text-[10px] font-montserrat font-bold text-brand-brown/40 hover:text-brand-primary transition-all uppercase tracking-widest border border-brand-brown/10 px-4 py-2 rounded-full bg-transparent active:scale-95 transition-transform"
+                        className="text-xs font-montserrat font-black text-brand-brown/60 hover:text-brand-primary transition-all uppercase tracking-widest border border-brand-brown/10 px-6 py-3 rounded-2xl bg-transparent active:scale-90 transition-transform"
                       >
                         {sub.name}
                       </button>
