@@ -5,7 +5,6 @@ import {
   Heart, 
   ShoppingBag, 
   ArrowLeft, 
-  Sparkles,
   Loader2,
   Trash2
 } from "lucide-react";
@@ -58,7 +57,7 @@ const WishlistPage = () => {
   const addToCart = (product) => {
     const user = JSON.parse(localStorage.getItem("user") || "null");
     if (!user || !user._id) {
-      toast.info("Please login to add magic bits to your cart! ✨");
+      toast.info("Please login to add items to your cart.");
       navigate("/login");
       return;
     }
@@ -105,27 +104,28 @@ const WishlistPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white font-montserrat pt-32 pb-20 px-4 md:px-10">
+    <div className="min-h-screen bg-[#FAFAFA] font-jakarta pt-32 pb-20 px-4 md:px-10">
       <div className="max-w-7xl mx-auto">
         <header className="mb-12">
-          <Link to="/diy-kits" className="inline-flex items-center gap-2 text-brand-primary font-black mb-4 hover:gap-4 transition-all uppercase tracking-widest text-[10px]">
-            <ArrowLeft size={14} /> Back to Shop
+          <Link to="/diy-kits" className="inline-flex items-center gap-2 text-gray-500 font-medium mb-4 hover:text-brand-primary transition-colors text-xs">
+            <ArrowLeft size={16} /> Continue Shopping
           </Link>
-          <h1 className="text-4xl md:text-7xl font-black text-gray-900 tracking-tighter leading-none mb-3">
-            Saved <span className="text-brand-primary">Gems!</span>
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-none mb-3">
+            My <span className="text-brand-primary">Wishlist</span>
           </h1>
-          <p className="text-gray-400 font-bold text-xs uppercase tracking-widest flex items-center gap-2">
-            <Sparkles size={14} className="text-yellow-400" /> 
-            {items.length} bits of magic waiting for you
+          <p className="text-gray-400 font-semibold text-xs uppercase tracking-widest flex items-center gap-2">
+            {items.length} {items.length === 1 ? 'Item' : 'Items'} in your wishlist
           </p>
         </header>
 
         {items.length === 0 ? (
-          <div className="text-center py-32 bg-gray-50/50 rounded-[3rem] border-4 border-dashed border-gray-100">
-            <Heart className="w-20 h-20 mx-auto text-gray-200 mb-6" />
-            <h2 className="text-2xl font-black text-gray-900 mb-4">Your wishlist is empty!</h2>
-            <p className="text-gray-400 font-bold mb-8">Start adding some magic to your collection.</p>
-            <Link to="/diy-kits" className="btn-bubbly bg-brand-primary text-white px-10 py-4 inline-block">Go Shopping →</Link>
+          <div className="text-center py-32 bg-white rounded-3xl border border-gray-100 shadow-sm">
+            <Heart className="w-16 h-16 mx-auto text-gray-200 mb-6" />
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Your wishlist is empty</h2>
+            <p className="text-gray-500 font-medium mb-10 text-sm">Start adding items you love to your collection.</p>
+            <Link to="/diy-kits" className="inline-flex items-center gap-3 bg-brand-primary text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-brand-primary/90 transition-all">
+               Browse Products
+            </Link>
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -134,10 +134,10 @@ const WishlistPage = () => {
                 <motion.div
                   key={product._id}
                   layout
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  className="group bg-white rounded-[2rem] overflow-hidden border-2 border-pastel-pink/10 hover:border-brand-primary/30 transition-all duration-500 shadow-sm hover:shadow-xl flex flex-col pt-5"
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  className="group bg-white rounded-3xl overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-500 flex flex-col pt-5"
                 >
                   <div className="relative aspect-square px-8 flex items-center justify-center">
                     <img 
@@ -147,26 +147,26 @@ const WishlistPage = () => {
                     />
                     <button 
                       onClick={() => removeFromWishlist(product._id)}
-                      className="absolute top-0 right-5 p-2 bg-red-50 text-red-500 rounded-full hover:bg-red-500 hover:text-white transition-all shadow-sm"
+                      className="absolute top-0 right-5 p-2 bg-gray-50 text-gray-400 rounded-full hover:bg-red-50 hover:text-red-500 transition-all shadow-sm"
                     >
                       <Trash2 size={16} />
                     </button>
                   </div>
                   <div className="p-6 flex flex-col flex-1">
-                    <h3 className="font-bold text-gray-900 mb-2 line-clamp-1 group-hover:text-brand-primary transition-colors text-sm">{product.title}</h3>
+                    <h3 className="font-bold text-gray-900 mb-1 line-clamp-1 group-hover:text-brand-primary transition-colors text-sm">{product.title}</h3>
                     <div className="flex items-center justify-between mb-6">
-                       <span className="text-xl font-black text-brand-primary">₹{product.variants?.[0]?.price}</span>
+                       <span className="text-lg font-bold text-gray-900">₹{product.variants?.[0]?.price?.toLocaleString()}</span>
                     </div>
                     <div className="flex flex-col gap-2 mt-auto">
                       <button 
                         onClick={() => addToCart(product)}
-                        className="w-full bg-pastel-pink/10 text-brand-primary font-black text-[10px] uppercase tracking-widest py-3 rounded-xl hover:bg-brand-primary hover:text-white transition-all flex items-center justify-center gap-2"
+                        className="w-full bg-gray-50 text-brand-primary font-bold text-[10px] uppercase tracking-widest py-3.5 rounded-xl hover:bg-brand-primary hover:text-white transition-all flex items-center justify-center gap-2"
                       >
                         <ShoppingBag size={14} /> Add to Cart
                       </button>
                       <button 
                         onClick={() => navigate(`/productdetails/${product._id}`)}
-                        className="w-full text-gray-400 font-bold text-[10px] uppercase tracking-widest py-2 hover:text-gray-600 transition-all"
+                        className="w-full text-gray-400 font-semibold text-[10px] uppercase tracking-widest py-2 hover:text-gray-600 transition-all"
                       >
                         View Details
                       </button>
