@@ -14,17 +14,17 @@ const HeroSection = () => {
   const [isHovering2, setIsHovering2] = useState(false);
 
   return (
-    <section id="home" className="relative pt-24 md:pt-54 pb-44 md:pb-40 overflow-hidden min-h-[100vh] flex items-center" style={{ background: "radial-gradient(circle at bottom right, rgba(253, 216, 37, 0.7) 0%, rgba(253, 216, 37, 0.4) 35%, rgba(253, 216, 37, 0) 85%), #ffffff" }}>
+    <section id="home" className="relative pt-24 md:pt-14 pb-[6rem] md:pb-35 overflow-hidden min-h-[100vh] flex items-center" style={{ background: "radial-gradient(circle at bottom right, rgba(253, 216, 37, 0.7) 0%, rgba(253, 216, 37, 0.4) 35%, rgba(253, 216, 37, 0) 85%), #ffffff" }}>
       {/* Organic Background Blobs */}
-      <div className="absolute top-10 right-10 w-[40%] h-[40%] blob-mask blur-2xl -z-0" style={{ background: "rgba(255,255,255,0.15)" }} />
-      <div className="absolute bottom-10 left-10 w-[30%] h-[30%] blob-mask-alt blur-3xl -z-0" style={{ background: "rgba(245,133,41,0.12)" }} />
+      <div className="absolute top-10 right-10 w-[40%] h-[40%] blob-mask blur-3xl -z-10" style={{ background: "rgba(253,216,37,0.15)" }} />
+      <div className="absolute bottom-10 left-10 w-[30%] h-[30%] blob-mask-alt blur-3xl -z-10" style={{ background: "rgba(199,48,32,0.08)" }} />
 
       {/* Artistic Integrated Background Element */}
       <motion.div
         initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 0.35, x: 0 }}
+        animate={{ opacity: 0.8, x: 0 }}
         transition={{ duration: 1.5, delay: 0.5 }}
-        className="absolute right-0 top-0 w-1/2 h-full pointer-events-none -z-10 overflow-hidden hidden lg:block"
+        className="absolute right-0 top-0 w-[60%] h-full pointer-events-none -z-20 overflow-hidden hidden lg:block"
         style={{
           mixBlendMode: "multiply",
           maskImage: "radial-gradient(ellipse at right top, black 20%, transparent 80%)",
@@ -59,7 +59,7 @@ const HeroSection = () => {
             className="text-4xl xs:text-5xl font-libre font-bold leading-[1.1]"
           >
             <span className="text-[#c73020]">You bring the</span> <span className="text-[#fdd825] italic">occasion, </span> <br />
-            <span className="text-[#c73020]">we bring the </span>
+            <span className="text-[#c73020]">we bring the</span> <br />
             <span className="text-[#fdd825] italic">magic!</span>
           </motion.h1>
         </div>
@@ -78,15 +78,15 @@ const HeroSection = () => {
               <span className="text-[#c73020]">You bring the</span> <span className="text-[#fdd825] italic">occasion, </span> <br />
               <span className="relative inline-block text-[#c73020]">
                 we bring the
-              </span>
-              <span className="text-[#fdd825] italic"> magic!</span>
+              </span> <br />
+              <span className="text-[#fdd825] italic">magic!</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-base md:text-lg text-brand-brown/70 font-montserrat max-w-xl mb-8 md:mb-12 leading-relaxed"
+              className="text-base md:text-lg text-brand-brown/70 font-montserrat max-w-xl lg:max-w-2xl lg:mt-5 mb-8 md:mb-12 leading-relaxed"
             >
               Cute party supplies shipped across India & dreamy decor setups across Delhi NCR
             </motion.p>
@@ -95,18 +95,18 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4 md:gap-6 items-start lg:items-start justify-start w-full overflow-visible mt-0"
+              className="flex flex-row gap-2 md:gap-6 items-start lg:items-start justify-start w-full overflow-visible mt-0"
             >
               {/* Button 1 Cluster */}
               <motion.div
                 whileHover="hover"
                 whileTap="hover"
                 initial="initial"
-                className="relative flex flex-col items-start lg:items-start group md:flex-initial min-w-0"
+                className="relative flex flex-col items-start lg:items-start group flex-1 min-w-0"
               >
                 <button
                   onClick={() => navigate("/diy-kits")}
-                  className="btn-action bg-[#fdd825] text-brand-brown hover:bg-[#eec61d] font-montserrat hover:italic w-full sm:flex-1 px-4 py-4 md:px-10 md:py-3 text-[11px] md:text-[11px] text-center leading-tight shadow-lg"
+                  className="btn-action bg-[#fdd825] text-brand-brown hover:bg-[#eec61d] font-montserrat hover:italic w-full px-2 py-3 md:px-10 md:py-3 text-[9px] md:text-[11px] text-center leading-tight shadow-lg"
                 >
                   <span className="break-words">Curated Party Supplies</span>
                   <ArrowRight size={14} className="shrink-0 md:w-[18px] md:h-[18px]" />
@@ -142,11 +142,11 @@ const HeroSection = () => {
                 whileHover="hover"
                 whileTap="hover"
                 initial="initial"
-                className="relative flex flex-col items-start lg:items-start group md:flex-initial min-w-0"
+                className="relative flex flex-col items-start lg:items-start group flex-1 min-w-0"
               >
                 <button
                   onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="btn-action bg-white text-brand-brown hover:bg-gray-50 font-montserrat hover:italic w-full sm:flex-1 px-4 py-4 md:px-10 md:py-3 text-[11px] md:text-[11px] text-center leading-tight border-2 border-brand-brown/10"
+                  className="btn-action bg-white text-brand-brown hover:bg-gray-50 font-montserrat hover:italic w-full px-2 py-3 md:px-10 md:py-3 text-[9px] md:text-[11px] text-center leading-tight border-2 border-brand-brown/10"
                 >
                   <span className="break-words">Signature Decor Services</span>
                   <ArrowRight size={14} className="shrink-0 md:w-[18px] md:h-[18px]" />
@@ -225,7 +225,7 @@ const HeroSection = () => {
       </div>
 
       {/* Scalloped Divider */}
-      <div className="absolute -bottom-[2px] left-0 w-full h-32 bg-white wavy-scallop z-[5]" />
+      <div className="absolute -bottom-[2px] left-0 w-full h-20 bg-white wavy-scallop z-[5]" />
     </section>
   );
 };

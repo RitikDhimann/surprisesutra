@@ -43,7 +43,7 @@ const InstagramSection = () => {
       script.async = true;
       script.defer = true;
       document.body.appendChild(script);
-      
+
       script.onload = () => {
         if (window.instgrm && window.instgrm.Embeds) {
           window.instgrm.Embeds.process();
@@ -53,7 +53,7 @@ const InstagramSection = () => {
   }, [isVisible]);
 
   return (
-    <section ref={sectionRef} id="instagram-feed" className="pt-0 pb-20 relative overflow-hidden" style={{background: "#ffffff"}}>
+    <section ref={sectionRef} id="instagram-feed" className="pt-0 pb-5 relative overflow-hidden" style={{ background: "#ffffff" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         {/* Header Section */}
         <div className="text-center mb-4">

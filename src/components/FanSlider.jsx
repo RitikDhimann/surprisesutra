@@ -3,18 +3,20 @@ import { motion, useAnimationFrame, useMotionValue, useTransform, AnimatePresenc
 import { Gift, Baby, Heart, PartyPopper, X } from "lucide-react";
 import useWindowSize from "../hooks/useWindowSize";
 import RedBow from "../assets/red-bow.png";
-import Video1 from "../assets/Aarviv2.mp4";
-import Video2 from "../assets/Chiyav5.mp4";
-import Video3 from "../assets/Cub SSv4.mp4";
-import Video4 from "../assets/Divit Part 2v6.mp4";
-import Video5 from "../assets/Goosev6.mp4";
-import Video6 from "../assets/Pritika and Somil.mp4";
-import Video7 from "../assets/SSKeychain.mp4";
-import Video8 from "../assets/SSv4Opalite.mp4";
-import Video9 from "../assets/Teddybearv3.mp4";
-import Video10 from "../assets/Wishlinkv9.mp4";
-import Video11 from "../assets/Divit Part 2v6 (1).mp4";
-import Video12 from "../assets/Divitv9.mp4";
+// import Video1 from "../assets/Aarviv2.mp4";
+// import Video2 from "../assets/Chiyav5.mp4";
+// import Video3 from "../assets/Cub SSv4.mp4";
+// import Video4 from "../assets/Divit Part 2v6.mp4";
+// import Video5 from "../assets/Goosev6.mp4";
+// import Video6 from "../assets/Pritika and Somil.mp4";
+// import Video7 from "../assets/SSKeychain.mp4";
+// import Video8 from "../assets/SSv4Opalite.mp4";
+// import Video9 from "../assets/Teddybearv3.mp4";
+// import Video10 from "../assets/Wishlinkv9.mp4";
+// import Video11 from "../assets/Divit Part 2v6 (1).mp4";
+// import Video12 from "../assets/Divitv9.mp4";
+
+// const Video1 = "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776844747/1_1_emypec.mp4";
 
 /* Categories Data */
 const CATEGORIES = [
@@ -22,25 +24,49 @@ const CATEGORIES = [
     id: "birthday",
     label: "Birthday",
     Icon: Gift,
-    videos: [Video1, Video2, Video3, Video4, Video5, Video6]
+    videos: [
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776844747/1_1_emypec.mp4",
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776845513/1_2_xflmyo.mp4",
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776845513/1_3_gchchw.mp4",
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776845514/1_5_dadjds.mp4",
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776845516/1_4_efwyhs.mp4",
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776845516/1_7_zyauac.mp4"
+    ]
   },
   {
     id: "baby-shower",
     label: "Baby Shower",
     Icon: Baby,
-    videos: [Video7, Video8, Video9, Video10, Video11, Video12]
+    videos: [
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776845521/1_6_l67s44.mp4",
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776845513/1_2_xflmyo.mp4",
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776845513/1_3_gchchw.mp4",
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776845514/1_5_dadjds.mp4",
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776845516/1_4_efwyhs.mp4",
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776845516/1_7_zyauac.mp4"
+    ]
   },
   {
     id: "anniversary",
     label: "Anniversary",
     Icon: Heart,
-    videos: [Video1, Video3, Video5, Video7, Video9, Video11]
+    videos: [
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776844747/1_1_emypec.mp4",
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776845513/1_3_gchchw.mp4",
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776845514/1_5_dadjds.mp4",
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776845516/1_7_zyauac.mp4"
+    ]
   },
   {
     id: "party",
     label: "Party Setups",
     Icon: PartyPopper,
-    videos: [Video2, Video4, Video6, Video8, Video10, Video12]
+    videos: [
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776845513/1_2_xflmyo.mp4",
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776845516/1_4_efwyhs.mp4",
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776845516/1_7_zyauac.mp4",
+      "https://res.cloudinary.com/dih8idzab/video/upload/q_auto:low,f_auto/v1776845521/1_6_l67s44.mp4"
+    ]
   }
 ];
 
@@ -122,10 +148,10 @@ const FanSlider = () => {
   });
 
   return (
-    <section style={{ padding: "5rem 0", background: "#ffffff", overflow: "hidden" }}>
+    <section style={{ padding: "2em 0", background: "#ffffff", overflow: "hidden" }}>
       <div style={{ textAlign: "center", marginBottom: "4rem", padding: "0 1rem" }}>
         {/* Custom Bow Divider replacing the badge */}
-        <div className="relative w-full flex items-center justify-center -mt-8 -mb-10 sm:-mb-11 md:-mt-16 md:-mb-10 lg:-mt-16 lg:-mb-16 xl:-mt-24 xl:-mb-24 pointer-events-none z-0">
+        <div className="relative w-full flex items-center justify-center -mt-8 -mb-10 sm:-mb-11 md:mt-16 md:-mb-10 lg:-mt-16 lg:-mb-16  xl:-mb-24 pointer-events-none z-0">
           <div className="relative bg-transparent px-6">
             <motion.div
               initial={{ opacity: 0, scale: 0.5 }}

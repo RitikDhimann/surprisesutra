@@ -58,8 +58,8 @@ const OccasionsSection = () => {
 
   const visibleCards = useMemo(() => {
     if (width >= 1280) return 3;
-    if (width >= 1024) return 2;
-    return 2;
+    if (width >= 1024) return 2.2;
+    return 1.4; // Show one full card and part of next on mobile for horizontal hint
   }, [width]);
 
   const cardTotal = occasions.length;
@@ -114,7 +114,7 @@ const OccasionsSection = () => {
   };
 
   return (
-    <section id="services" className="py-14 relative overflow-hidden" style={{ background: "#ffffff" }}>
+    <section id="services" className="relative z-[10] -mt-12 pb-5 overflow-hidden" style={{ background: "#ffffff" }}>
       {/* Visual Accents - Floating Balloon */}
       <div className="absolute left-10 top-20 opacity-20 hidden md:block animate-float">
         <svg width="40" height="120" viewBox="0 0 40 120" fill="none">
@@ -131,9 +131,9 @@ const OccasionsSection = () => {
 
       <div className="max-w-screen-xl mx-auto px-4 sm:px-12 relative z-10">
         {/* Header Section */}
-        <div className="text-center mb-16 px-4">
+        <div className="text-center mb-6 px-4">
           {/* Custom Bow Divider replacing the badge */}
-          <div className="relative w-full flex items-center justify-center -mt-8 -mb-10 sm:-mb-12 md:-mb-20 lg:-mb-17  xl:-mb-17 pointer-events-none z-0">
+          <div className="relative w-full flex items-center justify-center -mb-[2.5rem] xl:-mb-[4.5rem] pointer-events-none z-0">
             <div className="relative bg-transparent px-6">
               <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
@@ -198,7 +198,7 @@ const OccasionsSection = () => {
                       transition={{ delay: (i % cardTotal) * 0.05 }}
                       whileHover={{ y: -15 }}
                       onClick={() => navigate("/book-now", { state: { occasion: occasion.title } })}
-                      className="relative h-[420px] sm:h-[500px] md:h-[550px]rounded-[0.5rem] shadow-2xl cursor-pointer overflow-hidden bg-white flex flex-col group"
+                      className="relative h-[420px] sm:h-[500px] md:h-[550px] rounded-[0.5rem] shadow-2xl cursor-pointer overflow-hidden bg-white flex flex-col group"
                     >
                       {/* Image background */}
                       <div className="absolute inset-0 z-0 bg-gray-100">
@@ -207,7 +207,7 @@ const OccasionsSection = () => {
                           alt={occasion.title}
                           loading="lazy"
                           decoding="async"
-                          className="w-full  h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/10 to-black/90" />
                       </div>

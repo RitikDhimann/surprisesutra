@@ -28,6 +28,7 @@ const BalloonIcon = ({ color, isHovering }) => (
         d="M20 48 Q 20 60 15 70 T 20 90" 
         stroke="rgba(0,0,0,0.4)" 
         strokeWidth="1"
+        initial={{ d: "M20 48 Q 20 60 15 70 T 20 90" }}
         animate={{ d: ["M20 48 Q 20 60 15 70 T 20 90", "M20 48 Q 25 60 20 70 T 25 90", "M20 48 Q 20 60 15 70 T 20 90"] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
       />

@@ -90,7 +90,7 @@ const ReviewsSection = () => {
   }, []);
 
   return (
-    <section className="pt-12 pb-0 bg-white relative overflow-hidden">
+    <section className="pb-0 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-10">
         <div className="flex flex-col items-center text-center">
             <motion.div

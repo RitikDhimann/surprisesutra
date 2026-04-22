@@ -8,7 +8,7 @@ const AboutUsSection = () => {
   useWindowSize();
 
   return (
-    <section id="about" className="relative overflow-hidden bg-white py-20 md:py-32">
+    <section id="about" className="relative overflow-hidden bg-white py-10 md:py-26 md:mt-10">
       {/* Decorative Elements */}
 
 
@@ -46,15 +46,17 @@ const AboutUsSection = () => {
             </div>
 
             {/* Achievement Badges */}
-            <div className="mt-12 grid grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="mt-12 grid grid-cols-3 gap-2 sm:gap-4 md:gap-6">
               {[
                 { icon: Users, text: "2500+ celebrations", color: "bg-blue-50" },
                 { icon: Camera, text: "Humans of Bombay", color: "bg-pink-50" },
                 { icon: Cake, text: "Dreamy Setups", color: "bg-orange-50" },
               ].map((item, i) => (
-                <div key={i} className={`flex items-center gap-3 p-4 rounded-2xl ${item.color} border border-transparent hover:border-black/5 transition-all shadow-sm`}>
-                  <item.icon size={20} className="text-[#c73020]" />
-                  <span className="text-xs font-black uppercase tracking-wider text-[#c73020]">{item.text}</span>
+                <div key={i} className={`flex flex-col sm:flex-row items-center justify-center text-center sm:text-left gap-2 sm:gap-3 p-3 sm:p-4 rounded-2xl ${item.color} border border-transparent hover:border-black/5 transition-all shadow-sm`}>
+                  <item.icon size={18} className="text-[#c73020] shrink-0" />
+                  <span className="text-[8px] sm:text-[10px] font-jakarta font-bold uppercase tracking-widest text-[#c73020] leading-tight">
+                    {item.text}
+                  </span>
                 </div>
               ))}
             </div>
