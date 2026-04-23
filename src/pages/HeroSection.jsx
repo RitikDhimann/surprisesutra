@@ -56,10 +56,11 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl xs:text-5xl font-libre font-bold leading-[1.1]"
+            className="text-[28px] xs:text-4xl font-libre font-bold leading-[1.2]"
           >
-            <span className="text-[#c73020]">You bring the</span> <span className="text-[#fdd825] italic">occasion, </span> <br />
-            <span className="text-[#c73020]">we bring the</span> <br />
+            <span className="text-[#c73020]">You bring the </span>
+            <span className="text-[#fdd825] italic">occasion,</span> <br />
+            <span className="text-[#c73020]">we bring the </span>
             <span className="text-[#fdd825] italic">magic!</span>
           </motion.h1>
         </div>
