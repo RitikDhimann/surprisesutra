@@ -65,7 +65,7 @@ const InstagramSection = () => {
           >
 
             <h2 className="text-4xl md:text-7xl font-heading font-medium mb-2 px-2 tracking-tight">
-              <span className="text-[#c73020]">Insta</span> <span className="text-[#fdd825] italic">Moments 🎈</span>
+              <span className="text-[#c73020]">Insta</span> <span className="text-[#fdd825] italic">Moments</span>
             </h2>
             <p className="text-gray-500 max-w-2xl mx-auto text-base md:text-xl px-2 font-jakarta opacity-80">
               Get daily decoration inspiration and latest updates from our studio.

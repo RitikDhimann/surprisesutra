@@ -113,7 +113,7 @@ const AboutUsSection = () => {
                 <div className="flex items-start gap-4">
                   <Quote size={32} className="text-[#fdd825] shrink-0" />
                   <p className="italic text-2xl text-[#c73020] font-heading leading-tight">
-                    For us, it’s never just decor — it’s the moment, the reaction, and everything after 🎈
+                    For us, it’s never just decor — it’s the moment, the reaction, and everything after
                   </p>
                 </div>
               </motion.div>

@@ -59,7 +59,7 @@ const OccasionsSection = () => {
   const visibleCards = useMemo(() => {
     if (width >= 1280) return 3;
     if (width >= 1024) return 2.2;
-    return 1.4; // Show one full card and part of next on mobile for horizontal hint
+    return 2; // Show two full cards side-by-side on mobile
   }, [width]);
 
   const cardTotal = occasions.length;
